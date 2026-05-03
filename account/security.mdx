@@ -1,0 +1,51 @@
+---
+title: "Security and data privacy: how Script.it protects you"
+description: "Script.it encrypts data in transit and at rest, runs scripts in isolated sandboxes, and operates on Google Cloud with automatic failover and backups."
+keywords: ["security", "privacy", "encryption", "sandbox", "data protection", "Google Cloud", "TLS", "Script.it"]
+---
+
+Script.it is built with security as a default, not an afterthought. Your data is encrypted wherever it travels or rests, scripts execute inside isolated environments that can't reach your other sessions, and the infrastructure is designed to stay available even when individual components fail. This page describes the specific protections in place.
+
+## Data encryption
+
+### In transit
+
+All communication between your browser and Script.it is encrypted using HTTPS with TLS 1.2 or higher. This applies to every request — API calls, file uploads, webhook payloads, and everything in between.
+
+### At rest
+
+Data stored in your workspace is encrypted at rest. This includes your scripts, session files, and any credentials you've connected through integrations.
+
+## Credential security
+
+When you connect an integration — Slack, Gmail, Google Sheets, or any other service — Script.it stores the access credentials in encrypted form. Your credentials are never exposed in plain text, and they're never included in script source files or chat history.
+
+To revoke access for an integration at any time:
+
+1. Go to **Settings → Integrations**.
+2. Find the integration you want to disconnect.
+3. Click **Disconnect**.
+
+Disconnecting removes the stored credentials immediately. Any script that relied on the integration will fail until you reconnect it.
+
+## Isolated sandbox environments
+
+Every session runs in its own isolated sandbox. When a script executes, it cannot access the files or runtime state of any other session. This means:
+
+- Concurrent sessions don't interfere with each other.
+- A script can only read files that were produced in its own session, unless you explicitly pass data between scripts.
+- The sandbox environment is discarded after the session ends.
+
+This isolation protects both your data and the Script.it platform from unintended interactions between workloads.
+
+## Workspace backups
+
+Your workspace data — scripts, session history, trigger configurations, and connected integrations — is automatically backed up. You don't need to configure anything for backups to work.
+
+## Infrastructure
+
+Script.it runs on Google Cloud. The infrastructure includes redundancy at multiple levels and automatic failover, so a failure in one component doesn't bring down your automations. Scheduled triggers and webhook triggers are designed to continue operating even during maintenance windows.
+
+<Note>
+  If you have specific compliance requirements or questions about data handling, contact [support@script.it](mailto:support@script.it).
+</Note>

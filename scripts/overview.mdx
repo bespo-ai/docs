@@ -1,0 +1,45 @@
+---
+title: "What are scripts? Automation workflows in Script.it"
+description: "Scripts are reusable YAML-based workflows built by the AI agent. Each script contains ordered blocks that run code or document your automation."
+keywords: ["scripts", "automation", "YAML", "workflow", "AI agent", "blocks", "DSL"]
+---
+
+A script is the core unit of automation in Script.it. It defines a sequence of steps — called blocks — that the platform executes in order. You describe what you want to automate in plain English, and the AI agent builds the script for you: it writes the block definitions, the source code, and the `flow.script.yaml` file that ties everything together.
+
+## What a script is
+
+Every script lives in its own folder inside `/workspace/scripts/` in the sandbox. That folder always contains a `flow.script.yaml` file, which is the authoritative definition of the script — its name, description, and the list of blocks it runs.
+
+```text
+scripts/my-script/
+├── flow.script.yaml       # Script definition (required)
+├── src/                   # Source files
+│   ├── fetch-data.py      # Python scripts
+│   └── process.sh         # Shell scripts
+└── data_files/            # Optional static data bundled with the script
+```
+
+Scripts are **reusable** — you can run the same script many times, in many sessions, without the results of one run affecting another. They are also **version-tracked**: any change the agent makes to a script is captured as a git snapshot, so you can revert to a previous state at any time.
+
+## How the agent builds scripts
+
+When you describe an automation in the session, the agent figures out what steps are needed and creates the script automatically. It writes each block, generates the corresponding source file in `src/`, and updates `flow.script.yaml` to register everything.
+
+You don't need to touch any of these files directly. But because they're plain text, you can read them, copy them, or manage them with version control however you like.
+
+<Tip>
+  You can ask the agent to modify a script at any time — add a step, change the logic of a block, or restructure the whole workflow. Just describe what you want in the chat.
+</Tip>
+
+## What scripts can contain
+
+A script can contain any number of blocks. Blocks come in two types:
+
+- **Executable blocks** — run Python or shell code to perform an action (fetch data, call an API, transform a file, send a notification).
+- **Markdown blocks** — contain plain text for documentation and notes, helping you and your team understand what the script does.
+
+Blocks run in the order they appear in `flow.script.yaml`. The agent handles all the wiring — you just describe the workflow you need.
+
+## Where to go next
+
+The pages in this section cover everything you need to know about working with scripts — how blocks are structured, the full DSL reference, and the ready-made templates you can use to start automating immediately.

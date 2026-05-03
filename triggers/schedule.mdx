@@ -1,0 +1,95 @@
+---
+title: "Schedule triggers: run scripts on a recurring basis"
+description: "Schedule triggers fire your script automatically at a fixed cadence — choose a common interval or write a custom cron expression with timezone support."
+keywords: ["schedule trigger", "cron", "recurring", "automation", "Script.it", "cron expression", "timezone"]
+---
+
+A schedule trigger fires your script on a recurring basis without any manual action. You define when it should run — daily, weekly, monthly, or on a custom cadence — and Script.it creates a new session and runs the script each time the schedule fires. Schedule triggers are well-suited for reports, digests, data syncs, and any routine task that belongs on a fixed cadence.
+
+## Setting up a schedule trigger
+
+<Steps>
+  <Step title="Open the Triggers tab">
+    Open the script you want to schedule. Click the **Triggers** tab, then click **Add Trigger**.
+  </Step>
+  <Step title="Name the trigger and choose Schedule">
+    Enter a name for the trigger — something descriptive like "Daily sales report". In the **Trigger Type** dropdown, select **Schedule**.
+  </Step>
+  <Step title="Choose a frequency">
+    Use the **How often?** dropdown to pick a preset or write a custom cron expression:
+
+    - **Every 30 minutes** — runs twice an hour
+    - **Every hour** — runs at the start of each hour
+    - **Every few hours** — choose an interval of 2, 3, 4, 6, 8, or 12 hours
+    - **Every day at…** — runs once a day at the time you select
+    - **Every weekday at…** — runs Monday through Friday at the time you select
+    - **Every week on…** — runs once a week on the day and time you select
+    - **Every month on…** — runs once a month on the day (1–28) and time you select
+    - **Advanced (custom cron)** — enter a cron expression directly
+
+    The UI shows a plain-English summary of your schedule as you build it (for example, "At 9:00 AM, every day").
+
+    <Note>
+      The minimum allowed interval is every 30 minutes. Schedules that would fire more frequently than that are not accepted.
+    </Note>
+  </Step>
+  <Step title="Set the timezone">
+    Use the **Timezone** picker to choose the timezone your schedule should be interpreted in. By default, this is set to your browser's timezone. If you share a trigger with a team member in another timezone, make sure the timezone is set explicitly so the schedule fires when you expect.
+  </Step>
+  <Step title="Choose an action">
+    Under **Action**, choose what happens when the trigger fires:
+
+    - **Send Prompt** — sends a message to the AI agent in a new session.
+    - **Run Script** — runs a specific script directly, with optional input values.
+  </Step>
+  <Step title="Create the trigger">
+    Click **Create Trigger**. The trigger activates immediately and will fire on its next scheduled time.
+  </Step>
+</Steps>
+
+## Cron expression format
+
+When you select **Advanced (custom cron)**, you write a standard five-field cron expression:
+
+```
+minute  hour  day-of-month  month  day-of-week
+```
+
+Each field accepts a specific set of values:
+
+| Field | Allowed values | Special characters |
+|---|---|---|
+| Minute | 0–59 | `*` `,` `/` |
+| Hour | 0–23 | `*` `,` `/` |
+| Day of month | 1–31 | `*` `,` `/` |
+| Month | 1–12 | `*` `,` `/` |
+| Day of week | 0–6 (0 = Sunday) | `*` `,` `/` `-` |
+
+### Common examples
+
+| Cron expression | When it runs |
+|---|---|
+| `0 9 * * *` | Every day at 9:00 AM |
+| `0 9 * * 1` | Every Monday at 9:00 AM |
+| `0 9 * * 1-5` | Every weekday (Mon–Fri) at 9:00 AM |
+| `0 */6 * * *` | Every 6 hours |
+| `0 9 1 * *` | The 1st of every month at 9:00 AM |
+| `*/30 * * * *` | Every 30 minutes |
+
+<Note>
+  All cron expressions are evaluated in the timezone you selected. `0 9 * * 1` means Monday at 9:00 AM in your chosen timezone, not UTC — unless you explicitly choose UTC as the timezone.
+</Note>
+
+## Pausing, resuming, and deleting
+
+From the **Triggers** tab on any script:
+
+- **Pause** — click the toggle next to a trigger to disable it without deleting it. Paused triggers do not fire until you re-enable them.
+- **Resume** — click the same toggle to re-enable a paused trigger.
+- **Delete** — open the trigger's actions menu and select **Delete**. Deleting a trigger is permanent.
+
+## What happens when a schedule fires
+
+When a scheduled trigger fires, Script.it creates a new session and runs the configured action — either sending a prompt to the agent or executing a script directly. The session appears in your session history like any other run. If the script produces output files, they are available in that session's file panel.
+
+If a scheduled run fails — for example, because a script has an error — the trigger remains active and will try again at the next scheduled time.

@@ -1,0 +1,63 @@
+---
+title: "Webhook triggers: fire Script.it scripts via HTTP POST"
+description: "Webhook triggers give your script a unique URL — send an HTTP POST to that URL from any external service or script to run your automation on demand."
+keywords: ["webhook trigger", "HTTP", "POST", "automation", "Script.it", "external service", "curl"]
+---
+
+A webhook trigger gives your script a unique URL. When that URL receives an HTTP POST request, Script.it creates a new session and runs the configured action. Any service that can make an HTTP request — a CI/CD pipeline, Zapier, Make, Stripe, or a script of your own — can fire your automation this way. You can also pass data in the request body, which your script can read as a payload.
+
+## Creating a webhook trigger
+
+<Steps>
+  <Step title="Open the Triggers tab">
+    Open the script you want to trigger via webhook. Click the **Triggers** tab, then click **Add Trigger**.
+  </Step>
+  <Step title="Name the trigger and choose Webhook">
+    Enter a name for the trigger — something that identifies the source, like "Stripe payment received" or "Deploy finished". In the **Trigger Type** dropdown, select **Webhook**.
+  </Step>
+  <Step title="Choose an action">
+    Under **Action**, choose what happens when the webhook fires:
+
+    - **Send Prompt** — sends a message to the AI agent in a new session.
+    - **Run Script** — runs a specific script directly, with optional input values.
+  </Step>
+  <Step title="Create the trigger">
+    Click **Create Trigger**. Script.it generates a unique webhook URL and displays it immediately after creation. Copy this URL — you'll need it to configure the sending service.
+  </Step>
+  <Step title="Use the URL in your external service">
+    Paste the webhook URL into the service or code that should fire the trigger. Configure that service to send an HTTP POST request to the URL when the relevant event occurs.
+  </Step>
+</Steps>
+
+## Sending a request to the webhook
+
+The webhook URL accepts HTTP POST requests. Send a `POST` to the URL to fire the trigger. You can include a JSON body — the payload will be passed to your script.
+
+To test your webhook from the command line:
+
+```bash
+curl -X POST https://app.script.it/api/webhook/<your-webhook-id> \
+  -H "Content-Type: application/json" \
+  -d '{"event": "test", "value": 42}'
+```
+
+Replace the URL with the webhook URL shown after you create the trigger.
+
+## Passing data to your script
+
+The body of the POST request is the trigger payload. When your script runs, this data is available so the script can act on information from the sender — for example, a Stripe event object, a GitHub push payload, or any custom JSON you choose to send.
+
+## What happens when the webhook fires
+
+Each time the webhook URL receives a POST request, Script.it creates a new session and runs the action you configured. Sessions appear in your session history like any other run. If the action is **Run Script**, the session shows the script execution results. If the action is **Send Prompt**, the agent responds to the prompt in the new session.
+
+<Warning>
+  Your webhook URL acts as the authentication credential — anyone who has the URL can trigger your script. Keep it private. Do not share it publicly, commit it to a public repository, or include it in client-side code. If a URL is compromised, delete the trigger and create a new one to get a fresh URL.
+</Warning>
+
+## Managing webhook triggers
+
+From the **Triggers** tab on your script:
+
+- **Pause / resume** — use the toggle next to a trigger to temporarily disable or re-enable it without losing the URL.
+- **Delete** — open the trigger's actions menu and select **Delete**. Deleting the trigger permanently invalidates the URL. Any future requests to that URL will not fire the script.

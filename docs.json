@@ -1,0 +1,161 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "sequoia",
+  "name": "Script.it",
+  "description": "Automations in a world of agents",
+  "colors": {
+    "primary": "#5F83EE",
+    "light": "#F5F5F4",
+    "dark": "#5F83EE"
+  },
+  "favicon": "data:image/svg+xml,%3csvg%20width='256'%20height='256'%20viewBox='0%200%20256%20256'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_2_4976)'%3e%3cpath%20d='M192%200H64C28.6538%200%200%2028.6538%200%2064V192C0%20227.346%2028.6538%20256%2064%20256H192C227.346%20256%20256%20227.346%20256%20192V64C256%2028.6538%20227.346%200%20192%200Z'%20fill='%231E2128'/%3e%3cpath%20d='M144%2032H64C46.3269%2032%2032%2046.3269%2032%2064V144C32%20161.673%2046.3269%20176%2064%20176H144C161.673%20176%20176%20161.673%20176%20144V64C176%2046.3269%20161.673%2032%20144%2032Z'%20fill='white'/%3e%3cpath%20d='M144%2096H112C103.163%2096%2096%20103.163%2096%20112V144C96%20152.837%20103.163%20160%20112%20160H144C152.837%20160%20160%20152.837%20160%20144V112C160%20103.163%20152.837%2096%20144%2096Z'%20fill='%231E2128'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_2_4976'%3e%3crect%20width='256'%20height='256'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e",
+  "icons": {
+    "library": "lucide"
+  },
+  "styling": {
+    "eyebrows": "breadcrumbs"
+  },
+  "contextual": {
+    "options": ["copy", "view", "assistant"]
+  },
+  "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Home",
+          "icon": "house",
+          "href": "/"
+        },
+        {
+          "anchor": "App",
+          "icon": "layout-dashboard",
+          "href": "https://app.script.it"
+        }
+      ]
+    },
+    "directory": "card",
+    "products": [
+      {
+        "product": "Get Started",
+        "description": "Sign up, build your first script, and start automating in minutes.",
+        "icon": "rocket",
+        "groups": [
+          {
+            "group": "Get Started",
+            "expanded": true,
+            "root": "introduction",
+            "pages": [
+              "quickstart",
+              "core-concepts"
+            ]
+          }
+        ]
+      },
+      {
+        "product": "Scripts",
+        "description": "Build and manage AI automation workflows using the Script.it DSL.",
+        "icon": "file-code",
+        "groups": [
+          {
+            "group": "Building Scripts",
+            "expanded": true,
+            "root": "scripts/overview",
+            "pages": [
+              "scripts/blocks",
+              "scripts/templates"
+            ]
+          }
+        ]
+      },
+      {
+        "product": "Sessions",
+        "description": "Run scripts conversationally with the AI agent and manage session files.",
+        "icon": "message-circle",
+        "groups": [
+          {
+            "group": "Running & Sessions",
+            "expanded": true,
+            "root": "sessions/overview",
+            "pages": [
+              "sessions/chat",
+              "sessions/files"
+            ]
+          }
+        ]
+      },
+      {
+        "product": "Triggers",
+        "description": "Automate workflows on a schedule or in response to external events.",
+        "icon": "zap",
+        "groups": [
+          {
+            "group": "Triggers",
+            "expanded": true,
+            "root": "triggers/overview",
+            "pages": [
+              "triggers/schedule",
+              "triggers/webhook",
+              "triggers/integrations"
+            ]
+          }
+        ]
+      },
+      {
+        "product": "Integrations",
+        "description": "Connect Script.it to Slack, Gmail, Notion, and 600+ other tools.",
+        "icon": "plug",
+        "groups": [
+          {
+            "group": "Integrations",
+            "expanded": true,
+            "root": "integrations/overview",
+            "pages": [
+              "integrations/connecting",
+              "integrations/custom-webhook"
+            ]
+          }
+        ]
+      },
+      {
+        "product": "Account",
+        "description": "Manage your workspace, billing, credits, and security settings.",
+        "icon": "settings",
+        "groups": [
+          {
+            "group": "Account",
+            "expanded": true,
+            "root": "account/workspace",
+            "pages": [
+              "account/billing",
+              "account/security"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "navbar": {
+    "links": [],
+    "primary": {
+      "type": "button",
+      "label": "Start for free",
+      "href": "https://app.script.it/login"
+    }
+  },
+  "footer": {
+    "socials": {
+      "linkedin": "https://www.linkedin.com/company/script-dot-it"
+    }
+  },
+  "appearance": {
+    "strict": false,
+    "default": "light"
+  },
+  "fonts": {
+    "family": "Open Sans"
+  },
+  "logo": "data:image/svg+xml,%3csvg%20width='256'%20height='256'%20viewBox='0%200%20256%20256'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_2_4976)'%3e%3cpath%20d='M192%200H64C28.6538%200%200%2028.6538%200%2064V192C0%20227.346%2028.6538%20256%2064%20256H192C227.346%20256%20256%20227.346%20256%20192V64C256%2028.6538%20227.346%200%20192%200Z'%20fill='%231E2128'/%3e%3cpath%20d='M144%2032H64C46.3269%2032%2032%2046.3269%2032%2064V144C32%20161.673%2046.3269%20176%2064%20176H144C161.673%20176%20176%20161.673%20176%20144V64C176%2046.3269%20161.673%2032%20144%2032Z'%20fill='white'/%3e%3cpath%20d='M144%2096H112C103.163%2096%2096%20103.163%2096%20112V144C96%20152.837%20103.163%20160%20112%20160H144C152.837%20160%20160%20152.837%20160%20144V112C160%20103.163%20152.837%2096%20144%2096Z'%20fill='%231E2128'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_2_4976'%3e%3crect%20width='256'%20height='256'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e",
+  "thumbnails": {
+    "appearance": "light"
+  }
+}

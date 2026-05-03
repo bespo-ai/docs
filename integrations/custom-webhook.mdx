@@ -1,0 +1,74 @@
+---
+title: "Call any HTTP endpoint with a custom webhook integration"
+description: "Use a custom webhook integration to send HTTP requests to any URL from a script — ideal for internal APIs and services outside Script.it's 600+ catalog."
+keywords: ["custom webhook", "HTTP", "internal API", "integration", "endpoint", "headers", "auth", "Script.it"]
+---
+
+A custom webhook integration lets your scripts send HTTP requests to any URL — including internal services, private APIs, and tools that aren't in Script.it's 600+ integration catalog. You configure an endpoint once, and the AI agent can call it from any script, passing data and reading responses just like any other integration.
+
+## What a custom webhook integration is
+
+Unlike the catalog integrations that connect to specific tools via Composio, a custom webhook is a generic HTTP outbound connection. You define a URL, optional headers, and authentication details. When a script calls the integration, Script.it sends an HTTP request to that URL with the payload the script provides. The response is returned to the script for further processing.
+
+This is useful when you need to connect to:
+
+- An internal company API not available in the public catalog
+- A service that exposes a REST endpoint but doesn't have a native Script.it integration
+- A custom backend you've built yourself
+
+## Adding a custom webhook endpoint
+
+<Steps>
+  <Step title="Open Settings → Integrations">
+    In Script.it, click **Settings** in the sidebar, then select **Integrations**.
+  </Step>
+  <Step title="Select Custom Webhook">
+    Scroll to the bottom of the integrations page and click **Custom Webhook**, or search for "webhook" in the search field and select the Custom Webhook option.
+  </Step>
+  <Step title="Enter the endpoint URL">
+    Paste the full URL of the endpoint you want to call. This must be a publicly reachable HTTPS URL. Script.it will send HTTP requests to this address when the integration is used in a script.
+  </Step>
+  <Step title="Configure headers and authentication">
+    Add any HTTP headers the endpoint requires. Common uses include:
+
+    - **Authorization header** — for Bearer token or API key authentication (e.g., `Authorization: Bearer your-token`).
+    - **Content-Type** — Script.it defaults to `application/json`, but you can override this if your endpoint expects a different format.
+    - **Custom headers** — any other headers your API requires, such as `X-API-Key` or version headers.
+  </Step>
+  <Step title="Name the integration and save">
+    Give the integration a name that identifies the service — something like "Internal reporting API" or "Order fulfillment service". Click **Save**. The integration is now available to all your scripts.
+  </Step>
+</Steps>
+
+<Tip>
+  Custom webhooks work best with publicly reachable HTTPS endpoints. If your API requires IP allowlisting, contact [support@script.it](mailto:support@script.it) to get the outbound IP addresses to allowlist.
+</Tip>
+
+## How the agent uses a custom webhook in scripts
+
+Once you've added a custom webhook integration, the AI agent can call it from any script. When you describe an automation that involves your internal API, the agent will recognize the custom webhook integration by name and use it to send requests, pass payloads, and handle responses.
+
+For example, if you tell the agent "post the results of this script to our internal reporting API," it will:
+
+1. Identify the custom webhook integration for your reporting API.
+2. Format the script output as a JSON payload.
+3. Send a POST request to the configured endpoint.
+4. Optionally use the response in subsequent steps.
+
+You can also instruct the agent to call the webhook with specific data, headers, or HTTP methods if your endpoint requires something beyond the defaults.
+
+## Example use case
+
+Suppose your company has an internal API at `https://internal.example.com/api/events` that logs automation activity for compliance purposes. You want every Script.it run that processes orders to post a summary to that endpoint.
+
+After adding the endpoint as a custom webhook integration (with your internal API key in the `Authorization` header), you can tell the agent: "At the end of the order-processing script, post a summary of what ran to our compliance logging API." The agent builds the final block to format the summary and call the integration, without you needing to write any HTTP client code.
+
+## Managing a custom webhook integration
+
+To update or remove a custom webhook:
+
+1. Go to **Settings → Integrations**.
+2. Find the custom webhook by name.
+3. Click the **···** menu to **Edit** (update the URL, headers, or auth) or **Disconnect** (remove the integration entirely).
+
+Removing a custom webhook integration will cause any scripts that use it to fail when they attempt to call it. Update or rebuild those scripts before disconnecting.

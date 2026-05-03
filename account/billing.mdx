@@ -1,0 +1,62 @@
+---
+title: "Billing, credits, and subscription plans in Script.it"
+description: "Script.it uses a credit-based system to track AI and execution usage. Learn how credits work, what consumes them, and how to upgrade your plan."
+keywords: ["billing", "credits", "plans", "pricing", "free plan", "paid plan", "Stripe", "spend limit", "Script.it"]
+---
+
+Script.it tracks usage through credits — a simple unit that covers both AI model calls and script execution time. Every account starts with free included credits, so you can start building and running automations without providing payment details. When you need more capacity, you can upgrade to a paid plan through Stripe checkout.
+
+## How credits work
+
+Credits are consumed each time you interact with the AI agent or run a script. Two things drive credit usage:
+
+- **AI model calls** — every message to the agent, every script build, and every automated run that involves the AI uses credits proportional to the amount of text processed.
+- **Execution time** — running script blocks consumes credits based on how long the execution takes.
+
+You can check your current credit balance and a breakdown of recent usage in **Settings → Billing**.
+
+## Plans
+
+Script.it offers a free plan and paid plans with higher credit limits.
+
+| Plan   | Credits included | Credit card required |
+| ------ | ---------------- | -------------------- |
+| Free   | Limited credits  | No                   |
+| Paid   | More credits     | Yes (via Stripe)     |
+
+<Note>
+  The free plan never requires a credit card. You can build and run scripts with the included credits at no cost.
+</Note>
+
+Both plans give you access to the full Script.it feature set. Upgrading to a paid plan increases the credits available to you each period.
+
+## Upgrading to a paid plan
+
+<Steps>
+  <Step title="Open Settings">
+    In your workspace, click **Settings** in the navigation, then select the **Billing** tab.
+  </Step>
+  <Step title="Choose a plan">
+    Review the available paid plans and select the one that fits your usage. You'll see the credit allowance for each option.
+  </Step>
+  <Step title="Complete checkout">
+    Click **Upgrade**. You'll be taken to a Stripe-hosted checkout page. Enter your payment details and confirm the subscription.
+  </Step>
+  <Step title="Credits are applied immediately">
+    Once your payment is confirmed, your new credit allowance is available straight away. You can verify the updated balance on the Billing page.
+  </Step>
+</Steps>
+
+<Tip>
+  Billing is handled entirely by Stripe. Script.it does not store your payment card details.
+</Tip>
+
+## Spend limits
+
+To keep usage predictable, you can set a spend limit on your account. When your credit usage reaches the limit you've set, Script.it stops running automations until you increase the limit or the next billing period begins.
+
+To configure a spend limit, go to **Settings → Billing** and enter a value in the **Spend limit** field. You can update or remove the limit at any time.
+
+## Checking your balance
+
+Your current credit balance is always visible in **Settings → Billing**. The page also shows a usage breakdown so you can see which scripts and sessions are consuming the most credits.

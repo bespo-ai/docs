@@ -1,0 +1,83 @@
+---
+title: "Script.it templates: ready-made automation workflows"
+description: "Browse pre-built Script.it templates for reporting, research, content creation, and more — open one in your workspace and start automating immediately."
+keywords: ["templates", "pre-built workflows", "automation templates", "script templates", "ready-made scripts"]
+---
+
+Templates are complete, ready-to-use scripts built by the Script.it team. Each template covers a common automation task and is configured with the right blocks, source code, and integrations out of the box. You can open a template in your workspace, review how it's structured, and run it immediately — or use it as a starting point and ask the agent to customize it for your needs.
+
+## Available templates
+
+<CardGroup cols={2}>
+  <Card
+    title="SEO Blog Post"
+    icon="newspaper"
+    href="https://app.script.it?templateId=seo-blog-post"
+  >
+    Turns a topic idea into a researched, SEO-optimized post — keyword research, outline, draft, SEO polish — with optional publishing to WordPress.
+  </Card>
+  <Card
+    title="Weekly Report"
+    icon="chart-bar"
+    href="https://app.script.it?templateId=weekly-report"
+  >
+    Aggregates CSV or JSON data, generates an AI-powered trend summary, and delivers the finished report to a Slack channel.
+  </Card>
+  <Card
+    title="Competitor Research"
+    icon="search"
+    href="https://app.script.it?templateId=competitor-research"
+  >
+    Discovers competitors, gathers pricing, features, and review data, then builds a formatted battle card in Notion.
+  </Card>
+  <Card
+    title="PRD from Brief"
+    icon="file-text"
+    href="https://app.script.it?templateId=prd-from-brief"
+  >
+    Transforms a product brief into a structured PRD with user stories and acceptance criteria, exported directly to Notion.
+  </Card>
+  <Card
+    title="Slide Generator"
+    icon="presentation"
+    href="https://app.script.it?templateId=slide-generator"
+  >
+    Converts notes or a brief into a polished slide deck — generates an outline, writes the slides, and publishes to Google Slides.
+  </Card>
+  <Card
+    title="Campaign Data Analysis"
+    icon="trending-up"
+    href="https://app.script.it?templateId=campaign-data-analysis"
+  >
+    Analyzes marketing campaign CSV or JSON data, extracts key metrics, generates LLM-powered insights, and posts the summary to Slack.
+  </Card>
+</CardGroup>
+
+## Starting from a template
+
+<Steps>
+  <Step title="Browse templates">
+    Go to [script.it/templates](https://script.it/templates) to see all available templates with descriptions and previews. You can also browse templates from within the app by clicking **New script** and selecting **Start from template**.
+  </Step>
+  <Step title="Open a template in your workspace">
+    Click a template to open it. Script.it copies the template script into your workspace — it creates the `flow.script.yaml`, source files, and any `data_files` — so you have a full, editable copy.
+  </Step>
+  <Step title="Connect any required integrations">
+    Most templates use one or more integrations (Slack, Notion, Google Slides, WordPress, and so on). If you haven't connected a required integration yet, the agent will prompt you to do so before running the first relevant block. You can also connect integrations ahead of time from the **Integrations** section of your workspace.
+
+    See [Connecting integrations](/integrations/connecting) for step-by-step instructions.
+  </Step>
+  <Step title="Run or customize the template">
+    Once the integrations are connected, you can run the script as-is by clicking **Run**, or ask the agent to tailor it first:
+
+    > "Change the report to pull from my Google Sheet instead of a CSV file."
+
+    > "Add a step that also sends a summary email to the team after the Slack message."
+
+    The agent will edit the blocks and source code to match your request.
+  </Step>
+</Steps>
+
+<Tip>
+  Templates are a great way to learn how scripts are structured. After opening one, browse the blocks and read the source files to see exactly how each step works — then customize from there.
+</Tip>

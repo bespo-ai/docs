@@ -1,0 +1,85 @@
+---
+title: "Quickstart: build and run your first Script.it workflow"
+description: "Go from zero to a running automation in minutes — sign up, describe your workflow, and watch the AI agent build and run it for you."
+keywords: ["quickstart", "getting started", "first script", "automation", "tutorial"]
+---
+
+This guide walks you through creating and running your first automation on Script.it. You'll sign up, describe a workflow, and have the AI agent build and run it — no coding required. The whole process takes about five minutes.
+
+<Steps>
+  <Step title="Sign up for Script.it">
+    Go to [app.script.it/login](https://app.script.it/login) and create a free account. No credit card is required. Once you sign in, you'll land in your workspace where you can start building right away.
+
+    <Tip>
+      Your free account comes with included credits so you can build and run scripts straight away.
+    </Tip>
+  </Step>
+
+  <Step title="Choose a template or start from scratch">
+    You can begin in one of two ways:
+
+    - **Browse templates** at [script.it/templates](https://script.it/templates) — ready-made workflows for common tasks like reporting, research, data processing, and content creation. Click a template to open it in your workspace.
+    - **Start from scratch** — open a new session and describe what you want to automate.
+
+    If this is your first time, starting from a template is a great way to see how scripts are structured before customising them.
+  </Step>
+
+  <Step title="Chat with the agent to build your script">
+    In the chat panel, type a description of what you want your automation to do. Be as specific as you like — the agent handles the rest.
+
+    For example:
+
+    > "Every morning, fetch the top 5 headlines from Hacker News and send them to my Slack channel."
+
+    The agent will ask any clarifying questions it needs, then generate a script with the appropriate blocks. You'll see the script appear in your workspace as it's being built.
+
+    <Note>
+      You can iterate freely — just keep chatting to refine the script. Ask the agent to add steps, change behaviour, or explain what a block does.
+    </Note>
+  </Step>
+
+  <Step title="Review and run the script">
+    Once the agent finishes building, take a moment to review the script. You can see each block listed in order, with a description of what it does.
+
+    When you're ready, click **Run** to execute the script. The agent runs it inside a secure sandbox and streams the output back to your chat session so you can see what happened.
+
+    If anything doesn't look right, describe the issue in chat and the agent will fix it.
+  </Step>
+
+  <Step title="Connect integrations if needed">
+    If your script reads from or writes to an external service — Slack, Gmail, Notion, Google Sheets, and so on — you'll need to connect that integration first.
+
+    The agent will prompt you if a connection is missing. You can also connect integrations ahead of time from the **Integrations** section of your workspace. See [Connecting integrations](/integrations/connecting) for details.
+  </Step>
+
+  <Step title="Set up a trigger to automate it">
+    Running the script manually is useful for testing, but the real power comes from automation. Triggers let your script run itself:
+
+    - **Schedule** — run on a recurring schedule using plain-English timing like "every day at 9 AM" or a cron expression.
+    - **Webhook** — run when an external service sends an HTTP request to a unique URL Script.it provides.
+    - **Integration event** — run in response to something happening in a connected tool, like a new email or a new row in a spreadsheet.
+
+    To set up a trigger, describe it in chat: "Run this every weekday morning at 8 AM." The agent will create the trigger for you.
+
+    See [Triggers](/triggers/overview) for a full explanation of each trigger type.
+  </Step>
+</Steps>
+
+## What's next
+
+Now that your first script is running, here are some things to explore:
+
+<CardGroup cols={2}>
+  <Card title="Core concepts" icon="book-open" href="/core-concepts">
+    Understand scripts, blocks, sessions, triggers, and credits.
+  </Card>
+  <Card title="Browse templates" icon="layout-template" href="https://script.it/templates">
+    Find ready-made workflows to customise for your use case.
+  </Card>
+  <Card title="Connect more integrations" icon="plug" href="/integrations/overview">
+    See all 600+ supported tools and how to connect them.
+  </Card>
+  <Card title="Automate with triggers" icon="zap" href="/triggers/overview">
+    Schedule your script or fire it from an external event.
+  </Card>
+</CardGroup>

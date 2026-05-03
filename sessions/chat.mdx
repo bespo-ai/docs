@@ -1,0 +1,116 @@
+---
+title: "Using the Script.it agent chat to build and run scripts"
+description: "Build, run, modify, and debug scripts by chatting with the Script.it AI agent — from your first message to a working, iterated automation."
+keywords: ["agent chat", "build script", "run script", "AI agent", "session chat", "automation", "prompts"]
+---
+
+The chat panel is how you interact with the Script.it AI agent. You describe what you want in plain English — build a script, run it, fix a bug, add a step — and the agent does the work. Responses stream back in real time, so you can follow along as the agent thinks and acts.
+
+## Starting a new session
+
+When you open a new session, the chat starts empty and offers a few suggestions to help you begin. You can click one of the starter prompts or type your own message directly into the composer at the bottom of the panel.
+
+<Steps>
+  <Step title="Open a new session">
+    Click **New session** in the sidebar. The agent chat opens with starter suggestions including "Guide me to automation," "Teach me about Script.it," and a template picker.
+  </Step>
+  <Step title="Describe your automation">
+    Type what you want to build in the composer and press **Enter** (or click the send button). Be specific about the goal — what data should flow in, what should happen to it, and where the result should go.
+  </Step>
+  <Step title="Watch the agent work">
+    The agent responds as it works, streaming its progress live. You'll see a **Working...** indicator while it's active, which collapses into a **Details** section once it finishes. Any script changes appear in the changes bar above the composer.
+  </Step>
+</Steps>
+
+## Building a script
+
+To have the agent build a new script, describe the automation you want. The more context you give, the more accurate the result will be.
+
+**Example prompts:**
+
+```
+Build me a script that fetches the latest 10 issues from our GitHub repo and posts a summary to Slack.
+```
+
+```
+Create a script that downloads a CSV from a URL, filters rows where the "status" column is "active", and saves the result as a new file.
+```
+
+```
+Build a weekly digest script that pulls unread emails from Gmail, summarizes each one with AI, and emails me the summary every Monday morning.
+```
+
+The agent will create the blocks, write the source files, and set up the `flow.script.yaml` — you don't need to touch any files manually.
+
+<Tip>
+  Start with one clear goal per script. Once the agent builds the initial version, you can add steps, change logic, or connect new integrations one at a time.
+</Tip>
+
+## Running a script from chat
+
+You can trigger a script to run without leaving the chat by referencing it with `@`:
+
+```
+Run @weekly-digest
+```
+
+The agent parses the script name and starts execution. Block results stream back into the chat as they complete, so you can see exactly what ran and what each step produced.
+
+You can also run a script directly from the script view — look for the run button next to each block or at the top of the script panel. Clicking it brings up a run widget in the composer where you can confirm or adjust inputs before running.
+
+## Asking the agent to modify a script
+
+Once a script exists, you can refine it through conversation. Reference the script by name or just describe the change you want — the agent knows which script you've been working on.
+
+**Example prompts:**
+
+```
+Update the Fetch Issues block to also include the issue author and assignee.
+```
+
+```
+Add a step after "Process Data" that uploads the output file to Google Drive.
+```
+
+```
+The email block is failing with a 401 error. Can you fix the authentication?
+```
+
+<Note>
+  Script changes are tracked as git snapshots. If the agent makes a change you don't want, you can ask it to revert: "Undo that last change" or "Go back to the version before you added the upload step."
+</Note>
+
+## Understanding agent output
+
+The agent's responses have a consistent structure:
+
+- **Working...** — shown while the agent is processing. Expands to show reasoning and tool calls in progress.
+- **Details** — after the agent finishes, the working section collapses to "Details." You can click it to expand and inspect exactly what the agent did.
+- **Response text** — the agent's explanation of what it did or what you should do next.
+- **Block results** — when a script runs, each block's output appears inline so you can review results without leaving the chat.
+
+If the agent encounters an error during a run, it shows the error inline and often suggests or automatically applies a fix.
+
+## Undoing changes
+
+The agent supports reverting to previous states. If a change didn't work out, you can ask the agent to undo it at any point in the conversation:
+
+```
+Revert that last change.
+```
+
+```
+Go back to the version before you added the Slack step.
+```
+
+The agent uses git snapshots taken before each edit, so it can restore an earlier state of any script accurately.
+
+## Tips for effective prompts
+
+Getting good results from the agent comes down to being specific and iterating in small steps.
+
+- **Be specific about inputs and outputs.** Instead of "process the data," say "read `report.csv`, filter rows where the `revenue` column is greater than 1000, and save the result to `filtered.csv`."
+- **One change at a time.** Ask for one modification per message. The agent handles multi-step tasks well, but focused requests produce more predictable results.
+- **Name the script.** When you have multiple scripts, reference the one you mean: "In the @daily-report script, update the fetch block to…"
+- **Describe the goal, not the implementation.** Tell the agent what you want to accomplish, not how to write the code. Let it choose the right approach.
+- **Iterate.** If the first version isn't quite right, describe what's missing or wrong. The agent will refine the script based on your feedback.

@@ -1,0 +1,55 @@
+---
+title: "Connect, authorize, and manage Script.it integrations"
+description: "Connect any of Script.it's 600+ integrations from Settings → Integrations, then use them in your scripts immediately — no extra configuration needed."
+keywords: ["connect integration", "OAuth", "API key", "Settings", "Integrations", "authorize", "disconnect", "Script.it"]
+---
+
+Connecting an integration takes a few clicks. You authorize the tool once from your account settings, and it becomes available to every script you build from that point forward. Script.it supports OAuth for tools like Gmail and Slack, and API key authorization for tools like Airtable that use token-based access.
+
+## Connecting an integration
+
+<Steps>
+  <Step title="Open Settings → Integrations">
+    In Script.it, click **Settings** in the sidebar, then select **Integrations**. This page shows all your currently connected tools and a search field for the full catalog.
+  </Step>
+  <Step title="Find the tool you want to connect">
+    Type the name of the tool in the search field. The catalog includes 600+ apps — scroll the results or refine your search until you find the one you need.
+  </Step>
+  <Step title="Click Connect">
+    Click **Connect** next to the tool. Script.it opens the authorization flow for that integration.
+
+    - **OAuth tools** (Gmail, Slack, Google Sheets, Notion, and most others) — you'll be redirected to the tool's own sign-in page to grant access. Sign in and approve the requested permissions.
+    - **API key tools** (Airtable, and others that use token-based access) — a dialog prompts you to paste your API key or personal access token.
+  </Step>
+  <Step title="Complete the authorization">
+    Follow the prompts until the authorization is complete. For OAuth tools, you'll be redirected back to Script.it automatically once you approve access. For API key tools, click **Save** after entering your credentials.
+  </Step>
+  <Step title="Confirm the connection">
+    The tool now appears in your connected integrations list with a **Connected** badge. It is immediately available to all your scripts — no additional setup required.
+  </Step>
+</Steps>
+
+<Note>
+  The AI agent can also prompt you to connect a missing integration during a session. If you describe an automation that requires a tool you haven't connected yet, the agent will pause and ask you to authorize it before continuing. You can complete the connection without leaving the chat.
+</Note>
+
+## Disconnecting an integration
+
+To remove a tool's access to your account:
+
+1. Go to **Settings → Integrations**.
+2. Find the connected tool.
+3. Click the **···** menu next to it and select **Disconnect**.
+
+Disconnecting an integration immediately revokes Script.it's access. Any scripts that use that tool will fail if they try to call it after disconnection. To restore access, connect the integration again.
+
+## Authorization types
+
+Different tools use different authorization methods. Script.it handles both transparently, but it's helpful to know which to expect:
+
+| Method | How it works | Examples |
+|---|---|---|
+| OAuth | You sign in to the tool directly and grant permission. Tokens are managed automatically. | Gmail, Slack, Google Sheets, Notion, HubSpot, Linear, Jira |
+| API key | You paste a key or token from the tool's developer settings. | Airtable, and other tools with personal access tokens |
+
+For OAuth integrations, Script.it stores only the access token — your credentials are never visible to Script.it. For API key integrations, your key is encrypted at rest.

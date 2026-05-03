@@ -1,0 +1,38 @@
+---
+title: "Integrations: connect your apps and tools to Script.it"
+description: "Script.it connects to Slack, Gmail, Notion, HubSpot, and 600+ other tools so your scripts can read and write data wherever you work."
+keywords: ["integrations", "Slack", "Gmail", "Notion", "HubSpot", "Airtable", "connect", "tools", "Script.it"]
+---
+
+Integrations give your scripts access to the tools you already use. Script.it connects to 600+ apps — including Slack, Gmail, Notion, HubSpot, Airtable, Google Sheets, Linear, Jira, and Shopify. Once you connect a tool, every script you build can read from and write to it without any extra configuration.
+
+## What integrations are
+
+An integration is an authorized connection between your Script.it account and an external tool. When you connect Slack, for example, Script.it can send messages, read channels, and react to events in your workspace. When you connect Google Sheets, your scripts can read rows, append data, and update cells. Each integration gives the AI agent a set of actions it can call — you don't need to know the underlying API.
+
+Integrations are account-level. You connect a tool once, and it becomes available to all your scripts. You can connect as many tools as you need, and disconnect any of them at any time from the Settings page.
+
+## How the AI agent uses integrations
+
+When you describe an automation in chat, the agent automatically figures out which integrations it needs. If you say "send a Slack message whenever a new row is added to my Airtable base," the agent identifies that it needs Slack and Airtable, uses the actions those integrations provide, and builds the script accordingly.
+
+The agent can also detect mid-session when a required integration isn't connected yet. Rather than failing silently, it will prompt you to authorize the missing tool so the automation can proceed.
+
+## The 600+ available tools
+
+Script.it's integration catalog covers tools across every major category:
+
+- **Communication** — Slack, Gmail, Microsoft Teams, Discord
+- **Productivity** — Notion, Google Docs, Confluence, Coda
+- **Spreadsheets & databases** — Google Sheets, Airtable, Smartsheet
+- **CRM & sales** — HubSpot, Salesforce, Pipedrive
+- **Project management** — Linear, Jira, Asana, Trello, ClickUp
+- **E-commerce** — Shopify, WooCommerce
+- **Developer tools** — GitHub, GitLab, Bitbucket, PagerDuty
+- **Finance** — Stripe, QuickBooks, Xero
+
+If a tool you need isn't in the catalog, you can use a custom webhook integration to send HTTP requests to any URL from a script.
+
+## How to get started
+
+To use an integration in your scripts, you first connect it from **Settings → Integrations**. Search for the tool, click **Connect**, and complete the authorization flow. The integration is then available immediately across all your scripts.

@@ -1,0 +1,134 @@
+---
+title: "Script.it: AI-powered automation for your whole team"
+description: "Everything you need to build, run, and automate workflows with Script.it — from your first script to scheduled triggers and 600+ integrations."
+mode: custom
+---
+
+<div data-product-guide-index className="flex w-full flex-col gap-8">
+  <div className="flex max-w-[540px] flex-col gap-2 self-center text-center">
+    <h1 className="font-serif text-[30px] font-medium leading-9 tracking-tight text-gray-900 dark:text-gray-50">
+      Script.it Documentation
+    </h1>
+    <p className="text-balance text-sm leading-relaxed tracking-tight text-gray-600 dark:text-gray-400">
+      Build reliable automations by describing what you need in plain English. Script.it turns your words into working workflows — no coding required.
+    </p>
+  </div>
+
+  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <Card
+      title={<span className="product-guide-feature-card-title">Get started</span>}
+      icon="rocket"
+      href="/introduction"
+      className="product-guide-feature-card"
+      size={64}
+    >
+      <span className="product-guide-feature-card-description">Sign up, build your first script, and run it in minutes.</span>
+    </Card>
+
+    <a
+      href="/scripts/overview"
+      className="flex flex-col gap-4 rounded-none border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
+    >
+      <Icon icon="file-code" color="rgb(var(--primary))" size={18} className="shrink-0" />
+      <div className="flex flex-col gap-1">
+        <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Scripts</span>
+        <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+          Build and manage AI automation workflows using blocks and YAML.
+        </span>
+      </div>
+    </a>
+    <a
+      href="/integrations/overview"
+      className="flex flex-col gap-4 rounded-none border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
+    >
+      <Icon icon="plug" color="rgb(var(--primary))" size={18} className="shrink-0" />
+      <div className="flex flex-col gap-1">
+        <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Integrations</span>
+        <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+          Connect to Slack, Gmail, Notion, HubSpot, and 600+ other tools.
+        </span>
+      </div>
+    </a>
+  </div>
+
+  <hr className="border-0 border-t border-border" />
+
+  <div className="flex flex-col gap-4">
+    <h2 className="font-serif text-xl font-medium leading-normal text-gray-900 dark:text-gray-50">Common tasks</h2>
+
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <a
+        href="/quickstart"
+        className="flex flex-col gap-4 rounded-none border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
+      >
+        <Icon icon="play" color="rgb(var(--primary))" size={18} className="shrink-0" />
+        <div className="flex flex-col gap-1">
+          <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Run your first script</span>
+          <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            Follow the quickstart to build and run an automation in under 5 minutes.
+          </span>
+        </div>
+      </a>
+      <a
+        href="/integrations/connecting"
+        className="flex flex-col gap-4 rounded-none border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
+      >
+        <Icon icon="link" color="rgb(var(--primary))" size={18} className="shrink-0" />
+        <div className="flex flex-col gap-1">
+          <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Connect an integration</span>
+          <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            Authorize your tools so scripts can read and write on your behalf.
+          </span>
+        </div>
+      </a>
+      <a
+        href="/triggers/schedule"
+        className="flex flex-col gap-4 rounded-none border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
+      >
+        <Icon icon="calendar-clock" color="rgb(var(--primary))" size={18} className="shrink-0" />
+        <div className="flex flex-col gap-1">
+          <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Schedule a workflow</span>
+          <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            Set a recurring trigger so your script runs automatically.
+          </span>
+        </div>
+      </a>
+      <a
+        href="/triggers/webhook"
+        className="flex flex-col gap-4 rounded-none border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
+      >
+        <Icon icon="webhook" color="rgb(var(--primary))" size={18} className="shrink-0" />
+        <div className="flex flex-col gap-1">
+          <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Set up a webhook trigger</span>
+          <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            Fire a script from any external service using a unique webhook URL.
+          </span>
+        </div>
+      </a>
+      <a
+        href="/scripts/templates"
+        className="flex flex-col gap-4 rounded-none border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
+      >
+        <Icon icon="layout-template" color="rgb(var(--primary))" size={18} className="shrink-0" />
+        <div className="flex flex-col gap-1">
+          <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Start from a template</span>
+          <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            Launch a ready-made workflow for reporting, research, or content creation.
+          </span>
+        </div>
+      </a>
+      <a
+        href="/account/billing"
+        className="flex flex-col gap-4 rounded-none border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
+      >
+        <Icon icon="credit-card" color="rgb(var(--primary))" size={18} className="shrink-0" />
+        <div className="flex flex-col gap-1">
+          <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Manage billing & credits</span>
+          <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            View your credit balance, usage history, and upgrade your plan.
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

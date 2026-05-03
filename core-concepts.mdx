@@ -1,0 +1,80 @@
+---
+title: "Scripts, sessions, triggers, and other core concepts"
+description: "Understand the key building blocks of Script.it: scripts, blocks, sessions, triggers, integrations, the AI agent, and how credits work."
+keywords: ["core concepts", "scripts", "blocks", "sessions", "triggers", "integrations", "credits", "agent"]
+---
+
+Before you start building on Script.it, it helps to understand the key ideas behind how the platform works. This page explains each core concept in plain terms — no technical background required.
+
+## Scripts
+
+A script is an automation workflow. It defines a sequence of steps to carry out, what each step does, and in what order. Scripts are stored in your workspace and can be run manually, on a schedule, or triggered by an external event.
+
+Each script lives in its own folder and is defined by a file called `flow.script.yaml`. This file describes the script's name, its blocks, and how they connect. You never need to edit this file directly — the AI agent manages it for you — but it's there if you want to inspect or version-control your automations.
+
+Scripts are reusable. You can run the same script multiple times, share it with teammates, or use it as the starting point for a new workflow.
+
+## Blocks
+
+Blocks are the individual steps inside a script. Each block does one thing, and a script runs its blocks in order.
+
+There are two types of block:
+
+- **Executable blocks** — these run code (Python or shell scripts) to perform an action, such as fetching data from an API, transforming a file, or sending a message.
+- **Markdown blocks** — these contain text used for documentation or notes. They don't run code but help you and your team understand what a script does.
+
+When you describe a workflow to the agent, it figures out what blocks are needed and writes the code for each one. You can ask the agent to add, remove, or change individual blocks at any time.
+
+## Sessions
+
+A session is a single conversation with the AI agent. Every time you open a new chat, you're starting a new session.
+
+Each session runs in its own isolated working directory, so files created during one session don't interfere with another. However, changes to scripts — like creating or editing a workflow — are saved to your workspace and visible across all sessions.
+
+Think of a session as your workspace for a particular task. You can use it to build a new script, debug an existing one, or run a one-off automation. When a trigger fires a script automatically, Script.it creates a new session to run it.
+
+## Triggers
+
+A trigger is a rule that runs a script automatically in response to something happening. Instead of clicking **Run** manually, triggers let your automations take care of themselves.
+
+Script.it supports three types of trigger:
+
+- **Schedule** — runs your script at a set time or on a recurring basis (for example, every day at 9 AM, or every Monday morning). You can describe the schedule in plain English or use a cron expression.
+- **Webhook** — runs your script when an external service sends an HTTP POST request to a unique URL that Script.it provides. Useful for connecting tools that support webhooks.
+- **Integration event** — runs your script in response to something happening in a connected tool, such as a new email arriving, a form being submitted, or a row being added to a spreadsheet.
+
+See [Triggers](/triggers/overview) for setup instructions for each type.
+
+## Integrations
+
+An integration is a connection to a third-party service. Script.it supports 600+ integrations including Slack, Gmail, Google Sheets, Notion, HubSpot, Airtable, and many more.
+
+Once you connect an integration, any script in your workspace can read from and write to that service. For example, a script could pull data from a Google Sheet, process it, and post a summary to a Slack channel — all without you copying or pasting anything.
+
+Connecting an integration is a one-time step. You authorise Script.it to access the service on your behalf, and from then on your scripts can use it automatically.
+
+<Tip>
+  You can connect integrations from the **Integrations** section of your workspace, or the agent will prompt you to connect one when a script needs it.
+</Tip>
+
+See [Integrations](/integrations/overview) for the full list of supported tools and connection instructions.
+
+## The agent
+
+The agent is the AI at the heart of Script.it. It builds, edits, and runs scripts in response to your chat messages.
+
+When you describe what you want to automate, the agent writes the blocks, sets up the workflow, and can run the script right in your session so you can see what happens. You can keep chatting to iterate — ask it to add a step, fix a bug, explain what a block does, or try a different approach.
+
+The agent is designed to be transparent: every action it takes shows up in your chat, and the scripts it creates are yours to inspect and modify.
+
+## Credits
+
+Credits are the usage-based currency that tracks the cost of running Script.it. AI usage (chat, building scripts, running automations) and execution time both consume credits.
+
+Your account starts with free included credits. When you need more, you can upgrade to a paid plan or purchase credits on demand. You can check your credit balance and usage history in the **Account** section of your workspace.
+
+<Note>
+  No credit card is required to sign up. Free credits are available for all new accounts.
+</Note>
+
+See [Billing & credits](/account/billing) for details on plans and pricing.
