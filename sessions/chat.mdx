@@ -40,7 +40,7 @@ Create a script that downloads a CSV from a URL, filters rows where the "status"
 Build a weekly digest script that pulls unread emails from Gmail, summarizes each one with AI, and emails me the summary every Monday morning.
 ```
 
-The agent will create the blocks, write the source files, and set up the `flow.script.yaml` — you don't need to touch any files manually.
+The agent will create the blocks, write the source files, and set up the script — you don't need to touch any files manually.
 
 <Tip>
   Start with one clear goal per script. Once the agent builds the initial version, you can add steps, change logic, or connect new integrations one at a time.
@@ -73,11 +73,11 @@ Add a step after "Process Data" that uploads the output file to Google Drive.
 ```
 
 ```
-The email block is failing with a 401 error. Can you fix the authentication?
+The email block is failing with a 401 authentication error. Can you fix it?
 ```
 
 <Note>
-  Script changes are tracked as git snapshots. If the agent makes a change you don't want, you can ask it to revert: "Undo that last change" or "Go back to the version before you added the upload step."
+  Script changes are tracked as version snapshots. If the agent makes a change you don't want, you can ask it to revert: "Undo that last change" or "Go back to the version before you added the upload step."
 </Note>
 
 ## Understanding agent output
@@ -103,7 +103,7 @@ Revert that last change.
 Go back to the version before you added the Slack step.
 ```
 
-The agent uses git snapshots taken before each edit, so it can restore an earlier state of any script accurately.
+The agent uses snapshots taken before each edit, so it can restore an earlier state of any script accurately.
 
 ## Tips for effective prompts
 

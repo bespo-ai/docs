@@ -24,7 +24,6 @@
             "pages": [
               "scripts/overview",
               "scripts/blocks",
-              "scripts/dsl",
               "scripts/templates"
             ]
           },
@@ -67,24 +66,20 @@
   },
   "keyFeatures": [
     "Conversational AI agent builds and edits automation workflows from plain-English prompts",
-    "Script DSL — YAML-based workflow definitions with typed blocks (executable, markdown)",
-    "600+ prebuilt integrations via Composio (Slack, Gmail, Notion, HubSpot, and more)",
-    "Schedule triggers (cron / recurring) and webhook triggers for event-driven automation",
-    "Isolated sandbox execution environment per session with file management",
-    "Real-time SSE streaming of agent progress and block execution results",
+    "Reusable scripts with ordered steps that users can review, run, and refine",
+    "600+ prebuilt integrations (Slack, Gmail, Notion, HubSpot, and more)",
+    "Schedule triggers and webhook triggers for automated runs",
+    "Isolated run environment per session with file management",
+    "Real-time progress updates and block execution results",
     "Template library for common use cases (SEO blog, weekly reports, competitor research)",
     "Usage-based credits with optional spend limits and Stripe billing"
   ],
   "publicApiSurface": [
-    "POST /api/session/{id}/prompt — send a chat message to the AI agent",
-    "GET /session/:id/events — SSE stream for live agent updates",
-    "GET/POST /api/integrations — list and connect integrations",
-    "POST /api/integrations/connect — initiate OAuth or API-key integration flow",
-    "GET /api/integrations/catalog — browse available integrations",
-    "GET/POST /api/triggers — manage automation triggers",
-    "POST /api/billing/create-checkout-session — start Stripe subscription",
-    "GET /api/credits — retrieve usage and credit balance",
-    "flow.script.yaml — Script DSL definition file (name, description, blocks)",
-    "Webhook trigger endpoint — receive external events to fire a script"
+    "Agent chat for building and editing scripts",
+    "Live session updates while the agent works",
+    "Integration catalog and connection flow",
+    "Trigger management for schedules, webhooks, and integration events",
+    "Billing checkout and credit balance views",
+    "Webhook URLs for starting scripts from external services"
   ]
 }

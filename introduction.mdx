@@ -11,8 +11,8 @@ Script.it is an AI-powered automation platform that lets you describe what you w
 Every automation on Script.it follows the same pattern:
 
 1. **Describe** — you type what you want to automate in the chat interface.
-2. **The agent builds** — Script.it's AI agent creates a script (a YAML workflow definition) with the right steps and code.
-3. **Runs in a sandbox** — scripts execute in an isolated environment, so your automation runs safely without affecting anything else.
+2. **The agent builds** — Script.it's AI agent creates a script with the right blocks and supporting code.
+3. **Runs safely** — each run uses its own isolated environment, so your automation runs without affecting anything else.
 4. **Connects your tools** — scripts can read from and write to 600\+ integrations including Slack, Gmail, Notion, HubSpot, and more.
 
 <Note>
@@ -28,8 +28,8 @@ Most automation tools make you choose between rigid visual builders that break w
 Here's a quick overview of the building blocks you'll encounter:
 
 - **Scripts** — Workflow definitions, each containing one or more blocks.
-- **Blocks** — the individual steps in a script. Each block runs a piece of code (Python or shell) or contains documentation.
-- **Sessions** — chat conversations with the AI agent, each with its own isolated working directory.
+- **Blocks** — the individual steps in a script. Each block runs part of the automation or contains documentation.
+- **Sessions** — chat conversations with the AI agent, each with its own separate workspace.
 - **Triggers** — rules that run a script automatically on a schedule, via webhook, or in response to an integration event.
 - **Integrations** — connected third-party services that your scripts can interact with.
 - **Credits** — the usage-based currency that tracks AI and execution costs.

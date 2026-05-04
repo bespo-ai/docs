@@ -1,7 +1,7 @@
 ---
 title: "Security and data privacy: how Script.it protects you"
-description: "Script.it encrypts data in transit and at rest, runs scripts in isolated sandboxes, and operates on Google Cloud with automatic failover and backups."
-keywords: ["security", "privacy", "encryption", "sandbox", "data protection", "Google Cloud", "TLS", "Script.it"]
+description: "Script.it encrypts data in transit and at rest, runs scripts in isolated environments, and operates on Google Cloud with automatic failover and backups."
+keywords: ["security", "privacy", "encryption", "data protection", "Google Cloud", "TLS", "Script.it"]
 ---
 
 Script.it is built with security as a default, not an afterthought. Your data is encrypted wherever it travels or rests, scripts execute inside isolated environments that can't reach your other sessions, and the infrastructure is designed to stay available even when individual components fail. This page describes the specific protections in place.
@@ -28,13 +28,13 @@ To revoke access for an integration at any time:
 
 Disconnecting removes the stored credentials immediately. Any script that relied on the integration will fail until you reconnect it.
 
-## Isolated sandbox environments
+## Isolated run environments
 
-Every session runs in its own isolated sandbox. When a script executes, it cannot access the files or runtime state of any other session. This means:
+Every session runs in its own isolated environment. When a script executes, it cannot access the files or running state of any other session. This means:
 
 - Concurrent sessions don't interfere with each other.
 - A script can only read files that were produced in its own session, unless you explicitly pass data between scripts.
-- The sandbox environment is discarded after the session ends.
+- The run environment is cleared after the session ends.
 
 This isolation protects both your data and the Script.it platform from unintended interactions between workloads.
 

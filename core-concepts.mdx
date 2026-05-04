@@ -10,7 +10,7 @@ Before you start building on Script.it, it helps to understand the key ideas beh
 
 A script is an automation workflow. It defines a sequence of steps to carry out, what each step does, and in what order. Scripts are stored in your workspace and can be run manually, on a schedule, or triggered by an external event.
 
-Each script lives in its own folder and is defined by a file called `flow.script.yaml`. This file describes the script's name, its blocks, and how they connect. You never need to edit this file directly — the AI agent manages it for you — but it's there if you want to inspect or version-control your automations.
+Each script has its own page where you can review its blocks, source files, supporting files, and recent changes. The AI agent manages the underlying setup for you, but you can still inspect what it creates.
 
 Scripts are reusable. You can run the same script multiple times, share it with teammates, or use it as the starting point for a new workflow.
 
@@ -20,16 +20,16 @@ Blocks are the individual steps inside a script. Each block does one thing, and 
 
 There are two types of block:
 
-- **Executable blocks** — these run code (Python or shell scripts) to perform an action, such as fetching data from an API, transforming a file, or sending a message.
-- **Markdown blocks** — these contain text used for documentation or notes. They don't run code but help you and your team understand what a script does.
+- **Executable blocks** — these run code, usually Python or shell, to perform an action, such as fetching data from an API, transforming a file, or sending a message.
+- **Markdown blocks** — these contain documentation or notes. They don't run code, but they help you and your team understand what a script does.
 
-When you describe a workflow to the agent, it figures out what blocks are needed and writes the code for each one. You can ask the agent to add, remove, or change individual blocks at any time.
+When you describe a workflow to the agent, it figures out what blocks are needed and writes the code or notes for each one. You can ask the agent to add, remove, or change individual blocks at any time.
 
 ## Sessions
 
 A session is a single conversation with the AI agent. Every time you open a new chat, you're starting a new session.
 
-Each session runs in its own isolated working directory, so files created during one session don't interfere with another. However, changes to scripts — like creating or editing a workflow — are saved to your workspace and visible across all sessions.
+Each session runs in its own separate workspace, so files created during one session don't interfere with another. However, changes to scripts — like creating or editing a workflow — are saved to your workspace and visible across all sessions.
 
 Think of a session as your workspace for a particular task. You can use it to build a new script, debug an existing one, or run a one-off automation. When a trigger fires a script automatically, Script.it creates a new session to run it.
 
@@ -39,8 +39,8 @@ A trigger is a rule that runs a script automatically in response to something ha
 
 Script.it supports three types of trigger:
 
-- **Schedule** — runs your script at a set time or on a recurring basis (for example, every day at 9 AM, or every Monday morning). You can describe the schedule in plain English or use a cron expression.
-- **Webhook** — runs your script when an external service sends an HTTP POST request to a unique URL that Script.it provides. Useful for connecting tools that support webhooks.
+- **Schedule** — runs your script at a set time or on a recurring basis. You can use presets, plain-English timing, or a cron expression when you need a custom schedule.
+- **Webhook** — runs your script when an external service sends an HTTP POST request to a unique URL that Script.it provides. This is useful for connecting tools that support webhooks.
 - **Integration event** — runs your script in response to something happening in a connected tool, such as a new email arriving, a form being submitted, or a row being added to a spreadsheet.
 
 See [Triggers](/triggers/overview) for setup instructions for each type.
@@ -51,7 +51,7 @@ An integration is a connection to a third-party service. Script.it supports 600+
 
 Once you connect an integration, any script in your workspace can read from and write to that service. For example, a script could pull data from a Google Sheet, process it, and post a summary to a Slack channel — all without you copying or pasting anything.
 
-Connecting an integration is a one-time step. You authorise Script.it to access the service on your behalf, and from then on your scripts can use it automatically.
+Connecting an integration is a one-time step. You authorize Script.it to access the service on your behalf, and from then on your scripts can use it automatically.
 
 <Tip>
   You can connect integrations from the **Integrations** section of your workspace, or the agent will prompt you to connect one when a script needs it.

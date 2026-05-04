@@ -53,7 +53,7 @@
       },
       {
         "product": "Scripts",
-        "description": "Build and manage AI automation workflows using the Script.it DSL.",
+        "description": "Build and manage AI automation workflows with the Script.it agent.",
         "icon": "file-code",
         "groups": [
           {

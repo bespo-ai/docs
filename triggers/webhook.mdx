@@ -1,10 +1,10 @@
 ---
 title: "Webhook triggers: fire Script.it scripts via HTTP POST"
 description: "Webhook triggers give your script a unique URL — send an HTTP POST to that URL from any external service or script to run your automation on demand."
-keywords: ["webhook trigger", "HTTP", "POST", "automation", "Script.it", "external service", "curl"]
+keywords: ["webhook trigger", "HTTP", "POST", "automation", "Script.it", "external service"]
 ---
 
-A webhook trigger gives your script a unique URL. When that URL receives an HTTP POST request, Script.it creates a new session and runs the configured action. Any service that can make an HTTP request — a CI/CD pipeline, Zapier, Make, Stripe, or a script of your own — can fire your automation this way. You can also pass data in the request body, which your script can read as a payload.
+A webhook trigger gives your script a unique URL. When that URL receives an HTTP POST request, Script.it creates a new session and runs the configured action. Any service that can make an HTTP request — Zapier, Make, Stripe, or a custom internal tool — can fire your automation this way. You can also pass data in the request body, which your script can read as a payload.
 
 ## Creating a webhook trigger
 
@@ -33,15 +33,7 @@ A webhook trigger gives your script a unique URL. When that URL receives an HTTP
 
 The webhook URL accepts HTTP POST requests. Send a `POST` to the URL to fire the trigger. You can include a JSON body — the payload will be passed to your script.
 
-To test your webhook from the command line:
-
-```bash
-curl -X POST https://app.script.it/api/webhook/<your-webhook-id> \
-  -H "Content-Type: application/json" \
-  -d '{"event": "test", "value": 42}'
-```
-
-Replace the URL with the webhook URL shown after you create the trigger.
+Most services that support webhooks include a **Test** or **Send test event** button. Use that option after you paste the webhook URL. Script.it will create a new session when the test event arrives, so you can confirm the trigger is connected correctly.
 
 ## Passing data to your script
 

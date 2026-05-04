@@ -1,41 +1,28 @@
 ---
-title: "Script blocks: executable steps and markdown notes"
-description: "Blocks are the steps inside a Script.it script. Learn how executable and markdown blocks work, what languages they support, and how to manage them."
-keywords: ["blocks", "executable", "markdown", "Python", "shell", "script steps", "automation blocks"]
+title: "Script blocks: executable steps and Markdown notes"
+description: "Blocks are the steps inside a Script.it script. Learn how executable and Markdown blocks work, what they produce, and how to manage them in chat."
+keywords: ["blocks", "executable", "markdown", "script steps", "automation blocks"]
 ---
 
-Every script in Script.it is made up of blocks — the individual units of work that run in sequence when you execute a workflow. Each block does exactly one thing, and together they form a complete automation. There are two block types: `executable` blocks that run code, and `markdown` blocks that hold documentation.
+Every script in Script.it is made up of blocks — the individual units of work that run in sequence when you execute a workflow. Each block does one thing, and together they form a complete automation.
 
 ## Executable blocks
 
-An executable block runs a script file — either Python (`.py`) or shell (`.sh`) — when the block is executed. This is how your automation actually does things: fetches data from an API, processes a file, sends a message, transforms records, and so on.
+An executable block runs code when the block is executed. This is how your automation actually does things: fetches data from an API, processes a file, sends a message, transforms records, and so on.
 
 ### What executable blocks do
 
-When the agent runs an executable block, it executes the file at the path specified by `exec.path`. That path is relative to the script's root directory, and the source file lives in the `src/` folder by convention.
+When the agent runs an executable block, Script.it runs the source file for that block and shows the result in the session. The agent normally handles the implementation for you, but the source file remains inspectable if you want to review it.
 
-```yaml
-- type: executable
-  id: fetch-data
-  name: Fetch Data
-  exec:
-    path: src/fetch-data.py
-```
-
-The block's `id` must be unique within the script. The `name` is a human-readable label shown in the UI. The `exec.path` tells Script.it exactly which file to run.
+Each executable block has a clear label in the script view. Use those labels when you ask the agent to change a specific step.
 
 ### Supported languages
 
-Executable blocks support:
-
-- **Python** (`.py`) — full Python 3 environment with access to common packages and the `scriptit` library for calling integrations.
-- **Shell** (`.sh`) — bash scripts for system commands, file manipulation, or chaining CLI tools.
-
-The language is determined automatically from the file extension.
+Executable blocks support Python and shell scripts. The agent chooses the right approach for the job, so you usually don't need to decide which language to use.
 
 ### Output and artifacts
 
-When an executable block runs, any files it writes to the session's working directory become artifacts that you can inspect or download. Standard output and standard error are streamed back to the chat panel so you can see what happened in real time.
+When an executable block runs, any files it writes become artifacts that you can inspect or download. Standard output and errors are streamed back to the chat panel so you can see what happened in real time.
 
 <Note>
   Runtime artifacts — files produced during a run — are stored in the session, not the script. This means the same script can be run in many sessions without the outputs conflicting with each other.
@@ -43,19 +30,13 @@ When an executable block runs, any files it writes to the session's working dire
 
 ## Markdown blocks
 
-A markdown block contains plain text formatted with Markdown. It doesn't run any code — it's purely for documentation and notes.
+A Markdown block contains plain text formatted with Markdown. It doesn't run any code — it's purely for documentation and notes.
 
-```yaml
-- type: markdown
-  id: intro-note
-  name: About this script
-```
-
-Use markdown blocks to describe what a script does, explain the purpose of a group of steps, or leave instructions for teammates. They appear inline in the script view, making it easier to understand a workflow at a glance.
+Use Markdown blocks to describe what a script does, explain the purpose of a group of steps, or leave instructions for teammates. They appear inline in the script view, making it easier to understand a workflow at a glance.
 
 ## Managing blocks via chat
 
-You never need to edit `flow.script.yaml` or source files by hand. The AI agent creates and maintains all blocks for you based on your chat instructions.
+You never need to edit script files by hand. The AI agent creates and maintains all blocks for you based on your chat instructions.
 
 <Note>
   You can ask the agent to add, edit, or remove blocks at any time by describing the change in plain English — for example: "Add a step that sends the output to Slack" or "Remove the data validation step."
@@ -65,41 +46,23 @@ Here's how the agent handles common block operations:
 
 <Steps>
   <Step title="Adding a block">
-    Describe the new step you want: "Add a block that reads a CSV file and filters rows where the status is 'active'." The agent writes the source file, adds the block definition to `flow.script.yaml`, and places it in the right position in the sequence.
+    Describe the new step you want: "Add a block that reads a CSV file and filters rows where the status is 'active'." The agent writes the source file, creates the block, and places it in the right position in the sequence.
   </Step>
   <Step title="Editing a block">
-    Describe the change: "Update the fetch block to also include the author field in the response." The agent edits the source file directly — you don't need to open any editor.
+    Describe the change: "Update the fetch block to also include the author field in the response." The agent edits the block and its source file directly — you don't need to open an editor.
   </Step>
   <Step title="Removing a block">
-    Ask the agent to remove it: "Remove the email notification step." The agent deletes the block definition and its source file and updates the script.
+    Ask the agent to remove it: "Remove the email notification step." The agent removes the block and updates the script.
   </Step>
 </Steps>
 
-## Complete block example
+## Reviewing a script
 
-Here is a `flow.script.yaml` with both block types showing a realistic two-step workflow:
+The script view shows blocks in the order they run. For a weekly report script, you might see:
 
-```yaml
-name: weekly-summary
-description: Fetches report data and posts a summary to Slack
-blocks:
-  - type: markdown
-    id: overview
-    name: About this script
+- **About this script** — a Markdown block that explains the goal and what the script needs.
+- **Fetch report data** — an executable block that collects the latest data.
+- **Create summary** — an executable block that turns the data into a readable summary.
+- **Post summary to Slack** — an executable block that sends the result to the right channel.
 
-  - type: executable
-    id: fetch-report
-    name: Fetch Report Data
-    exec:
-      path: src/fetch-report.py
-
-  - type: executable
-    id: post-to-slack
-    name: Post Summary to Slack
-    exec:
-      path: src/post-to-slack.py
-```
-
-The markdown block at the top acts as inline documentation. The two executable blocks run in order — first fetching the data, then posting the result.
-
-See [Script.it DSL reference](/scripts/dsl) for a full breakdown of every field in `flow.script.yaml`.
+You can click a block to review its purpose, see recent results, or ask the agent to change it.

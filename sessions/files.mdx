@@ -30,7 +30,7 @@ The agent can also reference session files directly in chat — if a file tag ap
 Session files and script source files are stored separately and serve different purposes.
 
 <Note>
-  **Script source files** (in `scripts/my-script/src/`) are part of the script definition. They contain the code that runs, and any change to them is visible across all sessions. **Session files** (in `data_files/`) are runtime outputs produced when the script runs. They belong to the session that created them and are not shared with other sessions.
+  **Script source files** are part of the saved script. They contain the code that runs, and any change to them is visible across all sessions. **Session files** in `data_files/` are runtime outputs produced when the script runs. They belong to the session that created them and are not shared with other sessions.
 </Note>
 
 This separation keeps scripts clean and reusable. You can run the same script dozens of times, in different sessions, without the outputs from one run interfering with another.
@@ -45,14 +45,14 @@ You can also ask the agent to help you find or organize session files through ch
 
 You can export an entire session as a zip archive for backup or sharing. The export includes:
 
-- Your chat history (`session.json`)
+- Your chat history
 - All files in `data_files/`
-- Block execution artifacts from `scriptit/runs/`
+- Block execution artifacts
 
-The `scripts/` directory is intentionally excluded from session exports — script source files should be exported separately if needed, since they're shared across sessions.
+Saved scripts are exported separately from sessions, since they're shared across sessions.
 
 <Note>
   To export a session, use the export option in the session menu. Script source files can be exported independently from the script's own export option.
 </Note>
 
-Script exports contain the complete script definition: `flow.script.yaml`, all source files in `src/`, and any static data in `data_files/`. Exporting a script gives you a portable zip you can import into another workspace or keep as a backup.
+Script exports contain the complete script definition, all source files, and any static data files. Exporting a script gives you a portable zip you can import into another workspace or keep as a backup.

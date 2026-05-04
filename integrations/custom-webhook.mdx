@@ -8,7 +8,7 @@ A custom webhook integration lets your scripts send HTTP requests to any URL —
 
 ## What a custom webhook integration is
 
-Unlike the catalog integrations that connect to specific tools via Composio, a custom webhook is a generic HTTP outbound connection. You define a URL, optional headers, and authentication details. When a script calls the integration, Script.it sends an HTTP request to that URL with the payload the script provides. The response is returned to the script for further processing.
+Unlike catalog integrations that connect to specific tools, a custom webhook is a generic HTTP outbound connection. You define a URL, optional headers, and authentication details. When a script calls the integration, Script.it sends an HTTP request to that URL with the payload the script provides. The response is returned to the script for further processing.
 
 This is useful when you need to connect to:
 
@@ -31,7 +31,7 @@ This is useful when you need to connect to:
   <Step title="Configure headers and authentication">
     Add any HTTP headers the endpoint requires. Common uses include:
 
-    - **Authorization header** — for Bearer token or API key authentication (e.g., `Authorization: Bearer your-token`).
+    - **Authorization header** — for Bearer token or API key authentication.
     - **Content-Type** — Script.it defaults to `application/json`, but you can override this if your endpoint expects a different format.
     - **Custom headers** — any other headers your API requires, such as `X-API-Key` or version headers.
   </Step>
@@ -59,9 +59,9 @@ You can also instruct the agent to call the webhook with specific data, headers,
 
 ## Example use case
 
-Suppose your company has an internal API at `https://internal.example.com/api/events` that logs automation activity for compliance purposes. You want every Script.it run that processes orders to post a summary to that endpoint.
+Suppose your company has an internal API that logs automation activity for compliance purposes. You want every Script.it run that processes orders to post a summary to that endpoint.
 
-After adding the endpoint as a custom webhook integration (with your internal API key in the `Authorization` header), you can tell the agent: "At the end of the order-processing script, post a summary of what ran to our compliance logging API." The agent builds the final block to format the summary and call the integration, without you needing to write any HTTP client code.
+After adding the endpoint as a custom webhook integration, you can tell the agent: "At the end of the order-processing script, post a summary of what ran to our compliance logging API." The agent builds the final block to format the summary and call the integration, without you needing to write any HTTP client code.
 
 ## Managing a custom webhook integration
 

@@ -1,6 +1,6 @@
 ---
 title: "Triggers: run your scripts automatically in Script.it"
-description: "Triggers let your scripts run on their own — on a schedule, when an HTTP request arrives, or when an event fires in a connected tool like Slack or Gmail."
+description: "Triggers let your scripts run on their own — on a schedule, from a webhook URL, or when something happens in a connected tool like Slack or Gmail."
 keywords: ["triggers", "automation", "schedule", "webhook", "integration events", "Script.it"]
 ---
 
@@ -14,7 +14,7 @@ A schedule trigger fires your script on a recurring basis. You choose how often 
 
 ### Webhook
 
-A webhook trigger gives your script a unique URL. When that URL receives an HTTP POST request, the script runs. Any service that can send an HTTP request — Zapier, Make, Stripe, a CI/CD pipeline, a custom script — can fire your automation this way. The request body is available to your script as a payload, so you can pass data along with the trigger. Use webhook triggers when you want an external system to initiate a Script.it automation in response to something it knows about.
+A webhook trigger gives your script a unique URL. When that URL receives an HTTP POST request, the script runs. Services like Zapier, Make, Stripe, or a custom internal tool can start your automation this way. The request body is available to your script as a payload, so you can pass data along with the trigger. Use webhook triggers when another system needs to start a Script.it automation in response to something it knows about.
 
 ### Integration event
 
@@ -27,7 +27,7 @@ All triggers are created from the same place in the UI:
 1. Open any script in Script.it.
 2. Click the **Triggers** tab.
 3. Click **Add Trigger**.
-4. Give the trigger a name, choose the trigger type, and fill in the configuration.
+4. Give the trigger a name, choose the trigger type, and fill in the settings.
 5. Choose an action — either send a prompt to the AI agent or run the script directly.
 6. Click **Create Trigger**.
 
