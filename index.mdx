@@ -1,134 +1,79 @@
 ---
-title: "Script.it: AI-powered automation for your whole team"
-description: "Everything you need to build, run, and automate workflows with Script.it — from your first script to scheduled triggers and 600+ integrations."
+title: "Script.it docs"
+description: "Learn how to create scripts, run sessions, and connect the tools your team uses."
 mode: custom
 ---
 
-<div data-product-guide-index className="flex w-full flex-col gap-8">
-  <div className="flex max-w-[540px] flex-col gap-2 self-center text-center">
-    <h1 className="font-serif text-[30px] font-medium leading-9 tracking-tight text-gray-900 dark:text-gray-50">
-      Script.it Documentation
+<div data-script-docs-home className="script-docs-home">
+  <section className="script-docs-intro" aria-labelledby="script-docs-title">
+    <span className="script-section-eyebrow">Documentation</span>
+    <h1 id="script-docs-title">
+      Build reliable workflows, <em>fast</em>
     </h1>
-    <p className="text-balance text-sm leading-relaxed tracking-tight text-gray-600 dark:text-gray-400">
-      Build reliable automations by describing what you need in plain English. Script.it turns your words into working workflows — no coding required.
+    <p>
+      Learn how to create scripts, run sessions, connect tools, and automate repeat work with Script.it.
     </p>
-  </div>
+    <div className="script-docs-actions">
+      <a className="script-btn script-btn-primary" href="/quickstart">Start with quickstart</a>
+      <a className="script-btn script-btn-secondary" href="/core-concepts">Core concepts</a>
+    </div>
+  </section>
 
-  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-    <Card
-      title={<span className="product-guide-feature-card-title">Get started</span>}
-      icon="rocket"
-      href="/introduction"
-      className="product-guide-feature-card"
-      size={64}
-    >
-      <span className="product-guide-feature-card-description">Sign up, build your first script, and run it in minutes.</span>
-    </Card>
+  <section className="script-path-panel" aria-labelledby="script-path-title">
+    <div className="script-panel-header">
+      <span className="script-section-eyebrow">Start here</span>
+      <h2 id="script-path-title">A practical path through the docs</h2>
+    </div>
 
-    <a
-      href="/scripts/overview"
-      className="flex flex-col gap-4 rounded-none border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
-    >
-      <Icon icon="file-code" color="rgb(var(--primary))" size={18} className="shrink-0" />
-      <div className="flex flex-col gap-1">
-        <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Scripts</span>
-        <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-          Build and manage AI automation workflows using reusable blocks.
-        </span>
-      </div>
-    </a>
-    <a
-      href="/integrations/overview"
-      className="flex flex-col gap-4 rounded-none border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
-    >
-      <Icon icon="plug" color="rgb(var(--primary))" size={18} className="shrink-0" />
-      <div className="flex flex-col gap-1">
-        <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Integrations</span>
-        <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-          Connect to Slack, Gmail, Notion, HubSpot, and 600+ other tools.
-        </span>
-      </div>
-    </a>
-  </div>
-
-  <hr className="border-0 border-t border-border" />
-
-  <div className="flex flex-col gap-4">
-    <h2 className="font-serif text-xl font-medium leading-normal text-gray-900 dark:text-gray-50">Common tasks</h2>
-
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-      <a
-        href="/quickstart"
-        className="flex flex-col gap-4 rounded-none border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
-      >
-        <Icon icon="play" color="rgb(var(--primary))" size={18} className="shrink-0" />
-        <div className="flex flex-col gap-1">
-          <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Run your first script</span>
-          <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-            Follow the quickstart to build and run an automation in under 5 minutes.
-          </span>
-        </div>
+    <div className="script-path-grid">
+      <a className="script-path-card" href="/quickstart">
+        <span className="script-card-number">01</span>
+        <span className="script-card-title">Run your first script</span>
+        <span className="script-card-copy">Describe a useful workflow and let the agent build it.</span>
       </a>
-      <a
-        href="/integrations/connecting"
-        className="flex flex-col gap-4 rounded-none border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
-      >
-        <Icon icon="link" color="rgb(var(--primary))" size={18} className="shrink-0" />
-        <div className="flex flex-col gap-1">
-          <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Connect an integration</span>
-          <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-            Authorize your tools so scripts can read and write on your behalf.
-          </span>
-        </div>
+      <a className="script-path-card" href="/scripts/blocks">
+        <span className="script-card-number">02</span>
+        <span className="script-card-title">Review the blocks</span>
+        <span className="script-card-copy">Inspect each step so the workflow stays easy to validate.</span>
       </a>
-      <a
-        href="/triggers/schedule"
-        className="flex flex-col gap-4 rounded-none border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
-      >
-        <Icon icon="calendar-clock" color="rgb(var(--primary))" size={18} className="shrink-0" />
-        <div className="flex flex-col gap-1">
-          <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Schedule a workflow</span>
-          <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-            Set a recurring trigger so your script runs automatically.
-          </span>
-        </div>
-      </a>
-      <a
-        href="/triggers/webhook"
-        className="flex flex-col gap-4 rounded-none border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
-      >
-        <Icon icon="webhook" color="rgb(var(--primary))" size={18} className="shrink-0" />
-        <div className="flex flex-col gap-1">
-          <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Set up a webhook trigger</span>
-          <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-            Fire a script from any external service using a unique webhook URL.
-          </span>
-        </div>
-      </a>
-      <a
-        href="/scripts/templates"
-        className="flex flex-col gap-4 rounded-none border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
-      >
-        <Icon icon="layout-template" color="rgb(var(--primary))" size={18} className="shrink-0" />
-        <div className="flex flex-col gap-1">
-          <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Start from a template</span>
-          <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-            Launch a ready-made workflow for reporting, research, or content creation.
-          </span>
-        </div>
-      </a>
-      <a
-        href="/account/billing"
-        className="flex flex-col gap-4 rounded-none border bg-gray-50 p-4 outline-none shadow-sm shadow-gray-950/5 transition hover:border-primary hover:shadow-md dark:bg-gray-950 dark:shadow-black/20 dark:hover:border-primary"
-      >
-        <Icon icon="credit-card" color="rgb(var(--primary))" size={18} className="shrink-0" />
-        <div className="flex flex-col gap-1">
-          <span className="font-serif text-base font-medium text-gray-900 dark:text-gray-50">Manage billing & credits</span>
-          <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-            View your credit balance, usage history, and upgrade your plan.
-          </span>
-        </div>
+      <a className="script-path-card" href="/triggers/overview">
+        <span className="script-card-number">03</span>
+        <span className="script-card-title">Automate the run</span>
+        <span className="script-card-copy">Add a schedule, webhook, or integration event trigger.</span>
       </a>
     </div>
-  </div>
+  </section>
+
+  <section className="script-card-grid" aria-label="Documentation sections">
+    <a className="script-doc-card" href="/introduction">
+      <span className="script-card-number">01</span>
+      <span className="script-card-title">Get started</span>
+      <span className="script-card-copy">Understand the workspace, the agent, scripts, sessions, and credits.</span>
+    </a>
+    <a className="script-doc-card" href="/scripts/overview">
+      <span className="script-card-number">02</span>
+      <span className="script-card-title">Scripts</span>
+      <span className="script-card-copy">Create reusable workflows and edit the blocks your agent follows.</span>
+    </a>
+    <a className="script-doc-card" href="/sessions/overview">
+      <span className="script-card-number">03</span>
+      <span className="script-card-title">Sessions</span>
+      <span className="script-card-copy">Run scripts conversationally, inspect progress, and manage outputs.</span>
+    </a>
+    <a className="script-doc-card" href="/triggers/overview">
+      <span className="script-card-number">04</span>
+      <span className="script-card-title">Triggers</span>
+      <span className="script-card-copy">Run workflows automatically from schedules, webhooks, and events.</span>
+    </a>
+    <a className="script-doc-card" href="/integrations/overview">
+      <span className="script-card-number">05</span>
+      <span className="script-card-title">Integrations</span>
+      <span className="script-card-copy">Connect the tools your scripts need to read from or act on.</span>
+    </a>
+    <a className="script-doc-card" href="/developers/overview">
+      <span className="script-card-number">06</span>
+      <span className="script-card-title">Developers</span>
+      <span className="script-card-copy">Use technical references for advanced script and trigger details.</span>
+    </a>
+  </section>
 </div>

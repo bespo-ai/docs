@@ -2,70 +2,65 @@
   "projectType": "saas",
   "projectName": "Script.it",
   "projectDescription": "Script.it is an AI-powered automation platform that lets you describe workflows in plain English and instantly build, run, and schedule them against 600+ integrations.",
-  "theme": "willow",
-  "primaryColor": "#94cb04",
-  "lightColor": "#545454",
-  "darkColor": null,
+  "theme": "maple",
+  "primaryColor": "#020617",
+  "lightColor": "#020617",
+  "darkColor": "#020617",
   "navigation": {
-    "tabs": [
+    "groups": [
       {
-        "tab": "Docs",
-        "groups": [
-          {
-            "group": "Get Started",
-            "pages": [
-              "introduction",
-              "quickstart",
-              "core-concepts"
-            ]
-          },
-          {
-            "group": "Building Scripts",
-            "pages": [
-              "scripts/overview",
-              "scripts/blocks",
-              "scripts/templates"
-            ]
-          },
-          {
-            "group": "Running & Sessions",
-            "pages": [
-              "sessions/overview",
-              "sessions/chat",
-              "sessions/files"
-            ]
-          },
-          {
-            "group": "Triggers",
-            "pages": [
-              "triggers/overview",
-              "triggers/schedule",
-              "triggers/webhook",
-              "triggers/integrations"
-            ]
-          },
-          {
-            "group": "Integrations",
-            "pages": [
-              "integrations/overview",
-              "integrations/connecting",
-              "integrations/custom-webhook"
-            ]
-          },
-          {
-            "group": "Account",
-            "pages": [
-              "account/workspace",
-              "account/billing",
-              "account/security"
-            ]
-          },
-          {
-            "group": "Developer Reference",
-            "pages": [
-              "developers/overview"
-            ]
-          }
+        "group": "Get started",
+        "pages": [
+          "introduction",
+          "quickstart",
+          "core-concepts"
+        ]
+      },
+      {
+        "group": "Scripts",
+        "pages": [
+          "scripts/overview",
+          "scripts/blocks",
+          "scripts/templates"
+        ]
+      },
+      {
+        "group": "Sessions",
+        "pages": [
+          "sessions/overview",
+          "sessions/chat",
+          "sessions/files"
+        ]
+      },
+      {
+        "group": "Triggers",
+        "pages": [
+          "triggers/overview",
+          "triggers/schedule",
+          "triggers/webhook",
+          "triggers/integrations"
+        ]
+      },
+      {
+        "group": "Integrations",
+        "pages": [
+          "integrations/overview",
+          "integrations/connecting",
+          "integrations/custom-webhook"
+        ]
+      },
+      {
+        "group": "For developers",
+        "pages": [
+          "developers/overview"
+        ]
+      },
+      {
+        "group": "Account",
+        "pages": [
+          "account/workspace",
+          "account/billing",
+          "account/security"
         ]
       }
     ]
@@ -77,7 +72,7 @@
     "Schedule triggers and webhook triggers for automated runs",
     "Isolated run environment per session with file management",
     "Real-time progress updates and block execution results",
-    "Developer reference for script files, the Script.it DSL, sandbox runtime, and trigger payloads",
+    "Developer reference for script files, advanced script format, runtime details, and trigger payloads",
     "Template library for common use cases (SEO blog, weekly reports, competitor research)",
     "Usage-based credits with optional spend limits and Stripe billing"
   ],
@@ -88,6 +83,6 @@
     "Trigger management for schedules, webhooks, and integration events",
     "Billing checkout and credit balance views",
     "Webhook URLs for starting scripts from external services",
-    "flow.script.yaml technical reference for developers"
+    "Technical reference for developers"
   ]
 }
