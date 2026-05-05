@@ -1,0 +1,102 @@
+---
+title: "For developers: technical reference"
+description: "Technical details for developers who want to inspect Script.it scripts, understand script files, work with trigger payloads, or integrate custom systems."
+keywords: ["developers", "technical reference", "YAML", "DSL", "sandbox", "flow.script.yaml", "triggers", "webhooks"]
+---
+
+This section is for developers and technical operators. You do not need these details to build automations in Script.it, but they are useful if you want to inspect generated scripts, review changes, debug a run, or connect Script.it to internal systems.
+
+## Script file structure
+
+Each script is stored as a small project with a script definition, source files, and optional static data.
+
+```text
+scripts/my-script/
+├── flow.script.yaml       # Script definition
+├── src/                   # Source files used by executable blocks
+│   ├── fetch-data.py
+│   └── process.sh
+└── data_files/            # Static files bundled with the script
+```
+
+The AI agent manages these files for you. You can still inspect them, export them, or version-control them if your workflow requires it.
+
+## Script definition
+
+`flow.script.yaml` is the Script.it DSL file that defines the script's metadata and ordered blocks.
+
+```yaml
+name: weekly-summary
+description: Fetch report data and post a summary to Slack
+blocks:
+  - type: markdown
+    id: overview
+    name: About this script
+
+  - type: executable
+    id: fetch-report
+    name: Fetch Report Data
+    exec:
+      path: src/fetch-report.py
+
+  - type: executable
+    id: post-to-slack
+    name: Post Summary to Slack
+    exec:
+      path: src/post-to-slack.py
+```
+
+Blocks run in the order they appear in the file. Markdown blocks document the workflow. Executable blocks run Python or shell source files.
+
+## Runtime files
+
+Script files and session files are separate:
+
+- Script files live with the script and are shared across sessions.
+- Session files live in the session's `data_files/` directory and contain outputs from a specific run.
+- Runtime artifacts, logs, and block outputs belong to the session that produced them.
+
+Each session runs in an isolated sandbox environment. That keeps concurrent sessions from reading or overwriting each other's runtime files.
+
+## Trigger payloads
+
+When a trigger starts a script, Script.it creates a new session and passes event data into that session.
+
+- Webhook triggers receive an HTTP POST body.
+- Integration event triggers receive event data from the connected tool.
+- Schedule triggers receive schedule metadata such as the scheduled time.
+
+For scripts that need to read trigger data directly, the payload is available as a session file, commonly `data_files/trigger_event.json`.
+
+## Schedules and cron
+
+Schedule triggers can use presets or a custom five-field cron expression:
+
+```text
+minute  hour  day-of-month  month  day-of-week
+```
+
+Examples:
+
+| Cron expression | Meaning |
+|---|---|
+| `0 9 * * *` | Every day at 9:00 AM |
+| `0 9 * * 1` | Every Monday at 9:00 AM |
+| `*/30 * * * *` | Every 30 minutes |
+
+Cron expressions use the timezone configured on the trigger.
+
+## Integrations and credentials
+
+Integrations use OAuth, API keys, or custom headers depending on the connected service. Script.it stores integration credentials in encrypted form and does not write them into script source files or chat history.
+
+For custom webhook integrations, you configure:
+
+- The target endpoint URL
+- Optional HTTP headers
+- Authentication details such as bearer tokens or API keys
+- The request format expected by the receiving service
+
+## Versioning
+
+Script changes are tracked as version snapshots. If the agent changes a script and you want to go back, ask it to revert the last change or restore a previous version.

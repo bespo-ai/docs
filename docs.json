@@ -121,6 +121,19 @@
         ]
       },
       {
+        "product": "For Developers",
+        "description": "Technical reference for script files, runtime behavior, triggers, and integrations.",
+        "icon": "code",
+        "groups": [
+          {
+            "group": "Developer Reference",
+            "expanded": true,
+            "root": "developers/overview",
+            "pages": []
+          }
+        ]
+      },
+      {
         "product": "Account",
         "description": "Manage your workspace, billing, credits, and security settings.",
         "icon": "settings",
