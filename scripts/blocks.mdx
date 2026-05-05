@@ -24,6 +24,12 @@ Executable blocks support Python and shell scripts. The agent chooses the right 
 
 When an executable block runs, any files it writes become artifacts that you can inspect or download. Standard output and errors are streamed back to the chat panel so you can see what happened in real time.
 
+When you open a block run, the output area has three tabs:
+
+- **Timeline** — shows the block's progress while it is running. Use it to see which step is active, whether the block is still working, and where a failure happened if the run stops.
+- **Files** — shows the artifacts created by that block run. These are the generated reports, datasets, downloaded files, logs, or other files the block wrote during execution.
+- **Output** — shows the first layer of inspection for the run, including the output file names the block produced. Start here to understand what the block returned, then open files from **Files** when you need to inspect the full artifact.
+
 <Note>
   Runtime artifacts — files produced during a run — are stored in the session, not the script. This means the same script can be run in many sessions without the outputs conflicting with each other.
 </Note>
