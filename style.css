@@ -94,6 +94,10 @@ nav[class*="sidebar"] a[aria-current="page"] {
   font-weight: 700;
 }
 
+#navigation-items ul.sidebar-group > li > a {
+  border-left: 0 !important;
+}
+
 button,
 [role="button"],
 a[class*="button"] {

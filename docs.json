@@ -46,22 +46,18 @@
     "groups": [
       {
         "group": "Get started",
-        "icon": "play",
         "pages": ["introduction", "quickstart", "core-concepts"]
       },
       {
         "group": "Scripts",
-        "icon": "file-code-2",
         "pages": ["scripts/overview", "scripts/blocks", "scripts/templates"]
       },
       {
         "group": "Sessions",
-        "icon": "message-square",
         "pages": ["sessions/overview", "sessions/chat", "sessions/files"]
       },
       {
         "group": "Triggers",
-        "icon": "zap",
         "pages": [
           "triggers/overview",
           "triggers/schedule",
@@ -71,7 +67,6 @@
       },
       {
         "group": "Integrations",
-        "icon": "plug",
         "pages": [
           "integrations/overview",
           "integrations/connecting",
@@ -80,12 +75,10 @@
       },
       {
         "group": "For developers",
-        "icon": "terminal",
         "pages": ["developers/overview"]
       },
       {
         "group": "Account",
-        "icon": "settings",
         "pages": ["account/workspace", "account/billing", "account/security"]
       }
     ]
