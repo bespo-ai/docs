@@ -8,18 +8,17 @@ A script is the core unit of automation in Script.it. It defines a sequence of s
 
 ## What a script is
 
+Every script has a name, description, ordered blocks, source files, and any reusable data files it needs. You can open a script in your workspace to review what it does, run it, or ask the agent to change it.
+
+Behind the scenes, a script can include source files and reusable data files:
+
 ```text
 scripts/my-script/
-├── flow.script.yaml       # Script definition (required)
 ├── src/                   # Source files
 │   ├── fetch-data.py      # Python scripts
 │   └── process.sh         # Shell scripts
 └── data_files/            # Optional static data bundled with the script
 ```
-
-Every script has a name, description, ordered blocks, source files, and any reusable data files it needs. You can open a script in your workspace to review what it does, run it, or ask the agent to change it.
-
-Every script has a name, description, ordered blocks, source files, and any reusable data files it needs. You can open a script in your workspace to review what it does, run it, or ask the agent to change it.
 
 Scripts are **reusable** — you can run the same script many times, in many sessions, without the results of one run affecting another. They are also **version-tracked**: any change the agent makes to a script is captured as a version snapshot, so you can revert to a previous state at any time.
 
