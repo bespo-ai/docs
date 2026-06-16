@@ -1,0 +1,42 @@
+---
+title: "Assets"
+description: "Use assets for persistent files, templates, reference data, and small memory files that survive across sessions."
+keywords: ["script assets", "assets", "memory", "persistent files", "sessions", "Script.it"]
+---
+
+Assets are files stored with a script in its `assets/` folder. They persist across sessions, stay with the script when it is shared in a workspace, and are included when the script is exported.
+
+Assets are different from session files. Session files are runtime outputs in the session's `data_files/` folder. They belong to one run or conversation. Assets belong to the script.
+
+## Assets vs. session files
+
+| File type | Where it lives | Lifetime | Best for |
+|---|---|---|---|
+| Assets | `assets/` | Persist across sessions | Templates, configuration, reference data, and small script state |
+| Session files | `data_files/` | Scoped to one session | Downloads, generated reports, intermediate files, and run output |
+
+Use assets when a file should stay with the script. Use session files when a file is just the result of one run.
+
+## Use cases
+
+Use assets for files that should be part of the script rather than one session's output.
+
+Common examples:
+
+- **Templates** - store `assets/email-template.md`, `assets/report-template.docx`, or `assets/slides-template.pptx` so every run starts from the same source.
+- **Reference data** - store small lookup tables, taxonomy files, prompt examples, approval rules, or sample input files.
+- **Configuration** - store non-secret settings such as default channels, account mappings, or report sections.
+- **Persistent script memory** - store a small file that the script reads and updates on every run.
+
+Persistent memory is useful when a script needs to remember something between sessions. For example:
+
+- A lead enrichment script can append processed lead IDs to `assets/processed-leads.json` so future runs skip duplicates.
+- A weekly reporting script can write the last successful reporting window to `assets/state.json`.
+- A monitoring script can keep `assets/seen-events.json` so it only notifies about new items.
+- A personalization script can keep tone, formatting, or routing preferences in `assets/preferences.md`.
+
+<Tip>
+  Keep persistent asset files small. For large or fast-growing data, store the data in an external system such as Google Sheets, Airtable, a database, or object storage, and keep only references or cursors in assets.
+</Tip>
+
+Do not store secrets in assets. Use integrations for API keys, OAuth tokens, and credentials.

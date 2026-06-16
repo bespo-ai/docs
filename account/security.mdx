@@ -14,7 +14,7 @@ All communication between your browser and Script.it is encrypted using HTTPS wi
 
 ### At rest
 
-Data stored in your workspace is encrypted at rest. This includes your scripts, session files, and any credentials you've connected through integrations.
+Data stored in Script.it is encrypted at rest. This includes scripts, session files, and any credentials you've connected through integrations.
 
 ## Credential security
 
@@ -30,17 +30,17 @@ Disconnecting removes the stored credentials immediately. Any script that relied
 
 ## Isolated run environments
 
-Every session runs in its own isolated environment. When a script executes, it cannot access the files or running state of any other session. This means:
+Every session runs in its own isolated environment. This means:
 
 - Concurrent sessions don't interfere with each other.
-- A script can only read files that were produced in its own session, unless you explicitly pass data between scripts.
-- The run environment is cleared after the session ends.
+- Runtime files are scoped to the session that produced them.
+- Script source and run output are stored separately.
 
 This isolation protects both your data and the Script.it platform from unintended interactions between workloads.
 
 ## Workspace backups
 
-Your workspace data — scripts, session history, trigger configurations, and connected integrations — is automatically backed up. You don't need to configure anything for backups to work.
+Your Script.it data — scripts, session history, trigger configurations, and connected integrations — is automatically backed up. You don't need to configure anything for backups to work.
 
 ## Infrastructure
 

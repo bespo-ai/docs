@@ -1,30 +1,30 @@
 ---
 title: "Sessions"
-description: "A session is a chat conversation with the Script.it AI agent. Build scripts, run them, review output, and iterate — all through natural language."
-keywords: ["sessions", "AI agent", "chat", "automation", "workspace", "conversation"]
+description: "A session is a chat conversation with the Script.it AI agent. Build scripts, run them, review output, and iterate through natural language."
+keywords: ["sessions", "AI agent", "chat", "automation", "session files", "conversation"]
 ---
 
 A session is a conversation you have with the Script.it AI agent. Every time you open a new chat, you're starting a new session — and within it you can build scripts from scratch, run them, review their output, and refine them through follow-up messages. The agent understands context across the whole conversation, so you can iterate naturally without repeating yourself.
 
 ## Sessions and scripts
 
-Sessions and scripts are closely related but serve different purposes. A **script** is the reusable automation workflow — its blocks, source files, and supporting data files. A **session** is the working context in which you build and run those scripts.
+Sessions and scripts are closely related but serve different purposes. A **script** is the reusable automation workflow. A **session** is the working context in which you build and run those scripts.
 
-When the agent edits a script inside a session, that change is immediately visible everywhere. But the files your scripts produce during a run — downloaded files, generated outputs, and results — belong to the session, not the script. This keeps your scripts clean and reusable while giving each session its own separate workspace.
+When the agent edits a script inside a session, that change is immediately visible anywhere the script's workspace is available. But the files your scripts produce during a run — downloaded files, generated outputs, and results — belong to the session, not the script. This keeps your scripts clean and reusable while giving each session its own isolated working directory.
 
 ## What you can do in a session
 
 Sessions are where most of the work happens in Script.it:
 
-- **Build scripts** — describe an automation in plain English and let the agent generate the blocks, source files, and supporting files for you.
+- **Build scripts** — describe an automation in plain English and let the agent generate the workflow for you.
 - **Run scripts** — trigger a script from chat and watch the execution results appear in real time.
 - **Review output** — inspect block results, read files produced during the run, and see what your automation actually did.
 - **Iterate** — ask the agent to modify a block, debug a failure, add a new step, or restructure the workflow entirely, all in the same conversation.
 - **Manage files** — view and download files your scripts created during the session.
 
-## Session workspaces
+## Session working directories
 
-Each session has its own separate workspace. When a script runs, any files it creates — fetched data, generated reports, temporary outputs — are stored in that session. Those files won't appear in other sessions, which means concurrent sessions never interfere with each other.
+Each session has its own isolated working directory. When a script runs, any files it creates — fetched data, generated reports, temporary outputs — are stored in that session. Those files won't appear in other sessions, which means concurrent sessions never interfere with each other.
 
 The script itself is the one exception: because scripts are shared, any change the agent makes to a script in one session is immediately reflected everywhere. The agent tracks these changes and can revert them if you ask.
 

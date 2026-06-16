@@ -1,16 +1,16 @@
 ---
 title: "Connect integrations"
-description: "Connect any of Script.it's 600+ integrations from Settings → Integrations, then use them in your scripts immediately — no extra configuration needed."
-keywords: ["connect integration", "OAuth", "API key", "Settings", "Integrations", "authorize", "disconnect", "Script.it"]
+description: "Connect built-in and custom integrations, share them with workspaces, and understand how Script.it handles credentials."
+keywords: ["connect integration", "shared integration", "OAuth", "API key", "Settings", "Integrations", "authorize", "disconnect", "Script.it"]
 ---
 
-Connecting an integration takes a few clicks. You authorize the tool once from your account settings, and it becomes available to every script you build from that point forward. Script.it supports OAuth for tools like Gmail and Slack, and API key authorization for tools like Airtable that use token-based access.
+Connecting an integration takes a few clicks. You authorize a tool from your account settings, then scripts can use it without storing credentials in the script itself. Script.it supports OAuth for tools like Gmail and Slack, API key authorization for tools like Airtable, and custom REST API definitions for tools outside the built-in catalog.
 
 ## Connecting an integration
 
 <Steps>
   <Step title="Open Settings → Integrations">
-    In Script.it, click **Settings** in the sidebar, then select **Integrations**. This page shows all your currently connected tools and a search field for the full catalog.
+    In Script.it, click **Settings** in the sidebar, then select **Integrations**. This page shows your connected tools, shared integrations, and a search field for the full catalog.
   </Step>
   <Step title="Find the tool you want to connect">
     Type the name of the tool in the search field. The catalog includes 600+ apps — scroll the results or refine your search until you find the one you need.
@@ -25,13 +25,44 @@ Connecting an integration takes a few clicks. You authorize the tool once from y
     Follow the prompts until the authorization is complete. For OAuth tools, you'll be redirected back to Script.it automatically once you approve access. For API key tools, click **Save** after entering your credentials.
   </Step>
   <Step title="Confirm the connection">
-    The tool now appears in your connected integrations list with a **Connected** badge. It is immediately available to all your scripts — no additional setup required.
+    The tool now appears in your connected integrations list with a **Connected** badge. It is immediately available to your scripts.
   </Step>
 </Steps>
 
 <Note>
   The AI agent can also prompt you to connect a missing integration during a session. If you describe an automation that requires a tool you haven't connected yet, the agent will pause and ask you to authorize it before continuing. You can complete the connection without leaving the chat.
 </Note>
+
+## Sharing a connection with a workspace
+
+When you share a connection, workspace members can call the upstream API using your connected account. This is useful for team-owned tools such as a shared Slack bot, a reporting mailbox, or a company CRM account.
+
+<Steps>
+  <Step title="Open the connected integration">
+    Go to **Settings → Integrations** and find the connected account you want to share.
+  </Step>
+  <Step title="Open sharing settings">
+    Use the sharing control on the integration row. It shows which workspaces already have access.
+  </Step>
+  <Step title="Choose a workspace">
+    Select the workspace that should be able to use the connection. The share is scoped to that workspace. You can share the same connection with more than one workspace.
+  </Step>
+  <Step title="Confirm the trust boundary">
+    Confirm that members of the target workspace should be able to use the connection under your upstream account.
+  </Step>
+</Steps>
+
+<Warning>
+  A shared connection delegates use of your upstream account. Every Editor and Reader in the workspace can call it, and provider logs may show requests as you.
+</Warning>
+
+## Sharing a custom integration type
+
+Custom integration types are different from connections. A type is the API recipe: base URL, auth mode, OAuth client details, schema, and display metadata. It does not share member credentials.
+
+When you share a custom integration type with a workspace, members see it in their integration catalog and can connect their own accounts through it. Scripts can reference the same integration type, while each run uses the runner's own credentials.
+
+This works well for internal APIs, customer-specific APIs, or partner APIs where every teammate should connect their own account.
 
 ## Disconnecting an integration
 
@@ -41,7 +72,9 @@ To remove a tool's access to your account:
 2. Find the connected tool.
 3. Click the **···** menu next to it and select **Disconnect**.
 
-Disconnecting an integration immediately revokes Script.it's access. Any scripts that use that tool will fail if they try to call it after disconnection. To restore access, connect the integration again.
+Disconnecting an integration immediately revokes Script.it's access to that connected account. Any scripts that use that connection will fail if they try to call it after disconnection. To restore access, connect the integration again.
+
+If the connection was shared with one or more workspaces, disconnecting it removes the underlying account for everyone. If you only want to stop one workspace from using it, remove the workspace share instead.
 
 ## Authorization types
 
@@ -53,3 +86,7 @@ Different tools use different authorization methods. Script.it handles both tran
 | API key | You paste a key or token from the tool's developer settings. | Airtable, and other tools with personal access tokens |
 
 For OAuth integrations, Script.it stores only the access token — your credentials are never visible to Script.it. For API key integrations, your key is encrypted at rest.
+
+## Custom APIs
+
+If the API you need is not in the built-in catalog, create a [custom integration](/integrations/custom-integrations). Custom integrations support API keys, bearer tokens, basic auth, custom headers, and OAuth2 flows.

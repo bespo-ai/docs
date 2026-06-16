@@ -1,10 +1,10 @@
 ---
 title: "Session files"
 description: "Every session has its own files panel showing outputs, downloads, and data your scripts produced. Learn how to view, use, and export session files."
-keywords: ["session files", "data files", "outputs", "downloads", "files panel", "export", "session workspace"]
+keywords: ["session files", "data files", "outputs", "downloads", "files panel", "export", "session working directory"]
 ---
 
-When your scripts run, they often produce files — downloaded data, generated reports, transformed datasets, or any other output written to disk. These files are stored in your session's workspace and are available to browse, preview, and download from the session files panel.
+When your scripts run, they often produce files — downloaded data, generated reports, transformed datasets, or any other output written to disk. These files are stored in your session's working directory and are available to browse, preview, and download from the session files panel.
 
 ## The session files panel
 
@@ -25,12 +25,12 @@ Any file your script creates during a run ends up in `data_files/`. Common examp
 
 The agent can also reference session files directly in chat — if a file tag appears in a message, clicking it opens that file in the panel automatically.
 
-## Session files vs. script source files
+## Session files vs. script files
 
-Session files and script source files are stored separately and serve different purposes.
+Session files and script files are stored separately and serve different purposes.
 
 <Note>
-  **Script source files** are part of the saved script. They contain the code that runs, and any change to them is visible across all sessions. **Session files** in `data_files/` are runtime outputs produced when the script runs. They belong to the session that created them and are not shared with other sessions.
+  **Script files** define the saved automation, and changes to them are visible across sessions. **Session files** in `data_files/` are runtime outputs produced when the script runs. They belong to the session that created them and are not shared with other sessions.
 </Note>
 
 This separation keeps scripts clean and reusable. You can run the same script dozens of times, in different sessions, without the outputs from one run interfering with another.
@@ -49,10 +49,8 @@ You can export an entire session as a zip archive for backup or sharing. The exp
 - All files in `data_files/`
 - Block execution artifacts
 
-Saved scripts are exported separately from sessions, since they're shared across sessions.
+Saved scripts are managed separately from session exports, since they're shared across sessions.
 
 <Note>
   To export a session, use the export option in the session menu. Script source files can be exported independently from the script's own export option.
 </Note>
-
-Script exports contain the complete script definition, all source files, and any static data files. Exporting a script gives you a portable zip you can import into another workspace or keep as a backup.

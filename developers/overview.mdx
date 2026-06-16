@@ -1,62 +1,119 @@
 ---
 title: "Technical reference"
-description: "Technical details for developers who want to inspect Script.it scripts, understand script files, work with trigger payloads, or integrate custom systems."
-keywords: ["developers", "technical reference", "YAML", "DSL", "sandbox", "flow.script.yaml", "triggers", "webhooks"]
+description: "Technical details for developers who want to inspect Script.it scripts, understand SKILL.md files, work with trigger payloads, or integrate custom systems."
+keywords: ["developers", "technical reference", "SKILL.md", "DSL", "sandbox", "assets", "triggers", "integrations"]
 ---
 
 This section is for developers and technical operators. You do not need these details to build automations in Script.it, but they are useful if you want to inspect generated scripts, review changes, debug a run, or connect Script.it to internal systems.
 
 ## Script file structure
 
-Each script is stored as a small project with a script definition, source files, and optional static data.
+Each script is stored as a small project with a `SKILL.md` definition, source files, and optional assets.
 
 ```text
-scripts/my-script/
-├── flow.script.yaml       # Script definition
-├── src/                   # Source files used by executable blocks
+workspaces/<workspace_id>/my-script/
+├── SKILL.md               # Script definition in Agent Skills format
+├── scripts/               # Source files used by executable blocks
 │   ├── fetch-data.py
 │   └── process.sh
-└── data_files/            # Static files bundled with the script
+└── assets/                # Persistent files bundled with the script
 ```
 
 The AI agent manages these files for you. You can still inspect them, export them, or version-control them if your workflow requires it.
 
 ## Script definition
 
-`flow.script.yaml` is the Script.it DSL file that defines the script's metadata and ordered blocks.
+`SKILL.md` is the canonical Script.it script definition. It follows the Agent Skills format: YAML frontmatter at the top, followed by a Markdown body. Each fenced `yaml` block in the body declares one executable block or one Markdown block.
 
-```yaml
+````markdown
+---
 name: weekly-summary
 description: Fetch report data and post a summary to Slack
-blocks:
-  - type: markdown
-    id: overview
-    name: About this script
+disable-model-invocation: true
+metadata:
+  id: scr_xxxxxxxxxx
+---
 
-  - type: executable
-    id: fetch-report
-    name: Fetch Report Data
-    exec:
-      path: src/fetch-report.py
+## About this script
 
-  - type: executable
-    id: post-to-slack
-    name: Post Summary to Slack
-    exec:
-      path: src/post-to-slack.py
+Fetches the latest report data, creates a concise summary, and posts it to Slack.
+
+```yaml
+id: fetch-report
+name: Fetch report data
+description: Fetches source data and writes `report.json`.
+source_file: ${{ src }}/fetch-report.py
+output_directory: fetch/
 ```
 
-Blocks run in the order they appear in the file. Markdown blocks document the workflow. Executable blocks run Python or shell source files.
+```yaml
+id: post-to-slack
+name: Post summary to Slack
+description: Posts the generated summary to Slack.
+source_file: ${{ src }}/post-to-slack.py
+output_directory: slack/
+inputs:
+  report_path: ${{ block.fetch-report.output_directory }}/report.json
+```
+````
+
+Blocks run in document order. Prose between block fences is preserved as documentation in the script view.
+
+### Frontmatter fields
+
+Common frontmatter fields:
+
+| Field | Purpose |
+|---|---|
+| `name` | Required slug. It matches the script directory name. |
+| `display-name` | Optional user-facing title with spaces and punctuation. |
+| `description` | Required description used for discovery and display. |
+| `arguments` | Optional ordered list of script input names. |
+| `argument-hint` | Optional metadata for script inputs, including type, default, description, and UI hints. |
+| `disable-model-invocation` | Prevents the agent from auto-invoking the script unless referenced explicitly. |
+| `always-include` | Includes the full `SKILL.md` in the agent's context on every prompt turn. |
+| `metadata.id` | Stable script ID assigned by Script.it. Do not edit it manually. |
+
+Legacy scripts may still contain `flow.script.yaml`, but new and migrated scripts use `SKILL.md`.
+
+### Path expressions
+
+Use `${{ ... }}` expressions in block fields and inputs:
+
+| Expression | Resolves to |
+|---|---|
+| `${{ src }}` | The script's `scripts/` source directory. |
+| `${{ script.assets }}` | The script's persistent `assets/` directory. |
+| `${{ session.data_files }}` | The current session's runtime data directory. |
+| `${{ builtins }}` | Built-in Script.it blocks. |
+| `${{ inputs.name }}` | A script-level input value. |
+| `${{ block.fetch.outputs.file }}` | A value returned by an earlier block. |
+| `${{ block.fetch.output_directory }}` | The output directory for an earlier block. |
+
+Use script assets for persistent files. Use session data files and block output directories for run-specific output.
 
 ## Runtime files
 
 Script files and session files are separate:
 
 - Script files live with the script and are shared across sessions.
+- Script assets live in `assets/` and persist across sessions.
 - Session files live in the session's `data_files/` directory and contain outputs from a specific run.
 - Runtime artifacts, logs, and block outputs belong to the session that produced them.
 
 Each session runs in an isolated sandbox environment. That keeps concurrent sessions from reading or overwriting each other's runtime files.
+
+## Agent context fields
+
+Script.it uses `SKILL.md` frontmatter to control **Agent context**:
+
+| App mode | Frontmatter update | Effect |
+|---|---|---|
+| Not Included | `disable-model-invocation: true` and `always-include: null` | Script not included in context, but searchable by the agent. |
+| Description Included | `disable-model-invocation: false` and `always-include: null` | Agent will read the script if description is relevant. |
+| Script Included | `always-include: true` and `disable-model-invocation: null` | The full script content is included in the agent context. |
+
+See [Agent context](/scripts/agent-context) for user-facing guidance.
 
 ## Trigger payloads
 
@@ -90,12 +147,12 @@ Cron expressions use the timezone configured on the trigger.
 
 Integrations use OAuth, API keys, or custom headers depending on the connected service. Script.it stores integration credentials in encrypted form and does not write them into script source files or chat history.
 
-For custom webhook integrations, you configure:
+Custom integrations use a two-layer model:
 
-- The target endpoint URL
-- Optional HTTP headers
-- Authentication details such as bearer tokens or API keys
-- The request format expected by the receiving service
+- The integration type defines the API shape: base URL, auth mode, OAuth URLs, docs URL, logo, and schema.
+- The connection stores one user's credentials for that type.
+
+Connections and custom integration types can be shared with workspaces. Connection sharing delegates use of the owner's upstream account. Custom type sharing exposes the API definition so each member can connect their own credentials.
 
 ## Versioning
 

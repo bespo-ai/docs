@@ -1,22 +1,46 @@
 ---
 title: "Integrations"
-description: "Script.it connects to Slack, Gmail, Notion, HubSpot, and 600+ other tools so your scripts can read and write data wherever you work."
-keywords: ["integrations", "Slack", "Gmail", "Notion", "HubSpot", "Airtable", "connect", "tools", "Script.it"]
+description: "Connect built-in tools, custom REST APIs, and shared workspace integrations so scripts can read and write data wherever your team works."
+keywords: ["integrations", "shared integrations", "custom integrations", "Slack", "Gmail", "Notion", "HubSpot", "Airtable", "connect", "tools", "Script.it"]
 ---
 
-Integrations give your scripts access to the tools you already use. Script.it connects to 600+ apps — including Slack, Gmail, Notion, HubSpot, Airtable, Google Sheets, Linear, Jira, and Shopify. Once you connect a tool, every script you build can read from and write to it without any extra configuration.
+Integrations give your scripts access to the tools you already use. Script.it connects to 600+ apps — including Slack, Gmail, Notion, HubSpot, Airtable, Google Sheets, Linear, Jira, and Shopify. You can also create custom integrations for REST APIs that are not in the built-in catalog.
 
 ## What integrations are
 
-An integration is an authorized connection between your Script.it account and an external tool. When you connect Slack, for example, Script.it can send messages, read channels, and react to events in your workspace. When you connect Google Sheets, your scripts can read rows, append data, and update cells. Each integration gives the AI agent a set of actions it can call — you don't need to know the underlying API.
+An integration is either:
 
-Integrations are account-level. You connect a tool once, and it becomes available to all your scripts. You can connect as many tools as you need, and disconnect any of them at any time from the Settings page.
+- **A connection** - an authorized account for an external tool, such as your Slack workspace, Gmail account, or internal API key.
+- **An integration type** - the reusable definition for an API, such as the auth mode, base URL, OAuth settings, and API schema.
+
+For built-in tools, Script.it provides the integration type. You connect your account. For custom integrations, you or a teammate can define the type, then each member can connect credentials through it.
+
+When a script uses an integration, Script.it injects authentication securely. Scripts do not store API keys, OAuth tokens, or secrets in source files.
 
 ## How the AI agent uses integrations
 
 When you describe an automation in chat, the agent automatically figures out which integrations it needs. If you say "send a Slack message whenever a new row is added to my Airtable base," the agent identifies that it needs Slack and Airtable, uses the actions those integrations provide, and builds the script accordingly.
 
 The agent can also detect mid-session when a required integration isn't connected yet. Rather than failing silently, it will prompt you to authorize the missing tool so the automation can proceed.
+
+## Sharing integrations with workspaces
+
+You can keep integrations private or share them with a workspace.
+
+There are two kinds of sharing:
+
+| Share type | What is shared | How runs authenticate |
+|---|---|---|
+| Shared connection | Your connected account and credentials | Workspace members call the upstream API as you. |
+| Shared custom integration type | The API definition only, with no member credentials | Each member connects and runs with their own account. |
+
+Sharing a connection authorizes the account, not just the workspace location. Once shared, every member of that workspace can use the connection from their sessions and scripts. The same connection can be shared with multiple workspaces.
+
+<Warning>
+  Share connections only with people you trust. When members use a shared OAuth or API-key connection, upstream requests may appear as the connection owner in the provider's logs or audit trail.
+</Warning>
+
+Managing an integration is separate from workspace role. The creator can manage it, and custom integration editors can be granted management access. A workspace Editor who only received an integration through a share can use it, but does not automatically get permission to edit, rotate, or delete it.
 
 ## The 600+ available tools
 
@@ -31,8 +55,10 @@ Script.it's integration catalog covers tools across every major category:
 - **Developer tools** — GitHub, GitLab, Bitbucket, PagerDuty
 - **Finance** — Stripe, QuickBooks, Xero
 
-If a tool you need isn't in the catalog, you can use a custom webhook integration to send HTTP requests to any URL from a script.
+If a tool you need isn't in the catalog, create a [custom integration](/integrations/custom-integrations) for its REST API.
 
 ## How to get started
 
-To use an integration in your scripts, you first connect it from **Settings → Integrations**. Search for the tool, click **Connect**, and complete the authorization flow. The integration is then available immediately across all your scripts.
+To use an integration in your scripts, first connect it from **Settings → Integrations**. Search for the tool, click **Connect**, and complete the authorization flow.
+
+For team workflows, open the integration's sharing controls and choose which workspaces should be able to use it. See [Connect integrations](/integrations/connecting) for details.

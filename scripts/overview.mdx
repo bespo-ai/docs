@@ -1,14 +1,14 @@
 ---
 title: "Scripts"
-description: "Scripts are reusable workflows built by the AI agent. Each script contains ordered blocks, source files, and supporting files for your automation."
-keywords: ["scripts", "automation", "workflow", "AI agent", "blocks"]
+description: "Scripts are reusable workflows built by the AI agent. Each script contains blocks, source files, reusable files, and context settings for your automation."
+keywords: ["scripts", "automation", "workflow", "AI agent", "blocks", "SKILL.md"]
 ---
 
 A script is the core unit of automation in Script.it. It defines a sequence of steps — called blocks — that the platform runs in order. You describe what you want to automate in plain English, and the AI agent builds the script for you: it creates the blocks, writes the source files, and connects the pieces.
 
 ## What a script is
 
-Every script has a name, description, ordered blocks, source files, and any reusable data files it needs. You can open a script in your workspace to review what it does, run it, or ask the agent to change it.
+Every script has a name, description, ordered blocks, source files, and any reusable files it needs. You can open a script in your workspace to review what it does, run it, or ask the agent to change it.
 
 Scripts are **reusable** — you can run the same script many times, in many sessions, without the results of one run affecting another. They are also **version-tracked**: any change the agent makes to a script is captured as a version snapshot, so you can revert to a previous state at any time.
 
@@ -31,6 +31,14 @@ A script can contain any number of blocks. Blocks come in two types:
 
 Blocks run in the order shown in the script view. The agent handles the wiring — you just describe the workflow you need.
 
+Scripts can also contain **assets**: persistent files such as templates, reference data, configuration, and small memory files that survive across sessions. See [Assets](/scripts/assets) for details.
+
+## Agent context
+
+Scripts also have context settings that control how much of the script the agent can use in chat. See [Agent context](/scripts/agent-context) for details.
+
+You do not need to edit these settings for normal use, but they are useful when a script should behave like persistent context rather than an automation the agent should run.
+
 ## Where to go next
 
-The pages in this section cover how blocks are structured and how to start from ready-made templates.
+The pages in this section cover how blocks are structured, how reusable files work, and how to start from ready-made templates.
