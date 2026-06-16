@@ -1,16 +1,27 @@
 ---
 title: "Core concepts"
-description: "Understand the key building blocks of Script.it: scripts, blocks, sessions, triggers, integrations, the AI agent, and how credits work."
-keywords: ["core concepts", "scripts", "blocks", "sessions", "triggers", "integrations", "credits", "agent"]
+description: "Understand the key building blocks of Script.it: workspaces, scripts, blocks, sessions, triggers, integrations, the AI agent, and credits."
+keywords: ["core concepts", "workspaces", "scripts", "blocks", "sessions", "triggers", "integrations", "credits", "agent"]
 ---
 
 Before you start building on Script.it, it helps to understand the key ideas behind how the platform works. This page explains each core concept in plain terms — no technical background required.
 
+## Workspaces
+
+A workspace is a shared place for collaboration. It holds scripts, members, triggers, and shared integrations.
+
+Workspaces have two roles:
+
+- **Editors** can edit scripts and invite or remove members.
+- **Readers** can view and run scripts and use shared integrations, but cannot change workspace content.
+
+Workspaces also control which scripts are visible to which people. You can keep personal scripts in your private workspace and create team workspaces when you want others to use or maintain the same automations.
+
 ## Scripts
 
-A script is an automation workflow. It defines a sequence of steps to carry out, what each step does, and in what order. Scripts are stored in your workspace and can be run manually, on a schedule, or triggered by an external event.
+A script is an automation workflow. It defines a sequence of steps to carry out, what each step does, and in what order. Scripts are stored in a workspace and can be run manually, on a schedule, or triggered by an external event.
 
-Each script has its own page where you can review its blocks, source files, supporting files, and recent changes. The AI agent manages the underlying setup for you, but you can still inspect what it creates.
+Each script has its own page where you can review its blocks, source files, reusable files, and recent changes. The AI agent manages the underlying setup for you, but you can still inspect what it creates.
 
 Scripts are reusable. You can run the same script multiple times, share it with teammates, or use it as the starting point for a new workflow.
 
@@ -25,13 +36,21 @@ There are two types of block:
 
 When you describe a workflow to the agent, it figures out what blocks are needed and writes the code or notes for each one. You can ask the agent to add, remove, or change individual blocks at any time.
 
+## Assets
+
+Assets are files stored with a script. They persist across sessions and travel with the script when it is exported or shared through a workspace.
+
+Use assets for templates, seed data, configuration, reference files, and small state files that a script should remember between runs. Files produced during a run are different: they belong to that session's `data_files/` folder and do not automatically become script assets.
+
+See [Assets](/scripts/assets) for examples, including how to use assets as persistent script memory.
+
 ## Sessions
 
 A session is a single conversation with the AI agent. Every time you open a new chat, you're starting a new session.
 
-Each session runs in its own separate workspace, so files created during one session don't interfere with another. However, changes to scripts — like creating or editing a workflow — are saved to your workspace and visible across all sessions.
+Each session runs in its own isolated working directory, so files created during one session don't interfere with another. However, changes to scripts — like creating or editing a workflow — are saved to the script's workspace and visible across all sessions that can access it.
 
-Think of a session as your workspace for a particular task. You can use it to build a new script, debug an existing one, or run a one-off automation. When a trigger fires a script automatically, Script.it creates a new session to run it.
+Think of a session as the working context for a particular task. You can use it to build a new script, debug an existing one, or run a one-off automation. When a trigger fires a script automatically, Script.it creates a new session to run it.
 
 ## Triggers
 
@@ -49,12 +68,12 @@ See [Triggers](/triggers/overview) for setup instructions for each type.
 
 An integration is a connection to a third-party service. Script.it supports 600+ integrations including Slack, Gmail, Google Sheets, Notion, HubSpot, Airtable, and many more.
 
-Once you connect an integration, any script in your workspace can read from and write to that service. For example, a script could pull data from a Google Sheet, process it, and post a summary to a Slack channel — all without you copying or pasting anything.
+Once you connect an integration, your scripts can read from and write to that service. For example, a script could pull data from a Google Sheet, process it, and post a summary to a Slack channel — all without you copying or pasting anything.
 
-Connecting an integration is a one-time step. You authorize Script.it to access the service on your behalf, and from then on your scripts can use it automatically.
+You can keep a connection private or share it with a workspace. A shared connection lets every member call the service using the sharer's account. A shared custom integration type lets members connect their own credentials through the same API definition.
 
 <Tip>
-  You can connect integrations from the **Integrations** section of your workspace, or the agent will prompt you to connect one when a script needs it.
+  You can connect integrations from **Settings → Integrations**, or the agent will prompt you to connect one when a script needs it.
 </Tip>
 
 See [Integrations](/integrations/overview) for the full list of supported tools and connection instructions.

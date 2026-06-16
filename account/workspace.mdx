@@ -1,10 +1,12 @@
 ---
-title: "Workspace"
-description: "Your workspace is the home for all your scripts, sessions, and settings. Learn how to sign up, what a workspace contains, and where to manage your account."
-keywords: ["workspace", "account", "settings", "profile", "sign up", "Script.it"]
+title: "Workspaces"
+description: "Workspaces are where teams collaborate on scripts and share integrations in Script.it."
+keywords: ["workspace", "workspaces", "collaboration", "members", "roles", "shared integrations", "Script.it"]
 ---
 
-Your Script.it workspace is where everything lives — your scripts, sessions, integrations, and account settings. When you sign up, Script.it creates a workspace for you automatically. Everything you build is stored there and persists between sessions, so you can return to any script or conversation at any time.
+Workspaces are where you collaborate in Script.it. Each workspace holds its own scripts and gives members a shared place to use integrations that have been shared with the workspace.
+
+When you sign up, Script.it creates a private workspace for you automatically. You can create additional workspaces for teams, clients, departments, or any other collaboration boundary.
 
 ## Signing up
 
@@ -14,20 +16,57 @@ To create an account, go to [app.script.it/login](https://app.script.it/login). 
   New accounts are on the free plan by default. You can upgrade to a paid plan at any time from **Settings → Billing**. See [Billing, credits, and plans](/account/billing) for details.
 </Note>
 
-## What a workspace contains
+## What workspaces contain
 
-Once you're signed in, everything you build lives inside your workspace:
+Each workspace contains:
 
-- **Scripts** — the automation workflows you create, each with its own blocks, source files, and trigger configuration.
-- **Sessions** — chat conversations with the AI agent, each with its own separate workspace.
-- **Integrations** — third-party tools you've connected, such as Slack, Gmail, or Notion.
-- **Triggers** — rules that fire your scripts automatically on a schedule or in response to external events.
+- **Scripts** - reusable workflows with blocks, source files, assets, and trigger configuration.
+- **Members** - the people who can view, run, or edit scripts in the workspace.
+- **Shared integrations** - connected accounts or custom integration types that members can use.
+- **Triggers** - rules that run scripts automatically on a schedule or in response to events.
 
-Your workspace data is automatically backed up, so you don't need to worry about losing your scripts or session history.
+Scripts are shared across sessions. If a member edits a script in one session, the updated script is visible everywhere that workspace is available.
+
+Session files are separate. Files produced during a run belong to the session that produced them, not to the workspace's script source. See [Session files](/sessions/files) for details.
+
+## Roles
+
+Workspaces have two roles:
+
+| Role | What they can do |
+|---|---|
+| Editor | Edit scripts, invite or remove members, change member roles, and manage workspace settings. |
+| Reader | View and run scripts, and use integrations shared with the workspace. Readers cannot edit scripts or manage members. |
+
+<Note>
+  Workspace role does not automatically grant the right to manage an integration. Sharing, editing, rotating credentials, and deleting integration resources are controlled by per-integration permissions. A workspace Editor can still remove a shared integration from that workspace's catalog for cleanup.
+</Note>
+
+## Shared integrations
+
+Workspaces can receive two kinds of shared integrations:
+
+- **Shared connections** - another member shares their connected account with the workspace. Every member can call that integration using the sharer's upstream account.
+- **Shared custom integration types** - another member shares the definition for an integration, such as the base URL, auth mode, OAuth client, or OpenAPI spec. Members connect their own credentials through that type.
+
+Sharing a connection authorizes the account, not just a specific script or location. Once a connection is shared with a workspace, every member of that workspace can use it from their sessions and scripts. The same connection can be shared with multiple workspaces.
+
+<Warning>
+  When you share an OAuth or API-key connection, workspace members can make requests under your authorization at the upstream provider. Those requests may appear as you in the provider's logs or audit trail.
+</Warning>
 
 ## Accessing settings
 
-To manage your account, open **Settings** from the workspace navigation. From there you can:
+To manage workspaces, open **Settings → Workspaces**. From there you can:
+
+- Create a workspace
+- Rename or delete a workspace
+- Invite members
+- Change a member's role
+- Remove members
+- Review what integrations are shared with a workspace
+
+To manage account-level settings, open **Settings**. From there you can:
 
 - View and edit your profile information
 - Check your credit balance and usage history

@@ -52,7 +52,13 @@
       {
         "group": "Scripts",
         "icon": "file-code-2",
-        "pages": ["scripts/overview", "scripts/blocks", "scripts/templates"]
+        "pages": [
+          "scripts/overview",
+          "scripts/blocks",
+          "scripts/assets",
+          "scripts/agent-context",
+          "scripts/templates"
+        ]
       },
       {
         "group": "Sessions",
@@ -75,7 +81,7 @@
         "pages": [
           "integrations/overview",
           "integrations/connecting",
-          "integrations/custom-webhook"
+          "integrations/custom-integrations"
         ]
       },
       {
