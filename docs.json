@@ -81,6 +81,7 @@
         "pages": [
           "integrations/overview",
           "integrations/connecting",
+          "integrations/hubspot",
           "integrations/custom-integrations"
         ]
       },

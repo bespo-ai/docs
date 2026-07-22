@@ -1,0 +1,104 @@
+---
+title: "HubSpot"
+description: "Install the Script.it HubSpot integration, choose the permissions you want to grant, and build your first HubSpot automation in plain English."
+keywords: ["HubSpot", "HubSpot integration", "CRM automation", "connect HubSpot", "OAuth", "scopes", "setup guide", "Script.it"]
+---
+
+Script.it connects to HubSpot so your scripts and the AI agent can work with your CRM directly. Describe what you want in plain English — "when someone submits our demo form, create a ticket and email the deal owner," "summarize this week's sales conversations," "generate a quote from this deal" — and the agent builds and runs the automation using your HubSpot data.
+
+This guide walks through installing the integration, choosing the permissions to grant, and running your first HubSpot automation.
+
+## What you can automate
+
+The HubSpot integration is not a fixed one-way sync. The agent uses whichever HubSpot capabilities your automation needs, including:
+
+- **CRM records** — create, update, and search contacts, companies, deals, tickets, quotes, and custom objects.
+- **Sales context** — read conversations, sales emails, and timeline activity to summarize and act on customer history.
+- **Marketing** — work with campaigns, marketing events, forms, and form submissions.
+- **Data movement** — import and export CRM data in bulk, attach and manage files.
+- **Actions** — send transactional emails, assign records to owners, log timeline events.
+
+## Before you start
+
+You'll need:
+
+- A [Script.it account](https://script.it) — the free tier works.
+- A HubSpot account where you're allowed to install apps (most portals require Super Admin or App Marketplace permissions).
+
+Some permissions depend on your HubSpot subscription. For example, ticket automations use Service Hub features and marketing automations use Marketing Hub features. If your portal doesn't include a product, HubSpot automatically leaves those permissions out during installation — everything else keeps working.
+
+## Install the integration
+
+<Steps>
+  <Step title="Open Settings → Integrations">
+    In Script.it, click **Settings** in the sidebar, then select **Integrations**.
+  </Step>
+  <Step title="Find HubSpot">
+    Search for **HubSpot** in the catalog and click **Connect**.
+  </Step>
+  <Step title="Choose the permissions to grant">
+    Script.it shows a checklist of HubSpot permissions before anything is authorized. All are optional — keep the full set for maximum flexibility, or trim the selection to exactly what your automations will touch. You can reconnect later with a different selection if your needs change.
+  </Step>
+  <Step title="Authorize on HubSpot">
+    Script.it redirects you to HubSpot's authorization page. Pick the HubSpot account you want to connect, review the requested permissions, and click **Connect app**.
+  </Step>
+  <Step title="Confirm the connection">
+    You're redirected back to Script.it, and HubSpot now appears in your connected integrations with a **Connected** badge. It's immediately available to your scripts and sessions.
+  </Step>
+</Steps>
+
+<Note>
+  You can also start from a session: if you describe an automation that needs HubSpot before it's connected, the agent pauses and walks you through the same authorization flow without leaving the chat.
+</Note>
+
+## Run your first HubSpot automation
+
+<Steps>
+  <Step title="Start a session">
+    Open a new session and describe what you want. For example: *"Every Monday at 9am, list deals that moved stage last week and email me a summary."*
+  </Step>
+  <Step title="Review what the agent builds">
+    The agent identifies that the automation needs HubSpot, builds a script using your connected account, and shows you what it will do.
+  </Step>
+  <Step title="Run it">
+    Run the script directly, or let its trigger (a schedule, a webhook, or a HubSpot event) fire it automatically. Every run shows exactly what the agent read and changed.
+  </Step>
+</Steps>
+
+## Permissions reference
+
+Script.it requests HubSpot permissions (OAuth scopes) so the agent can act on your behalf. Only basic OAuth access is required — every other scope is optional, and HubSpot drops any scope your subscription doesn't include. Here is what each group enables:
+
+| Permission group | Scopes | What it enables |
+|---|---|---|
+| Contacts, companies & deals | `crm.objects.contacts.read/write`, `crm.objects.companies.read/write`, `crm.objects.deals.read/write`, `crm.objects.line_items.read`, `crm.objects.owners.read`, `crm.lists.read/write` | Read, create, and update core CRM records, line items, owners, and contact lists. |
+| Tickets & quotes | `tickets`, `crm.objects.quotes.read/write` | Support-ticket triage and quote generation automations. |
+| Custom objects & properties | `crm.objects.custom.read`, `crm.schemas.contacts.read/write`, `crm.schemas.companies.read/write`, `crm.schemas.deals.read`, `crm.schemas.custom.read` | Read custom objects, and inspect or create the property definitions the agent needs before reading or writing records. |
+| Marketing | `marketing.campaigns.read/write`, `crm.objects.marketing_events.read/write`, `forms`, `content` | Campaign and marketing-event automations, form submissions as triggers, CMS and blog content. |
+| Conversations & email history | `conversations.read`, `sales-email-read`, `timeline` | Summarize inbox conversations and sales emails, and log timeline events for a clear audit trail. |
+| Sending email | `transactional-email` | Send emails as automation steps. |
+| Import, export & files | `crm.import`, `crm.export`, `files` | Bulk data migrations and file attachments. |
+| Workflows | `automation` | Trigger and read HubSpot workflow automations. |
+| Account & users | `settings.users.read/write`, `account-info.security.read` | Route and assign records to the right users, read account audit information. |
+| Commerce & CMS domains | `accounting`, `e-commerce`, `cms.domains.read/write` | Commerce data automations and CMS domain configuration. |
+
+<Note>
+  Script.it stores only the OAuth tokens HubSpot issues — your HubSpot password is never visible to Script.it. Tokens are encrypted at rest, and scripts never contain credentials.
+</Note>
+
+## Sharing HubSpot with your team
+
+You can share your HubSpot connection with a workspace so teammates' scripts can use it, or keep it private. See [Connect integrations](/integrations/connecting) for how sharing works and what it means for the connection owner.
+
+## Disconnecting
+
+To remove Script.it's access to your HubSpot account:
+
+1. In Script.it, go to **Settings → Integrations**, find HubSpot, and click the **···** menu → **Disconnect**. This revokes the tokens immediately.
+2. Optionally, you can also remove the app from HubSpot directly: in HubSpot, go to **Settings → Integrations → Connected Apps**, find Script.it, and uninstall it.
+
+Scripts that use HubSpot will stop working until you reconnect.
+
+## Getting help
+
+If you run into anything during setup, reach us at [support@script.it](mailto:support@script.it) — we're happy to help.
