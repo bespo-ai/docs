@@ -35,10 +35,6 @@ Either way, the trigger starts working as soon as it's created.
 
 A trigger runs a script. You choose which script, and optionally the input values it should run with — the same inputs you'd fill in when running it by hand.
 
-<Note>
-  Older triggers could send a prompt to the agent instead of running a script. Those keep working, but new triggers always run a script — so what happens on every fire is written down in the script itself, rather than being decided fresh each time.
-</Note>
-
 When the trigger fires, the details of what happened are handed to your script, so it can act on them — the contents of the Slack message, the fields on the new Notion item, the body of the webhook request.
 
 Runs show up in your session history alongside sessions you started yourself. Related events can be grouped into a single ongoing session instead of opening a new one every time, so a busy trigger doesn't flood your history.
