@@ -1,55 +1,66 @@
 ---
 title: "Webhook triggers"
-description: "Webhook triggers give your script a unique URL — send an HTTP POST to that URL from any external service or script to run your automation on demand."
-keywords: ["webhook trigger", "HTTP", "POST", "automation", "Script.it", "external service"]
+description: "A webhook trigger gives your script its own URL — any service that can send an HTTP request can run your automation, with signature checking on by default."
+keywords: ["webhook trigger", "HTTP", "POST", "signing secret", "automation", "Script.it"]
 ---
 
-A webhook trigger gives your script a unique URL. When that URL receives an HTTP POST request, Script.it creates a new session and runs the configured action. Any service that can make an HTTP request — Zapier, Make, Stripe, or a custom internal tool — can fire your automation this way. You can also pass data in the request body, which your script can read as a payload.
+A webhook trigger gives your script its own URL. When something sends a request to that URL, Script.it runs your script. Any service that can call a webhook — Zapier, Make, Stripe, your own internal tool — can start your automation this way, and can send data along with it.
 
 ## Creating a webhook trigger
 
 <Steps>
   <Step title="Open the Triggers tab">
-    Open the script you want to trigger via webhook. Click the **Triggers** tab, then click **Add Trigger**.
+    Open the script you want to run, click the **Triggers** tab, then click **Add Trigger**.
   </Step>
-  <Step title="Name the trigger and choose Webhook">
-    Enter a name for the trigger — something that identifies the source, like "Stripe payment received" or "Deploy finished". In the **Trigger Type** dropdown, select **Webhook**.
+  <Step title="Choose Webhook">
+    Give it a name that says where the calls will come from — "Stripe payment received", "Deploy finished" — and choose **Webhook**.
   </Step>
-  <Step title="Choose an action">
-    Under **Action**, choose what happens when the webhook fires:
-
-    - **Send Prompt** — sends a message to the AI agent in a new session.
-    - **Run Script** — runs a specific script directly, with optional input values.
+  <Step title="Choose the script">
+    Pick the script to run, and fill in any inputs it needs.
   </Step>
   <Step title="Create the trigger">
-    Click **Create Trigger**. Script.it generates a unique webhook URL and displays it immediately after creation. Copy this URL — you'll need it to configure the sending service.
+    Click **Create Trigger**. Script.it shows you the **webhook URL** and a **signing secret**, along with example code for sending a request. Copy them — you'll need them to set up the sending service.
   </Step>
-  <Step title="Use the URL in your external service">
-    Paste the webhook URL into the service or code that should fire the trigger. Configure that service to send an HTTP POST request to the URL when the relevant event occurs.
+  <Step title="Point your service at the URL">
+    Paste the URL into whatever should call it. Most services have a **Send test event** button — use it, and check that the run shows up on your trigger.
   </Step>
 </Steps>
 
-## Sending a request to the webhook
+## Securing your webhook
 
-The webhook URL accepts HTTP POST requests. Send a `POST` to the URL to fire the trigger. You can include a JSON body — the payload will be passed to your script.
+Webhook triggers are **signed by default**. Script.it creates a signing secret when you make the trigger and checks every incoming request against it, so knowing the URL isn't enough to run your script.
 
-Most services that support webhooks include a **Test** or **Send test event** button. Use that option after you paste the webhook URL. Script.it will create a new session when the test event arrives, so you can confirm the trigger is connected correctly.
+The example code shown after you create the trigger already includes the signing, so you can copy it straight into your own service.
 
-## Passing data to your script
+### Using a provider's own signing
 
-The body of the POST request is the trigger payload. When your script runs, this data is available so the script can act on information from the sender — for example, a Stripe event object, a GitHub push payload, or any custom JSON you choose to send.
+If the calls come from a service that signs its own webhooks — Stripe, Slack, GitHub, Shopify, Zoom, HubSpot, Jira, Trello, Asana, Discord, Zendesk, Intercom, Linear, monday.com, SendGrid, Square, Paddle, Figma, Lemon Squeezy, WhatsApp — choose that provider on the trigger and paste in the secret it gives you. Script.it then checks requests the way that provider signs them, so you can point the service straight at your URL with nothing in between.
+
+Some providers also do a one-time verification handshake when you add the URL. Script.it answers it for you, and shows you a verification token when a provider needs one pasted in.
+
+### Rotating the secret
+
+Clear the signing secret field and Script.it issues a new one. The URL stays the same, so you only have to update the sending service — no need to delete and rebuild the trigger.
+
+<Warning>
+  You can turn signature checking off if the service calling you can't sign its requests. If you do, the URL becomes the only thing protecting the trigger — treat it like a password. Don't share it publicly, commit it to a repository, or put it in client-side code. If it leaks, delete the trigger and create a new one to get a fresh URL.
+</Warning>
+
+## Sending data to your script
+
+Whatever you send in the request body is handed to your script when it runs — a Stripe event, a GitHub push, or any JSON you choose. Your script can read those values and act on them.
 
 ## What happens when the webhook fires
 
-Each time the webhook URL receives a POST request, Script.it creates a new session and runs the action you configured. Sessions appear in your session history like any other run. If the action is **Run Script**, the session shows the script execution results. If the action is **Send Prompt**, the agent responds to the prompt in the new session.
+Script.it accepts the request straight away and runs your script right after, so a slow script never causes a timeout on the sending side.
 
-<Warning>
-  Your webhook URL acts as the authentication credential — anyone who has the URL can trigger your script. Keep it private. Do not share it publicly, commit it to a public repository, or include it in client-side code. If a URL is compromised, delete the trigger and create a new one to get a fresh URL.
-</Warning>
+Runs appear in your session history like any other run, and in the trigger's run history on the script. See [Managing triggers](/triggers/managing).
 
 ## Managing webhook triggers
 
-From the **Triggers** tab on your script:
+- **Turn it off and on** from the script. The URL is kept, so turning it back on resumes with the same setup.
+- **Delete it** to permanently invalidate the URL. Anything still calling it stops working, and a new trigger gets a different URL.
 
-- **Pause / resume** — use the toggle next to a trigger to temporarily disable or re-enable it without losing the URL.
-- **Delete** — open the trigger's actions menu and select **Delete**. Deleting the trigger permanently invalidates the URL. Any future requests to that URL will not fire the script.
+<Note>
+  If you want to react to something in an app you've already connected — a Slack message, a GitHub pull request, a Stripe payment — you usually don't need a webhook trigger at all. Use an [app event](/triggers/app-events) instead and skip the setup.
+</Note>

@@ -36,16 +36,17 @@ A schedule trigger fires your script on a recurring basis without any manual act
   <Step title="Set the timezone">
     Use the **Timezone** picker to choose the timezone your schedule should be interpreted in. By default, this is set to your browser's timezone. If you share a trigger with a team member in another timezone, make sure the timezone is set explicitly so the schedule fires when you expect.
   </Step>
-  <Step title="Choose an action">
-    Under **Action**, choose what happens when the trigger fires:
-
-    - **Send Prompt** — sends a message to the AI agent in a new session.
-    - **Run Script** — runs a specific script directly, with optional input values.
+  <Step title="Choose the script">
+    Pick the script to run, and fill in any inputs it needs.
   </Step>
   <Step title="Create the trigger">
-    Click **Create Trigger**. The trigger activates immediately and will fire on its next scheduled time.
+    Click **Create Trigger**. The trigger activates immediately and will fire at its next scheduled time.
   </Step>
 </Steps>
+
+<Tip>
+  You can skip the form entirely and describe the schedule in chat: *"Run this every weekday morning at 8 AM."* The agent sets it up for you.
+</Tip>
 
 ## Cron expression format
 
@@ -80,16 +81,14 @@ Each field accepts a specific set of values:
   All cron expressions are evaluated in the timezone you selected. `0 9 * * 1` means Monday at 9:00 AM in your chosen timezone, not UTC — unless you explicitly choose UTC as the timezone.
 </Note>
 
-## Pausing, resuming, and deleting
-
-From the **Triggers** tab on any script:
-
-- **Pause** — click the toggle next to a trigger to disable it without deleting it. Paused triggers do not fire until you re-enable them.
-- **Resume** — click the same toggle to re-enable a paused trigger.
-- **Delete** — open the trigger's actions menu and select **Delete**. Deleting a trigger is permanent.
-
 ## What happens when a schedule fires
 
-When a scheduled trigger fires, Script.it creates a new session and runs the configured action — either sending a prompt to the agent or executing a script directly. The session appears in your session history like any other run. If the script produces output files, they are available in that session's file panel.
+When a scheduled trigger fires, Script.it runs your script. The run appears in your session history like any other, and if the script produces output files they're available there.
 
-If a scheduled run fails — for example, because a script has an error — the trigger remains active and will try again at the next scheduled time.
+If a scheduled run fails — because the script has an error, say — the trigger stays active and tries again at the next scheduled time. If it fails five times in a row, Script.it pauses it and lets you know. See [Managing triggers](/triggers/managing).
+
+## Turning a schedule off
+
+Use the switch on the trigger in your script to stop it firing without losing its settings, and the same switch to start it again.
+
+Deleting a trigger removes it for everyone in the workspace who had enabled it — see [Managing triggers](/triggers/managing) before you delete a schedule on a shared script.
