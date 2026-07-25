@@ -1,41 +1,87 @@
 ---
 title: "Triggers"
-description: "Triggers let your scripts run on their own — on a schedule, from a webhook URL, or when something happens in a connected tool like Slack or Gmail."
-keywords: ["triggers", "automation", "schedule", "webhook", "integration events", "Script.it"]
+description: "Triggers let your scripts run on their own — on a schedule, when something happens in a connected app, or when a webhook URL receives a request."
+keywords: ["triggers", "automation", "schedule", "webhook", "app events", "Script.it"]
 ---
 
-Triggers let your scripts run automatically — no need to open the app and kick them off manually. You attach a trigger to a script, configure when it should fire, and Script.it takes care of the rest. Every time the trigger fires, a new session is created and the script runs inside it, exactly as if you had started it yourself.
+Triggers let your scripts run automatically — no need to open the app and start them by hand. You attach a trigger to a script, tell it what to watch for, and Script.it runs the script every time that thing happens.
 
-## The three trigger types
+## What a trigger can watch for
 
-### Schedule
+There's one kind of trigger, with a menu of things it can watch for:
 
-A schedule trigger fires your script on a recurring basis. You choose how often — every day at 9 AM, every Monday morning, the first of each month — using either a friendly frequency picker or a custom cron expression. Use schedule triggers for anything that needs to run on a fixed cadence: daily reports, weekly digests, monthly cleanups, or any routine task that shouldn't require manual intervention.
+- **A schedule** — every weekday at 8 AM, every six hours, the first of the month. See [Schedule triggers](/triggers/schedule).
+- **An app event** — a new Notion database item, a GitHub pull request, a Slack mention, a Calendly booking, a new row in a Google Sheet. Over 80 events across 40+ apps. See [App events](/triggers/app-events).
+- **A webhook** — your own URL that any service can send a request to. See [Webhook triggers](/triggers/webhook).
+- **Anything else** — if nothing in the menu fits, the agent can build a custom trigger for you. See [Custom triggers](/triggers/custom).
 
-### Webhook
+They all behave the same way once they exist: they watch for something, and when they see it, they run your script.
 
-A webhook trigger gives your script a unique URL. When that URL receives an HTTP POST request, the script runs. Services like Zapier, Make, Stripe, or a custom internal tool can start your automation this way. The request body is available to your script as a payload, so you can pass data along with the trigger. Use webhook triggers when another system needs to start a Script.it automation in response to something it knows about.
+## Creating a trigger
 
-### Integration event
+The easiest way is to ask the agent in chat:
 
-An integration event trigger fires your script when something specific happens in one of your connected tools. For example: a new message appears in a Slack channel, a Calendly booking is created, a new email arrives in Gmail matching a filter, or a new issue is opened in Linear. Use integration event triggers to build reactive automations that respond to activity happening in the tools you already use every day.
+> Run this every weekday morning at 8 AM.
 
-## How to create a trigger
+> Trigger this whenever someone opens a pull request on our repo.
 
-All triggers are created from the same place in the UI:
+The agent picks the right trigger, fills in the settings, and switches it on.
 
-1. Open any script in Script.it.
-2. Click the **Triggers** tab.
-3. Click **Add Trigger**.
-4. Give the trigger a name, choose the trigger type, and fill in the settings.
-5. Choose an action — either send a prompt to the AI agent or run the script directly.
-6. Click **Create Trigger**.
+You can also create one yourself: open the script, click the **Triggers** tab, and click **Add Trigger**. A searchable list shows every event available for the apps you've connected.
 
-The trigger activates immediately after you create it. You can pause, resume, or delete any trigger from the Triggers tab at any time.
+Either way, the trigger starts working as soon as it's created.
 
-## Actions
+## What a trigger does
 
-Every trigger has an action — what Script.it does when the trigger fires. You can choose between two action types:
+A trigger runs a script. You choose which script, and optionally the input values it should run with — the same inputs you'd fill in when running it by hand.
 
-- **Send prompt** — sends a message to the AI agent in a new session. Use this when you want the agent to decide what to do, or when the task requires natural-language judgment.
-- **Run script** — runs a specific script directly, optionally passing input values. Use this for deterministic automations where you know exactly which script should run.
+<Note>
+  Older triggers could send a prompt to the agent instead of running a script. Those keep working, but new triggers always run a script — so what happens on every fire is written down in the script itself, rather than being decided fresh each time.
+</Note>
+
+When the trigger fires, the details of what happened are handed to your script, so it can act on them — the contents of the Slack message, the fields on the new Notion item, the body of the webhook request.
+
+Runs show up in your session history alongside sessions you started yourself. Related events can be grouped into a single ongoing session instead of opening a new one every time, so a busy trigger doesn't flood your history.
+
+## Triggers are part of the script
+
+A trigger isn't a separate thing hanging off your script — it lives inside it, like a block does:
+
+- It appears **in the script**, with its own settings, an on/off switch, and its recent run history.
+- It's saved with the script's files.
+- So it **travels with the script**. Export the script, import it into another workspace, or share it with a teammate, and its triggers come along.
+
+There's no separate place to keep in sync: change the trigger and the script updates with it.
+
+## Triggers in a shared workspace
+
+Scripts are shared with your workspace, but triggers run **for a person**. So when a teammate opens a shared script, its triggers appear switched **off**, with an **Enable** button.
+
+Turning one on creates their own copy. It runs with their connected accounts and their credits, and it has its own settings and run history.
+
+<Note>
+  This is deliberate. A Gmail trigger your teammate enables watches *their* inbox, never yours — and nobody is signed up for someone else's automation just by opening a shared script.
+</Note>
+
+Any member of the workspace can enable a script's triggers. Doing so doesn't change the script or affect anyone else's copy.
+
+<Warning>
+  Deleting a trigger is a shared change: it removes the trigger from the script and removes **every member's** copy of it. Turning a trigger off only affects your own. See [Managing triggers](/triggers/managing).
+</Warning>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Schedule triggers" icon="clock" href="/triggers/schedule">
+    Run a script on a recurring cadence.
+  </Card>
+  <Card title="App events" icon="plug" href="/triggers/app-events">
+    React to activity in Slack, GitHub, Notion, and more.
+  </Card>
+  <Card title="Webhook triggers" icon="webhook" href="/triggers/webhook">
+    Give your script a URL any service can call.
+  </Card>
+  <Card title="Managing triggers" icon="activity" href="/triggers/managing">
+    Run history, failures, pausing, and limits.
+  </Card>
+</CardGroup>

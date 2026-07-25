@@ -1,0 +1,51 @@
+---
+title: "Custom triggers"
+description: "When no built-in event fits, the agent can build a custom trigger that watches exactly the thing you care about."
+keywords: ["custom trigger", "coded trigger", "agent", "automation", "Script.it"]
+---
+
+Sometimes the thing you want to watch for isn't in the list. Maybe you want to fire only when a Notion page's status flips to **Done**, or when a number in a dashboard crosses a threshold, or when a service you use isn't in the catalog at all.
+
+For those, the agent can build a custom trigger.
+
+## Asking for one
+
+Describe what should start the script, as specifically as you can:
+
+> Trigger this when a page in the Roadmap database moves to "Done".
+
+> Check our status page every 10 minutes and run this if anything is degraded.
+
+> Run this when a customer's plan changes to Enterprise in our billing system.
+
+The agent writes the trigger, tries it once against your real data so you can both see what it picks up, and switches it on.
+
+## What you get
+
+A custom trigger behaves like any other one:
+
+- It shows up **in the script**, with settings, an on/off switch, and run history.
+- It's **saved with the script**, so it travels with it when you share, export, or import.
+- It can use **any app you've connected**.
+- You can ask the agent to change it later — narrow it down, adjust how often it checks, watch something else.
+
+Because it's saved as part of the script, you can also open it and read what it does. You don't have to, but it's there — nothing about your automation is hidden in a settings panel somewhere.
+
+## Two ways a custom trigger works
+
+The agent picks whichever fits:
+
+- **Checking on a cadence** — it looks at the service every so often and runs your script when it finds something new. It remembers where it got to, so you don't get the same thing twice.
+- **Receiving events** — the service notifies Script.it directly, and the trigger decides which of those notifications are worth acting on.
+
+## Keeping it up to date
+
+If you ask the agent to change a custom trigger, the change takes effect on its own — there's no publish or redeploy step. Teammates who've enabled the same trigger pick up the change the next time theirs runs.
+
+<Note>
+  If a custom trigger's code is deleted from the script, the trigger pauses instead of continuing to run an old copy. You'll see it flagged in the script.
+</Note>
+
+## When to use a built-in event instead
+
+If something in the [app events](/triggers/app-events) list already covers what you need, use that. Built-in events are maintained by Script.it, are already tuned for how each app works, and need no setup beyond connecting the account. Custom triggers are for the gaps.

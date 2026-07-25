@@ -71,8 +71,10 @@
         "pages": [
           "triggers/overview",
           "triggers/schedule",
+          "triggers/app-events",
           "triggers/webhook",
-          "triggers/integrations"
+          "triggers/custom",
+          "triggers/managing"
         ]
       },
       {
@@ -97,6 +99,12 @@
       }
     ]
   },
+  "redirects": [
+    {
+      "source": "/triggers/integrations",
+      "destination": "/triggers/app-events"
+    }
+  ],
   "navbar": {
     "links": [],
     "primary": {

@@ -1,0 +1,73 @@
+---
+title: "Managing triggers"
+description: "Check a trigger's run history, understand why one failed or paused, turn triggers on and off, and know the limits."
+keywords: ["trigger runs", "run history", "paused trigger", "failed trigger", "trigger limits", "Script.it"]
+---
+
+Once a trigger is running, everything you need is on the script itself: whether it's on, what it's done recently, and whether anything went wrong.
+
+## Turning a trigger on and off
+
+Each trigger has a switch on the script. Turn it off to stop it firing without losing its settings, its webhook URL, or its history. Turn it back on and it picks up from there.
+
+This only affects **your** copy. If teammates have enabled the same trigger, theirs keep running.
+
+## Run history
+
+Open a trigger's recent runs to see what it's been doing. Each run shows what happened:
+
+| Result | What it means |
+|---|---|
+| **Fired** | It found something and started your script |
+| **Nothing new** | It checked and there was nothing to do — completely normal |
+| **Running** | In progress right now |
+| **Failed** | Something went wrong — see below |
+
+A trigger that checks on a cadence will show a lot of "nothing new" runs between the real ones. That's healthy, not a problem.
+
+If the most recent run failed, the trigger is marked in the script so you can spot it without opening anything.
+
+## When a run fails
+
+Expand a failed run and you'll get a plain-English explanation, with the technical detail tucked behind **Show error details** if you want it. The common ones:
+
+- **The trigger hit an error** — usually the connected app returned something unexpected, or the account no longer has access.
+- **It took too long and was stopped.**
+- **It tried to do too much at once** — for example, it found thousands of items on its first run.
+- **Its setup is missing** — the trigger was removed from the script but a copy is still switched on.
+
+A single failure isn't unusual — services have blips. Repeated failures are worth looking at, and you can ask the agent to investigate: *"Why is my Notion trigger failing?"*
+
+## Triggers that pause themselves
+
+If a trigger fails **five times in a row**, Script.it pauses it and stops retrying. This protects you from a broken trigger burning credits in a loop.
+
+Fix the cause — reconnect the app, ask the agent to correct the script — and switch it back on. The count resets.
+
+A trigger can also pause if the app it depends on gets disconnected or its access expires. Reconnect the app and re-enable it.
+
+## Failure emails
+
+If any of your triggers fail or pause, Script.it emails you a short daily summary of what needs attention. It's at most one email a day, and it stops on its own if a trigger keeps failing for a long time — so a broken automation doesn't turn into a daily inbox habit.
+
+## Deleting a trigger
+
+<Warning>
+  Deleting a trigger is a shared change. It removes the trigger from the script, and removes it for **every workspace member** who had enabled it. Deleting the whole script does the same.
+
+  If you only want to stop your own, turn it off instead.
+</Warning>
+
+Webhook triggers are worth an extra beat: deleting one permanently invalidates its URL. Anything still sending to that URL will stop working, and creating a new trigger gives you a different URL.
+
+## Limits
+
+- **50 triggers per person.** Triggers that are switched off still count. If you hit the limit, delete ones you no longer need.
+- **Schedules run at most every 30 minutes.** See [Schedule triggers](/triggers/schedule).
+- **App events that work by checking** have a minimum gap between checks, and back off when there's been nothing new for a while. Events that arrive instantly aren't affected.
+
+## Credits
+
+Triggers use credits like any other run — the work happens in your environment, on your account. A trigger that checks and finds nothing costs very little; the cost is in the script runs it starts.
+
+If teammates enable the same trigger, each of them pays for their own runs.

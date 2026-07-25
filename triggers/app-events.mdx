@@ -1,0 +1,116 @@
+---
+title: "App events"
+description: "Run a script when something happens in an app you've connected — a new Slack message, a GitHub pull request, a Notion item, a Calendly booking, a new spreadsheet row."
+keywords: ["app event trigger", "integration trigger", "Slack", "Gmail", "GitHub", "Notion", "automation", "Script.it"]
+---
+
+An app event trigger runs your script when something happens in one of your connected apps. Instead of checking a tool yourself or starting a script by hand, you pick the event you care about — a new Slack message, a Calendly booking, an issue opened in Linear — and Script.it runs the script the moment it happens.
+
+## Before you start
+
+Connect the app first. Only apps you've connected show up in the trigger list.
+
+You can connect from **Settings → Integrations**, or just ask the agent — it'll prompt you when a connection is missing. See [Connecting integrations](/integrations/connecting).
+
+<Note>
+  A trigger uses the account you connected. If that connection is removed or expires, the trigger stops firing until you reconnect. Script.it flags affected triggers so you can spot them.
+</Note>
+
+## Creating an app event trigger
+
+<Steps>
+  <Step title="Open the Triggers tab">
+    Open the script you want to run, click the **Triggers** tab, then click **Add Trigger**.
+  </Step>
+  <Step title="Find the event">
+    Search the list for the app or the thing you want to watch for — type "pull request", "new row", or "Slack". The list shows events for the apps you've connected.
+  </Step>
+  <Step title="Pick the account">
+    If you've connected more than one account for that app, choose which one the trigger should watch.
+  </Step>
+  <Step title="Fill in the settings">
+    Most events have a setting or two to narrow them down — which Slack channel, which Notion database, which spreadsheet, which Gmail search to match.
+
+    <Tip>
+      Narrow the trigger as much as you can. A Gmail trigger scoped to one sender is more useful, and cheaper to run, than one that fires on every incoming message.
+    </Tip>
+  </Step>
+  <Step title="Choose the script">
+    Pick the script to run, and fill in any inputs it needs.
+  </Step>
+  <Step title="Create the trigger">
+    Click **Create Trigger**. It starts watching straight away.
+  </Step>
+</Steps>
+
+Or skip all of that and describe it in chat: *"Run this whenever a new row is added to the Q3 leads sheet."*
+
+## Available events
+
+Over 80 events across these apps:
+
+| App | Events |
+|---|---|
+| Airtable | New record |
+| Asana | New task, task updated, new comment |
+| Box | New file |
+| Calendly | New event |
+| ClickUp | New task |
+| Confluence | New page |
+| Discord | New message |
+| Dropbox | New file |
+| Freshdesk | New ticket |
+| GitHub | New pull request, PR merged, new push, new commit, new issue, new issue comment, new PR review comment, new release, new star, new fork |
+| GitLab | New issue, new merge request |
+| Gmail | New email, new email matching a search |
+| Google Calendar | New event, event updated, event cancelled, event starting soon |
+| Google Docs | Document updated |
+| Google Drive | New file, new file in a folder, file updated |
+| Google Forms | New response |
+| Google Sheets | New row, new tab, spreadsheet updated |
+| Google Tasks | New task, task completed |
+| HubSpot | New contact, new company, new deal, new ticket |
+| Intercom | New conversation |
+| Jira | Issue event, new project |
+| Linear | Issue event, comment created, project event |
+| Mailchimp | New subscriber |
+| monday.com | New item |
+| Notion | New database item, database item updated |
+| OneDrive | New file |
+| Outlook | New email |
+| Pipedrive | New deal, new person |
+| Salesforce | New record |
+| Shopify | New order, new product |
+| Slack | New message, bot mentioned, reaction added, reaction removed, file shared, channel created |
+| Stripe | New event, new customer |
+| Microsoft Teams | New channel message |
+| Todoist | New task |
+| Trello | New card, card updated, card archived, new board |
+| YouTube | New video |
+| Zendesk | New ticket, ticket updated |
+| Zoom | Meeting started, meeting ended, recording completed |
+
+The list in the app is always current — if you don't see something here, search for it there.
+
+## How quickly a trigger fires
+
+It depends on the app:
+
+- **Instantly** — apps that notify Script.it directly the moment something happens. Slack, GitHub pushes, Stripe, Linear, Jira, Trello, Asana, Zoom, and Shopify orders work this way.
+- **On a regular check** — for everything else, Script.it checks the app periodically and runs your script when it finds something new. Expect a short delay rather than an instant reaction, and a slightly longer one for triggers that have been quiet for a while.
+
+Either way you don't have to configure anything — each event already uses the fastest method its app supports.
+
+## Email your agent
+
+**Agent Email** is a trigger too: your agent gets its own email address, and mail sent to it can run a script. Useful for forwarding things in — a receipt to file, a report to summarize, a request to act on.
+
+## What your script receives
+
+When the trigger fires, the event's details are handed to the script — the message text, the issue title and body, the row that was added, whatever the app sent. Your script can read those values and act on them.
+
+If the script produces files, they're available in that run's session, just like a run you started yourself.
+
+## Managing app event triggers
+
+Turn a trigger off and on from the script, and check its recent runs there too. See [Managing triggers](/triggers/managing) for run history, failures, and limits.
