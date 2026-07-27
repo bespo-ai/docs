@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="diagram-title diagram-desc">
+<style>
+    .d-zone{fill:none;stroke:#413c39;stroke-width:1;stroke-dasharray:5 4}
+    .d-zone-solid{fill:none;stroke:#413c39;stroke-width:1}
+    .d-box{fill:#1c1b1a;stroke:#413c39;stroke-width:1}
+    .d-box-accent{fill:#241d38;stroke:#a68ee8;stroke-width:1.5}
+    .d-zonelabel{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Helvetica, Arial, sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;fill:#8a837d}
+    .d-title{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Helvetica, Arial, sans-serif;font-size:14px;font-weight:650;fill:#f5f5f4}
+    .d-title-accent{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Helvetica, Arial, sans-serif;font-size:14px;font-weight:650;fill:#a68ee8}
+    .d-sub{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Helvetica, Arial, sans-serif;font-size:12px;fill:#c4bfba}
+    .d-anno{font-family:Charter, 'Hoefler Text', 'Iowan Old Style', Georgia, serif;font-style:italic;font-size:13.5px;fill:#a68ee8}
+    .d-flow{stroke:#413c39;stroke-width:1.5;fill:none}
+    .d-flow-accent{stroke:#a68ee8;stroke-width:2;fill:none}
+    .d-arrowhead{fill:#413c39}
+    .d-arrowhead-accent{fill:#a68ee8}
+  </style>
+<title id="diagram-title">Script.it relay deployment architecture</title>
+<desc id="diagram-desc">
+  A relay installed on a machine in your VPC hosts agent sandboxes. The sandboxes
+  reach your internal systems directly and privately. Two outbound connections leave
+  your network: the relay's control connection, and the sandbox's own traffic for
+  connected integrations, model calls, and code sync. Script.it hosts the control
+  plane, script storage, session backups, the integration proxy, and the model gateway.
+</desc>
+
+<!-- ============ YOUR NETWORK ============ -->
+<text class="d-zonelabel" x="24" y="26">Your network — your cloud account, your VPC</text>
+<rect class="d-zone" x="24" y="44" width="444" height="470" rx="3" />
+
+<!-- host machine -->
+<text class="d-zonelabel" x="48" y="84" style="letter-spacing:.1em">One Linux VM you run</text>
+<rect class="d-zone-solid" x="48" y="94" width="236" height="284" rx="3" />
+
+<!-- relay -->
+<rect class="d-box-accent" x="68" y="118" width="196" height="58" rx="3" />
+<text class="d-title-accent" x="84" y="142">Script.it relay</text>
+<text class="d-sub" x="84" y="162">You install it. You control it.</text>
+
+<!-- relay to sandboxes -->
+<path class="d-flow" d="M166 176 L166 204" />
+<polygon class="d-arrowhead" points="166,212 162,203 170,203" />
+
+<!-- sandboxes -->
+<rect class="d-box" x="68" y="214" width="196" height="88" rx="3" />
+<text class="d-title" x="84" y="240">Agent sandboxes</text>
+<text class="d-sub" x="84" y="262">One per person on your team</text>
+<text class="d-sub" x="84" y="282">Your environment variables</text>
+
+<!-- sandbox to internal systems -->
+<path class="d-flow-accent" d="M264 258 L308 258" />
+<polygon class="d-arrowhead-accent" points="316,258 306,253 306,263" />
+<text class="d-anno" x="290" y="242" text-anchor="middle">direct</text>
+
+<!-- internal systems -->
+<rect class="d-box" x="316" y="214" width="136" height="120" rx="3" />
+<text class="d-title" x="332" y="242">Your systems</text>
+<text class="d-sub" x="332" y="266">Internal databases</text>
+<text class="d-sub" x="332" y="286">Private APIs</text>
+<text class="d-sub" x="332" y="306">VPC-only services</text>
+
+<text class="d-anno" x="48" y="458">Never exposed to the internet.</text>
+<text class="d-anno" x="48" y="482">No inbound rules, no public IP, no VPN peering.</text>
+
+<!-- ============ CONNECTORS ============ -->
+<path class="d-flow" d="M264 147 L552 147" />
+<polygon class="d-arrowhead" points="560,147 550,142 550,152" />
+<text class="d-sub" x="458" y="134" text-anchor="end" style="font-size:11.5px">Control connection</text>
+<text class="d-anno" x="458" y="167" text-anchor="end" style="font-size:12.5px">outbound only</text>
+
+<path class="d-flow" d="M166 302 L166 400 L552 400" />
+<polygon class="d-arrowhead" points="560,400 550,395 550,405" />
+<text class="d-sub" x="458" y="387" text-anchor="end" style="font-size:11.5px">Integrations · model · code sync</text>
+<text class="d-anno" x="458" y="420" text-anchor="end" style="font-size:12.5px">outbound only</text>
+
+<!-- ============ SCRIPT.IT ============ -->
+<text class="d-zonelabel" x="560" y="26">Script.it</text>
+<rect class="d-zone-solid" x="560" y="44" width="376" height="470" rx="3" />
+
+<rect class="d-box" x="584" y="94" width="328" height="54" rx="3" />
+<text class="d-title" x="600" y="118">Control plane</text>
+<text class="d-sub" x="600" y="138">The app, sessions, triggers, billing</text>
+
+<rect class="d-box" x="584" y="166" width="328" height="54" rx="3" />
+<text class="d-title" x="600" y="190">Script storage</text>
+<text class="d-sub" x="600" y="210">Your automation code and its history</text>
+
+<rect class="d-box" x="584" y="238" width="328" height="54" rx="3" />
+<text class="d-title" x="600" y="262">Session backups</text>
+<text class="d-sub" x="600" y="282">Chat history and agent state</text>
+
+<rect class="d-box" x="584" y="310" width="328" height="66" rx="3" />
+<text class="d-title" x="600" y="334">Connected integrations</text>
+<text class="d-sub" x="600" y="354">GitHub, Slack, Salesforce and the rest</text>
+<text class="d-sub" x="600" y="370">— called by us, with credentials we hold</text>
+
+<rect class="d-box" x="584" y="394" width="328" height="66" rx="3" />
+<text class="d-title" x="600" y="418">Model gateway</text>
+<text class="d-sub" x="600" y="438">Prompts, and the data agents reason over,</text>
+<text class="d-sub" x="600" y="454">on the way to Anthropic, OpenAI, Google</text>
+      </svg>
