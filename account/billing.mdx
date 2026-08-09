@@ -1,62 +1,103 @@
 ---
-title: "Billing"
-description: "Script.it uses a credit-based system to track AI and execution usage. Learn how credits work, what consumes them, and how to upgrade your plan."
-keywords: ["billing", "credits", "plans", "pricing", "free plan", "paid plan", "Stripe", "spend limit", "Script.it"]
+title: "Billing, credits, and usage"
+description: "Understand Personal and organization credits, Pro packages, on-demand usage, member caps, and recurring integration costs."
+keywords: ["billing", "credits", "plans", "Pro", "organization billing", "Stripe", "on-demand", "spend limit", "member cap", "Script.it"]
 ---
 
-Script.it tracks usage through credits — a simple unit that covers both AI model calls and script execution time. Every account starts with free included credits, so you can start building and running automations without providing payment details. When you need more capacity, you can upgrade to a paid plan through Stripe checkout.
+Script.it uses credits for AI model calls, script execution, and credit-priced integrations. Usage is charged to your active account: Personal or an organization.
 
 ## How credits work
 
-Credits are consumed each time you interact with the AI agent or run a script. Two things drive credit usage:
+Credits can come from:
 
-- **AI model calls** — every message to the agent, every script build, and every automated run that involves the AI uses credits proportional to the amount of text processed.
-- **Execution time** — running script blocks consumes credits based on how long the execution takes.
+- **Included credits** from the active account's plan
+- **Granted credits** from promotions or a Script.it administrator
+- **On-demand credits** enabled by a Pro billing owner
 
-You can check your current credit balance and a breakdown of recent usage in **Settings → Billing**.
+Script.it uses included and granted credits before charging for on-demand usage.
 
-## Plans
+Personal accounts start with free included credits. A newly created organization has no free allocation; it must subscribe to Pro or receive granted credits before it can run billable actions.
 
-Script.it offers a free plan and paid plans with higher credit limits.
+## Pro packages
 
-| Plan   | Credits included | Credit card required |
-| ------ | ---------------- | -------------------- |
-| Free   | Limited credits  | No                   |
-| Paid   | More credits     | Yes (via Stripe)     |
+Pro packages are recurring plan sizes. Each package includes a monthly credit allowance, premium models, and the option to buy additional on-demand credits.
+
+| Monthly credits | Monthly billing | Yearly billing |
+|---:|---:|---:|
+| 300 | $30/month | $324/year |
+| 750 | $75/month | $810/year |
+| 1,500 | $150/month | $1,620/year |
+| 3,000 | $300/month | $3,240/year |
+| 6,000 | $600/month | $6,480/year |
+| 10,000 | $1,000/month | $10,800/year |
+
+Yearly billing saves 10%. Credits still reset monthly.
 
 <Note>
-  The free plan never requires a credit card. You can build and run scripts with the included credits at no cost.
+  Premium models require Pro. Credit-priced premium integrations can also use granted credits and do not require a Pro subscription by themselves.
 </Note>
 
-Both plans give you access to the full Script.it feature set. Upgrading to a paid plan increases the credits available to you each period.
+## Upgrade or change a package
 
-## Upgrading to a paid plan
+Owners and billing admins can manage an organization's billing. Personal billing is available only to the account owner.
 
 <Steps>
-  <Step title="Open Settings">
-    In your workspace, click **Settings** in the navigation, then select the **Billing** tab.
+  <Step title="Choose the account">
+    Switch to the Personal or organization account you want to pay for.
   </Step>
-  <Step title="Choose a plan">
-    Review the available paid plans and select the one that fits your usage. You'll see the credit allowance for each option.
+  <Step title="Open Billing">
+    Open **Settings → Billing**.
+  </Step>
+  <Step title="Choose a package and interval">
+    Select a monthly credit package, then choose monthly or yearly billing.
   </Step>
   <Step title="Complete checkout">
-    Click **Upgrade**. You'll be taken to a Stripe-hosted checkout page. Enter your payment details and confirm the subscription.
-  </Step>
-  <Step title="Credits are applied immediately">
-    Once your payment is confirmed, your new credit allowance is available straight away. You can verify the updated balance on the Billing page.
+    Continue to Stripe and confirm the subscription.
   </Step>
 </Steps>
 
+Package upgrades apply immediately and may be prorated. Downgrades and billing-interval changes take effect at renewal. You can manage payment methods, invoices, and cancellation through the Stripe customer portal.
+
 <Tip>
-  Billing is handled entirely by Stripe. Script.it does not store your payment card details.
+  Script.it does not store your payment card details. Stripe handles checkout and payment methods.
 </Tip>
 
-## Spend limits
+## Additional on-demand credits
 
-To keep usage predictable, you can set a spend limit on your account. When your credit usage reaches the limit you've set, Script.it stops running automations until you increase the limit or the next billing period begins.
+Personal owners, organization owners, and billing admins can allow usage beyond the plan and granted credits at **$0.12 per credit**. Set a monthly USD limit under **Settings → Billing → Additional on-demand credits**.
 
-To configure a spend limit, go to **Settings → Billing** and enter a value in the **Spend limit** field. You can update or remove the limit at any time.
+The limit is additional to the recurring package. When the active account uses its included credits and reaches its on-demand limit, Script.it pauses new billable actions until credits become available or the next credit window begins.
 
-## Checking your balance
+## Recurring integration credits
 
-Your current credit balance is always visible in **Settings → Billing**. The page also shows a usage breakdown so you can see which scripts and sessions are consuming the most credits.
+LinkedIn, WhatsApp, Telegram, and Instagram connections currently cost **50 credits per connected account each month**. The connection dialog shows the recurring cost before you connect.
+
+The active account can pay with any usable credits, including granted credits. Disconnecting does not refund the current month's charge. If a renewal cannot be paid, Script.it sends a warning and provides a three-day grace period before unlinking the connection.
+
+## View usage
+
+Open **Settings → Usage** to see the active account's credit status and daily activity.
+
+- In Personal, you see your own included, granted, and on-demand usage.
+- Organization owners and admins can expand **Organization usage** to review usage by member, script, and active trigger.
+- Organization members and billing admins see only their own usage. If an administrator set a member cap, they also see that cap and its reset date.
+
+Billing and usage are separate: **Billing** manages the plan and payments, while **Usage** explains where credits were spent.
+
+## Member usage caps
+
+Organization owners and admins can set an optional monthly cap for a member from **Settings → Organization**. The cap limits how many credits that member can spend from the organization's shared pool.
+
+Clearing the cap returns the member to shared-pool-only access. A cap does not reserve credits for the member and does not change credits already used.
+
+## What happens when credits run out
+
+When the active account has no usable credits:
+
+- New agent messages and billable script runs are blocked.
+- Triggers cannot run until the account can spend again.
+- A credit-priced integration cannot be connected if the account cannot cover its recurring charge.
+
+The notice links eligible owners to Billing. Organization members without billing permission see guidance to contact an owner or billing admin. You can switch back to Personal if that account still has credits.
+
+See [Organizations and active accounts](/account/organizations) to understand what changes when you switch accounts.

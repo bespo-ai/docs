@@ -4,9 +4,9 @@ description: "Workspaces are where teams collaborate on scripts and share integr
 keywords: ["workspace", "workspaces", "collaboration", "members", "roles", "shared integrations", "Script.it"]
 ---
 
-Workspaces are where you collaborate in Script.it. Each workspace holds its own scripts and gives members a shared place to use integrations that have been shared with the workspace.
+Workspaces are where you collaborate in Script.it. Each workspace holds its own scripts and gives people and organizations a shared place to use integrations that have been shared with the workspace.
 
-When you sign up, Script.it creates a private workspace for you automatically. You can create additional workspaces for teams, clients, departments, or any other collaboration boundary.
+When you sign up, Script.it creates a private workspace in your Personal account automatically. You can create additional workspaces for teams, clients, departments, or any other collaboration boundary.
 
 ## Signing up
 
@@ -21,7 +21,7 @@ To create an account, go to [app.script.it/login](https://app.script.it/login). 
 Each workspace contains:
 
 - **Scripts** - reusable workflows with blocks, source files, assets, and trigger configuration.
-- **Members** - the people who can view, run, or edit scripts in the workspace.
+- **Members** - the people and organizations that can view, run, or edit scripts in the workspace.
 - **Shared integrations** - connected accounts or custom integration types that members can use.
 - **Triggers** - rules that run scripts automatically on a schedule or in response to events.
 
@@ -42,6 +42,18 @@ Workspaces have two roles:
   Workspace role does not automatically grant the right to manage an integration. Sharing, editing, rotating credentials, and deleting integration resources are controlled by per-integration permissions. A workspace Editor can still remove a shared integration from that workspace's catalog for cleanup.
 </Note>
 
+## Sharing with people and organizations
+
+New workspaces are private to their creator. Creating a workspace while an organization is active does not share it automatically.
+
+From the workspace's **Members** dialog, an Editor can invite a person directly. An organization owner or admin who is also a workspace Editor can grant the entire organization **Editor** or **Reader** access. All current and future organization members inherit that role.
+
+Direct and organization access coexist. If you have both, Script.it applies the stronger role. Directly shared workspaces remain available when you switch accounts; organization-only workspaces are available while that organization is active.
+
+Script.it keeps at least one Editor for every workspace. Removing an organization's access never leaves the workspace without someone who can manage it.
+
+See [Organizations and active accounts](/account/organizations) for account switching, roles, and organization invitations.
+
 ## Shared integrations
 
 Workspaces can receive two kinds of shared integrations:
@@ -57,11 +69,11 @@ Sharing a connection authorizes the account, not just a specific script or locat
 
 ## Accessing settings
 
-To manage workspaces, open **Settings → Workspaces**. From there you can:
+To manage workspaces, open **Settings → Sharing → Workspaces**. From there you can:
 
 - Create a workspace
 - Rename or delete a workspace
-- Invite members
+- Invite people or add an organization
 - Change a member's role
 - Remove members
 - Review what integrations are shared with a workspace
