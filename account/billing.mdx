@@ -4,19 +4,17 @@ description: "Understand Personal and organization credits, Pro packages, on-dem
 keywords: ["billing", "credits", "plans", "Pro", "organization billing", "Stripe", "on-demand", "spend limit", "member cap", "Script.it"]
 ---
 
-Script.it uses credits for AI model calls, script execution, and credit-priced integrations. Usage is charged to your active account: Personal or an organization.
+Script.it uses credits for AI model calls, script execution, and selected built-in integrations. Usage is charged to your active account: Personal or an organization.
 
 ## How credits work
 
-Credits can come from:
+Credits are consumed each time you interact with the AI agent, run a script, or use a credit-priced integration. Three things drive credit usage:
 
-- **Included credits** from the active account's plan
-- **Granted credits** from promotions or a Script.it administrator
-- **On-demand credits** enabled by a Pro billing owner
+- **AI model calls** — every message to the agent, every script build, and every automated run that involves the AI uses credits proportional to the amount of text processed.
+- **Execution time** — running script blocks consumes credits based on how long the execution takes.
+- **Gateway integrations** — calls made through the **LLM Gateway**, **Social Media Gateway**, and **Web Search Gateway** consume credits when used.
 
-Script.it uses included and granted credits before charging for on-demand usage.
-
-Personal accounts start with free included credits. A newly created organization has no free allocation; it must subscribe to Pro or receive granted credits before it can run billable actions.
+Personal accounts start with free included credits. A newly created organization must choose a credit plan before it can run billable actions.
 
 ## Pro packages
 
@@ -34,7 +32,7 @@ Pro packages are recurring plan sizes. Each package includes a monthly credit al
 Yearly billing saves 10%. Credits still reset monthly.
 
 <Note>
-  Premium models require Pro. Credit-priced premium integrations can also use granted credits and do not require a Pro subscription by themselves.
+  Premium models require Pro. Credit-priced integrations use the active account's available credits.
 </Note>
 
 ## Upgrade or change a package
@@ -64,7 +62,7 @@ Package upgrades apply immediately and may be prorated. Downgrades and billing-i
 
 ## Additional on-demand credits
 
-Personal owners, organization owners, and billing admins can allow usage beyond the plan and granted credits at **$0.12 per credit**. Set a monthly USD limit under **Settings → Billing → Additional on-demand credits**.
+Personal owners, organization owners, and billing admins can allow usage beyond the plan at **$0.12 per credit**. Set a monthly USD limit under **Settings → Billing → Additional on-demand credits**.
 
 The limit is additional to the recurring package. When the active account uses its included credits and reaches its on-demand limit, Script.it pauses new billable actions until credits become available or the next credit window begins.
 
@@ -72,13 +70,13 @@ The limit is additional to the recurring package. When the active account uses i
 
 LinkedIn, WhatsApp, Telegram, and Instagram connections currently cost **50 credits per connected account each month**. The connection dialog shows the recurring cost before you connect.
 
-The active account can pay with any usable credits, including granted credits. Disconnecting does not refund the current month's charge. If a renewal cannot be paid, Script.it sends a warning and provides a three-day grace period before unlinking the connection.
+Disconnecting does not refund the current month's charge. If a renewal cannot be paid, Script.it warns you before unlinking the connection.
 
 ## View usage
 
 Open **Settings → Usage** to see the active account's credit status and daily activity.
 
-- In Personal, you see your own included, granted, and on-demand usage.
+- In Personal, you see your own usage and remaining credits.
 - Organization owners and admins can expand **Organization usage** to review usage by member, script, and active trigger.
 - Organization members and billing admins see only their own usage. If an administrator set a member cap, they also see that cap and its reset date.
 
