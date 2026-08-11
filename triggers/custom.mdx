@@ -1,30 +1,30 @@
 ---
 title: "Custom triggers"
-description: "A custom trigger is code like a block — it can use any app you've connected — but it runs before your script, outside your environment, and nothing starts until something actually happens."
+description: "A custom trigger is a block that runs before your script: it can use any app you've connected, and it starts nothing until something actually happens."
 keywords: ["custom trigger", "coded trigger", "agent", "automation", "polling", "webhook filtering", "Script.it"]
 ---
 
 Sometimes the thing you want to watch for isn't in any event list. Maybe you want to fire only when a Notion page's status flips to **Done**, or when a number in a dashboard crosses a threshold, or when a service you use isn't in the catalog at all.
 
-For those, the agent writes a custom trigger. And the easiest way to understand what that is: it's a block that runs *before* your script.
+For those, the agent writes a custom trigger. The easiest way to understand one: it's a block that runs *before* your script.
 
 ## Like a block — but before the script
 
-A block is a step of your script: code the agent writes for you, that can call any app you've connected. A custom trigger is the same kind of code, written and saved the same way, with the same reach into your integrations — but instead of being a step *of* the workflow, it decides whether the workflow should run at all. That gives it three properties that make the whole model work:
+A block is a step of your script: code the agent writes for you, with access to your connected apps. A custom trigger is the same kind of code, written and saved the same way. The difference is its job. Instead of being a step *of* the workflow, it decides whether the workflow should run at all. That difference gives it three properties:
 
-- **It can use any integration.** The trigger reaches services through the connections you've already made — the same ones your blocks use — and Script.it supplies the sign-in on every call. No API keys pasted into code, nothing to rotate by hand. If the service isn't a built-in app, connect it as a [custom integration](/integrations/custom-integrations) first: any REST API works, which means a custom trigger can watch anything a block could talk to.
+- **It can use any integration.** The trigger reaches services through the connections you've already made — the same ones your blocks use. Script.it supplies the sign-in on every call. No API keys pasted into code, nothing to rotate by hand. If the service isn't a built-in app, connect it as a [custom integration](/integrations/custom-integrations) first. Any REST API works, so a custom trigger can watch anything a block could talk to.
 
-- **It doesn't start a script.** Blocks run inside a session; a trigger's check doesn't create one. It looks at the service, decides nothing happened, and disappears — no script run, no session in your history, next to no cost. Only when it finds a real event does your script start: *that's* when a session is created, with the event's details handed to the script so it knows exactly what it's reacting to.
+- **It doesn't start a script.** Blocks run inside a session. A trigger's check doesn't create one. It looks at the service, decides nothing happened, and disappears — no script run, no session in your history, next to no cost. Your script only starts when the trigger finds a real event. That's when a session is created, with the event's details handed to the script.
 
-- **It runs outside your environment.** Most of the time the check isn't running in your environment at all — Script.it runs it on its own always-on infrastructure. There's nothing for you to host, schedule, or keep awake, and the trigger keeps watching around the clock whether or not you're using Script.it.
+- **It runs outside your environment.** Most of the time the check isn't running in your environment at all. Script.it runs it on its own always-on infrastructure. There's nothing for you to host, schedule, or keep awake. The trigger keeps watching around the clock, whether or not you're using Script.it.
 
-Put together: a custom trigger gives you the full power of a block — real code, any integration — at a completely different cost shape. A block's power, without a session's price, until there's actually something to do.
+Put together, that's the whole idea: a block's power, without a session's price, until there's actually something to do.
 
 ## Why not just a schedule?
 
-The naive way to watch for something is a scheduled script: run every half hour, fetch the data, quit if nothing interesting happened. It works, but every check is a full run — a session in your history and credits spent — even when nothing changed, which for most watchers is almost always.
+The obvious way to watch for something is a scheduled script: run every half hour, fetch the data, quit if nothing interesting happened. It works, but every check is a full run. That means a session in your history and credits spent even when nothing changed — which, for most watchers, is almost every check.
 
-A custom trigger makes the same decision *before* any of that exists. Quiet checks leave no trace; your session history only ever contains real events.
+A custom trigger makes the same decision *before* any of that exists. Quiet checks leave no trace. Your session history only ever contains real events.
 
 The same logic applies to incoming events. If a service sends you everything and your script ignores most of it, you still pay for a run per ignored event, forever. A custom trigger drops the uninteresting ones at the door — they never become a session at all.
 
@@ -38,14 +38,14 @@ Describe what should start the script, as specifically as you can:
 
 > Run this when a customer's plan changes to Enterprise in our billing system.
 
-The agent writes the trigger, tests it against your real data, and switches it on. The test is a dry run — it shows what the trigger *would* have fired on, without creating anything — so you both see what it picks up before it goes live. If it's catching too much or too little, say so and the agent adjusts it before turning it on.
+The agent writes the trigger, tests it against your real data, and switches it on. The test is a dry run: it shows what the trigger *would* have fired on, without creating anything. You both see what it picks up before it goes live. If it's catching too much or too little, say so — the agent adjusts it before turning it on.
 
 ## What the platform handles for you
 
-The agent writes the watching logic — the part that's unique to your request. Everything around it, the part that's real engineering anywhere else, comes with the platform:
+The agent writes the watching logic — the part that's unique to your request. Everything around it comes with the platform. Anywhere else, this is the part you'd have to build yourself:
 
-- **Memory.** Script.it tracks what the trigger has already seen, so each new item fires exactly once, in order. The first check takes stock of what's already there instead of flooding you with everything that ever existed.
-- **Pacing.** A trigger watching a connected app can check as often as every minute, and eases off on its own when nothing has happened for a while. Schedules honor your time zone, including daylight saving.
+- **Memory.** Script.it tracks what the trigger has already seen. Each new item fires exactly once, in order. The first check takes stock of what's already there instead of flooding you with everything that ever existed.
+- **Pacing.** A trigger watching a connected app can check as often as every minute. It eases off on its own when nothing has happened for a while. Schedules honor your time zone, including daylight saving.
 - **Safety.** Custom triggers get the same protections as every trigger: plain-English error explanations, automatic pausing after repeated failures, and the daily failure email. See [Managing triggers](/triggers/managing).
 
 ## Two ways a custom trigger works
@@ -53,7 +53,7 @@ The agent writes the watching logic — the part that's unique to your request. 
 The agent picks whichever fits what you asked for:
 
 - **Checking on a cadence** — the trigger looks at the service on an interval or a schedule and fires when it finds something new. Best for services that don't announce their changes.
-- **Receiving events** — Script.it mints a URL for the trigger, signature-checked like a [webhook trigger](/triggers/webhook), and the trigger decides which incoming notifications are worth acting on. Best when the service can call you, but sends more than you care about.
+- **Receiving events** — Script.it mints a URL for the trigger, signature-checked like a [webhook trigger](/triggers/webhook). The trigger decides which incoming notifications are worth acting on. Best when the service can call you but sends more than you care about.
 
 Both behave identically once running — same switch, same run history, same everything.
 
@@ -62,18 +62,18 @@ Both behave identically once running — same switch, same run history, same eve
 Once it exists, a custom trigger behaves like any other:
 
 - It shows up **in the script**, with an on/off switch and run history.
-- It can have its own **settings** — which channel, which database, what threshold — that the agent declares and you can edit in the script. Adjusting a setting never means touching code.
-- It's **saved with the script**, like a block is, so it travels with it when you share, export, or import — the trigger arrives along with the workflow it belongs to.
-- In a **shared workspace** it follows the same rules as every trigger: teammates see it and can enable their own copy, which runs on *their* connected accounts and credits. Nobody inherits your automation just by opening the script.
+- It can have its own **settings** — which channel, which database, what threshold. The agent declares them, and you edit them in the script like any built-in event's settings. Adjusting a setting never means touching code.
+- It's **saved with the script**, like a block is. Share, export, or import the script and the trigger travels with it.
+- In a **shared workspace** it follows the same rules as every trigger. Teammates can enable their own copy, which runs on *their* connected accounts and credits. Nobody inherits your automation just by opening the script.
 
-Because it's saved as part of the script, you can also open it and read what it does. You don't have to, but it's there — nothing about your automation is hidden in a settings panel somewhere, and you can always ask the agent to explain it in plain terms.
+Because it's saved as part of the script, you can also open it and read what it does. You don't have to, but it's there — nothing about your automation is hidden away. And you can always ask the agent to explain it in plain terms.
 
 ## Keeping it up to date
 
-Custom triggers evolve by conversation. *"Also ignore drafts."* *"Check every five minutes instead."* *"Watch the EU status page too."* The agent edits the trigger and the change takes effect on its own — there's no publish or redeploy step. Teammates who've enabled the same trigger pick up the change the next time theirs runs.
+Custom triggers evolve by conversation. *"Also ignore drafts."* *"Check every five minutes instead."* *"Watch the EU status page too."* The agent edits the trigger and the change takes effect on its own. There's no publish or redeploy step. Teammates who've enabled the same trigger pick up the change the next time theirs runs.
 
 <Note>
   If a custom trigger's code is deleted from the script, the trigger pauses instead of continuing to run an old copy. You'll see it flagged in the script.
 </Note>
 
-If a built-in [app event](/triggers/app-events) already covers what you need, the agent will use that instead — custom triggers are for everything the list doesn't reach.
+If a built-in [app event](/triggers/app-events) already covers what you need, the agent will use that instead. Custom triggers are for everything the list doesn't reach.
