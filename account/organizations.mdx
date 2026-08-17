@@ -12,16 +12,34 @@ You always have a **Personal** account, and you can create or join more than one
 
 | Account | Best for | Included access |
 |---|---|---|
-| Personal | Your own work | Your private workspace, workspaces shared directly with you, and your personal credits |
-| Organization | Company work | Workspaces shared with the organization, workspace integrations, and the organization's credits and limits |
+| Personal | Your own work | Your private workspace, workspaces shared with you from outside your organizations, and your personal credits |
+| Organization | Company work | The organization's workspaces (shared org-wide or with you directly), workspace integrations, and the organization's credits and limits |
 
-Switching accounts changes which organization-shared workspaces and integrations are available and which account pays for new usage. It does not move or delete scripts, sessions, or connections.
+Switching accounts changes which workspaces and integrations are available and which account pays for new usage. It does not move or delete scripts, sessions, or connections.
 
-Workspaces shared directly with you remain available in every account. A workspace shared only through an organization is available while that organization is active.
+Every shared workspace appears in exactly one of your accounts, decided by membership in the organization that owns it:
+
+```mermaid
+flowchart TD
+  W["A workspace is shared with you"] --> M{"Are you a member of the<br/>organization that owns it?"}
+  M -- "Yes" --> ORG["It appears in that organization's account.<br/>Switch there to work in it —<br/>your work uses the organization's credits."]
+  M -- "No" --> EXT["It appears in your <b>Personal</b> account,<br/>grouped under <b>Shared with you</b>.<br/>Your work there uses <b>your own</b><br/>credits and connections."]
+```
+
+The account switcher lists only organizations you are a member of. Being invited to a single workspace never adds an organization to your switcher — see [Working in a workspace shared from outside](#working-in-a-workspace-shared-from-outside) below.
 
 <Note>
   Creating an organization does not automatically share a workspace with it. Create workspaces privately, then explicitly add people or an organization from the workspace's access settings.
 </Note>
+
+## Working in a workspace shared from outside
+
+When someone shares a workspace with you and you are **not** a member of the organization that owns it, the workspace shows up in your **Personal** account under **Shared with you**, labeled with the owner's name.
+
+- You collaborate on the same scripts and files as everyone else in the workspace.
+- Everything you run there uses **your own credits**, and integrations resolve to **your own connections** — never the owner's.
+- If the workspace is owned by an organization, connections its members share into it are available to those members only; you connect your own tools instead. If it is owned by a person's Personal account, connections shared into it work for every invited collaborator.
+- If you later join the owning organization, the workspace moves out of **Shared with you** and becomes available through that organization's account instead. Any triggers you created on it start running under the organization from then on — the invitation screen shows this before you accept.
 
 ## Switch your active account
 
@@ -84,6 +102,6 @@ Workspace Editors can manage access, but only an organization owner or admin can
 
 All current and future organization members inherit the organization's workspace role. Direct grants to individual people remain separate, and the strongest applicable role wins.
 
-Connections are shared with workspaces, not directly with organizations. When a workspace is shared with an organization, its members can use the connections shared with that workspace while the organization is active.
+Connections are shared with workspaces, not directly with organizations. Connections shared into an organization-owned workspace are usable by the organization's members while that organization is active; a collaborator from outside the organization sees the workspace but uses their own connections.
 
 See [Workspaces](/account/workspace) and [Billing](/account/billing) for details.
