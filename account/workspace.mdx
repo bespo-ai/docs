@@ -50,7 +50,7 @@ From the workspace's **Members** dialog, an Editor can invite a person directly.
 
 Direct and organization access coexist. If you have both, Script.it applies the stronger role.
 
-A shared workspace appears in exactly one of each person's accounts. Members of the owning organization reach it through that organization's account. A person invited from **outside** the organization sees it in their own **Personal** account under **Shared with you** — they collaborate on the same scripts, while their runs use their own credits and their own connections. See [Working in a workspace shared from outside](/account/organizations#working-in-a-workspace-shared-from-outside).
+A shared workspace appears in exactly one of each person's accounts. Members of the owning organization reach it through that organization's account. A person invited from **outside** the organization sees it in their own **Personal** account under **Shared with you** — they collaborate on the same scripts, and their runs use their own credits, their own connections, and any connection shared into the workspace itself. See [Working in a workspace shared from outside](/account/organizations#working-in-a-workspace-shared-from-outside).
 
 Script.it keeps at least one Editor for every workspace. Removing an organization's access never leaves the workspace without someone who can manage it.
 
@@ -63,14 +63,20 @@ Workspaces can receive two kinds of shared integrations:
 - **Shared connections** - a collaborator shares their connected account with the workspace. The people it authorizes call that integration using the sharer's upstream account.
 - **Shared custom integration types** - a collaborator shares the definition for an integration, such as the base URL, auth mode, OAuth client, or OpenAPI spec. Each authorized person connects their own credentials through that type.
 
-Sharing a connection authorizes the account, not just a specific script or location — the people it reaches can use it from any of their sessions and scripts, and the same connection can be shared with multiple workspaces. Who a share reaches depends on who owns the workspace:
+Sharing a connection authorizes the account, not just a specific script or location — the people it reaches can use it from any of their sessions and scripts, and the same connection can be shared with multiple workspaces.
+
+A share reaches **everyone the workspace grants access to**, however that access arrived:
 
 ```mermaid
 flowchart TD
-  S["A connection is shared<br/>with a workspace"] --> O{"Who owns the workspace?"}
-  O -- "A person's Personal account" --> P["Every invited collaborator<br/>can use it"]
-  O -- "An organization" --> C["Only the organization's members<br/>with workspace access can use it.<br/>Collaborators from outside connect<br/>their own tools instead."]
+  S["A connection is shared<br/>with a workspace"] --> W["Everyone with access to<br/>that workspace can use it"]
+  W --> D["People invited directly —<br/>including collaborators from<br/>outside the owning organization"]
+  W --> O["Members of an organization<br/>the workspace is shared with"]
+  D --> U["Calls run against the<br/><b>sharer's</b> upstream account"]
+  O --> U
 ```
+
+Who owns the workspace does not narrow this. Instead, the decision is made when access is granted: only an organization owner or admin can add or remove an entire organization, and the sharing screen shows that connections shared into the workspace come along.
 
 <Warning>
   When you share an OAuth or API-key connection, the people the workspace authorizes can make requests under your authorization at the upstream provider. Those requests may appear as you in the provider's logs or audit trail.

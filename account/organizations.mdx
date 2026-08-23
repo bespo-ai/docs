@@ -37,8 +37,8 @@ The account switcher lists only organizations you are a member of. Being invited
 When someone shares a workspace with you and you are **not** a member of the organization that owns it, the workspace shows up in your **Personal** account under **Shared with you**, labeled with the owner's name.
 
 - You collaborate on the same scripts and files as everyone else in the workspace.
-- Everything you run there uses **your own credits**, and integrations resolve to **your own connections** — never the owner's.
-- If the workspace is owned by an organization, connections its members share into it are available to those members only; you connect your own tools instead. If it is owned by a person's Personal account, connections shared into it work for every invited collaborator.
+- Everything you run there uses **your own credits**. Your own connections stay yours: an integration you have connected resolves to your account, not the owner's.
+- Connections other people have shared **into that workspace** are available to you as well, whoever owns the workspace. Using one calls the sharer's upstream account, not yours.
 - If you later join the owning organization, the workspace moves out of **Shared with you** and becomes available through that organization's account instead. Any triggers you created on it start running under the organization from then on — the invitation screen shows this before you accept.
 
 ## Switch your active account
@@ -68,7 +68,7 @@ An owner can delete an organization only after its paid subscription has ended. 
 | Billing admin | View | View | Own usage only | Manage |
 | Member | View | View | Own usage only | No access |
 
-Owners can invite members, admins, and billing admins. Admins can invite members. An admin cannot change or remove an owner or another admin, and an organization must always retain an owner.
+Owners can invite members, admins, and billing admins. Admins can invite members and other admins, but not billing admins. An admin cannot change or remove an owner or another admin, and an organization must always retain an owner.
 
 ## Invite members
 
@@ -102,6 +102,6 @@ Workspace Editors can manage access, but only an organization owner or admin can
 
 All current and future organization members inherit the organization's workspace role. Direct grants to individual people remain separate, and the strongest applicable role wins.
 
-Connections are shared with workspaces, not directly with organizations. Connections shared into an organization-owned workspace are usable by the organization's members while that organization is active; a collaborator from outside the organization sees the workspace but uses their own connections.
+Connections are shared with workspaces, not directly with organizations. A connection shared into a workspace reaches everyone that workspace grants access to — the organization's members and any collaborator invited from outside it. Because adding or removing an entire organization requires an organization owner or admin, that exposure is agreed when the invitation is made rather than each time a connection resolves.
 
 See [Workspaces](/account/workspace) and [Billing](/account/billing) for details.
