@@ -94,7 +94,12 @@
       {
         "group": "Account",
         "icon": "settings",
-        "pages": ["account/workspace", "account/billing", "account/security"]
+        "pages": [
+          "account/organizations",
+          "account/workspace",
+          "account/billing",
+          "account/security"
+        ]
       }
     ]
   },
